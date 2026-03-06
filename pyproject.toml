@@ -1,0 +1,16 @@
+[project]
+name = "weitoutiao"
+version = "0.1.0"
+description = "微头条爬虫 desktop app built with pywebview + Vue"
+requires-python = ">=3.10"
+dependencies = [
+  "pywebview>=5.3",
+  "peewee>=3.17",
+]
+
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools]
+packages = ["app"]

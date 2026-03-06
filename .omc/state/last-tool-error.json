@@ -1,0 +1,7 @@
+{
+  "tool_name": "Agent",
+  "tool_input_preview": "{\"description\":\"Design basic settings plan\",\"prompt\":\"We are in plan mode for a Vue 3 + TypeScript + Pinia + pywebview app at /Users/chaiyapeng/Documents/weitoutiao. Read-only research only, do not mo...",
+  "error": "Cannot create agent worktree: not in a git repository and no WorktreeCreate hooks are configured. Configure WorktreeCreate/WorktreeRemove hooks in settings.json to use worktree isolation with other VCS systems.",
+  "timestamp": "2026-03-06T10:16:55.077Z",
+  "retry_count": 6
+}

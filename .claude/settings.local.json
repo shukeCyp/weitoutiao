@@ -1,0 +1,17 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(chmod:*)",
+      "Bash(\"/Users/chaiyapeng/Documents/weitoutiao/run.sh\")",
+      "Bash(npm install)",
+      "Bash(npm install:*)",
+      "Bash(python3 -m pip install:*)",
+      "Bash(\"/Users/chaiyapeng/Documents/weitoutiao/.venv/bin/python\":*)",
+      "Bash(npm --prefix \"/Users/chaiyapeng/Documents/weitoutiao/frontend\" ci)",
+      "Bash(npm --prefix \"/Users/chaiyapeng/Documents/weitoutiao/frontend\" run build)",
+      "Bash(python3:*)",
+      "Bash(uv --directory \"/Users/chaiyapeng/Documents/weitoutiao\" run:*)",
+      "Bash(uv --directory \"/Users/chaiyapeng/Documents/weitoutiao\" run python:*)"
+    ]
+  }
+}

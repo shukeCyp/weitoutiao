@@ -1,0 +1,7 @@
+Metadata-Version: 2.4
+Name: weitoutiao
+Version: 0.1.0
+Summary: 微头条爬虫 desktop app built with pywebview + Vue
+Requires-Python: >=3.10
+Requires-Dist: pywebview>=5.3
+Requires-Dist: peewee>=3.17

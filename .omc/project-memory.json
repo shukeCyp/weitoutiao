@@ -1,0 +1,222 @@
+{
+  "version": "1.0.0",
+  "lastScanned": 1772788818858,
+  "projectRoot": "/Users/chaiyapeng/Documents/weitoutiao",
+  "techStack": {
+    "languages": [
+      {
+        "name": "Python",
+        "version": null,
+        "confidence": "high",
+        "markers": [
+          "pyproject.toml"
+        ]
+      }
+    ],
+    "frameworks": [],
+    "packageManager": null,
+    "runtime": null
+  },
+  "build": {
+    "buildCommand": null,
+    "testCommand": "pytest",
+    "lintCommand": "ruff check",
+    "devCommand": null,
+    "scripts": {}
+  },
+  "conventions": {
+    "namingStyle": "snake_case",
+    "importStyle": null,
+    "testPattern": null,
+    "fileOrganization": null
+  },
+  "structure": {
+    "isMonorepo": false,
+    "workspaces": [],
+    "mainDirectories": [
+      "app"
+    ],
+    "gitBranches": null
+  },
+  "customNotes": [],
+  "directoryMap": {
+    "app": {
+      "path": "app",
+      "purpose": "Application code",
+      "fileCount": 6,
+      "lastAccessed": 1772788818843,
+      "keyFiles": [
+        "__init__.py",
+        "api.py",
+        "db.py",
+        "logging_setup.py",
+        "main.py"
+      ]
+    },
+    "data": {
+      "path": "data",
+      "purpose": "Data files",
+      "fileCount": 1,
+      "lastAccessed": 1772788818857,
+      "keyFiles": []
+    },
+    "frontend": {
+      "path": "frontend",
+      "purpose": null,
+      "fileCount": 6,
+      "lastAccessed": 1772788818857,
+      "keyFiles": [
+        "index.html",
+        "package-lock.json",
+        "package.json",
+        "tsconfig.json",
+        "tsconfig.tsbuildinfo"
+      ]
+    },
+    "weitoutiao.egg-info": {
+      "path": "weitoutiao.egg-info",
+      "purpose": null,
+      "fileCount": 5,
+      "lastAccessed": 1772788818858,
+      "keyFiles": [
+        "PKG-INFO",
+        "SOURCES.txt",
+        "dependency_links.txt",
+        "requires.txt",
+        "top_level.txt"
+      ]
+    },
+    "frontend/dist": {
+      "path": "frontend/dist",
+      "purpose": "Distribution/build output",
+      "fileCount": 1,
+      "lastAccessed": 1772788818858,
+      "keyFiles": [
+        "index.html"
+      ]
+    },
+    "frontend/node_modules": {
+      "path": "frontend/node_modules",
+      "purpose": "Dependencies",
+      "fileCount": 1,
+      "lastAccessed": 1772788818858,
+      "keyFiles": []
+    },
+    "frontend/src": {
+      "path": "frontend/src",
+      "purpose": "Source code",
+      "fileCount": 3,
+      "lastAccessed": 1772788818858,
+      "keyFiles": [
+        "App.vue",
+        "env.d.ts",
+        "main.ts"
+      ]
+    }
+  },
+  "hotPaths": [
+    {
+      "path": "frontend/src/styles/linear.css",
+      "accessCount": 26,
+      "lastAccessed": 1772791643702,
+      "type": "file"
+    },
+    {
+      "path": "frontend/src/themes/tokens.ts",
+      "accessCount": 26,
+      "lastAccessed": 1772791663056,
+      "type": "file"
+    },
+    {
+      "path": "frontend/src/views/SettingsView.vue",
+      "accessCount": 19,
+      "lastAccessed": 1772791957072,
+      "type": "file"
+    },
+    {
+      "path": "frontend/src",
+      "accessCount": 8,
+      "lastAccessed": 1772791015982,
+      "type": "directory"
+    },
+    {
+      "path": "frontend/src/App.vue",
+      "accessCount": 7,
+      "lastAccessed": 1772790371885,
+      "type": "file"
+    },
+    {
+      "path": "",
+      "accessCount": 4,
+      "lastAccessed": 1772792193700,
+      "type": "directory"
+    },
+    {
+      "path": "frontend/src/styles/base.css",
+      "accessCount": 3,
+      "lastAccessed": 1772791460822,
+      "type": "file"
+    },
+    {
+      "path": "frontend/src/stores/theme.ts",
+      "accessCount": 3,
+      "lastAccessed": 1772791957020,
+      "type": "file"
+    },
+    {
+      "path": "frontend/src/components/ThemeSwitcher.vue",
+      "accessCount": 2,
+      "lastAccessed": 1772790655826,
+      "type": "file"
+    },
+    {
+      "path": "frontend/src/router/index.ts",
+      "accessCount": 1,
+      "lastAccessed": 1772790118259,
+      "type": "file"
+    },
+    {
+      "path": "frontend/src/themes/applyTheme.ts",
+      "accessCount": 1,
+      "lastAccessed": 1772790118293,
+      "type": "file"
+    },
+    {
+      "path": "frontend/src/main.ts",
+      "accessCount": 1,
+      "lastAccessed": 1772790133204,
+      "type": "file"
+    },
+    {
+      "path": "frontend/package.json",
+      "accessCount": 1,
+      "lastAccessed": 1772790412451,
+      "type": "file"
+    },
+    {
+      "path": "frontend/src/views/BenchmarkAccountsView.vue",
+      "accessCount": 1,
+      "lastAccessed": 1772791053812,
+      "type": "file"
+    },
+    {
+      "path": "frontend/src/views/HomeView.vue",
+      "accessCount": 1,
+      "lastAccessed": 1772791053863,
+      "type": "file"
+    },
+    {
+      "path": "app/db.py",
+      "accessCount": 1,
+      "lastAccessed": 1772792192578,
+      "type": "file"
+    },
+    {
+      "path": "app/api.py",
+      "accessCount": 1,
+      "lastAccessed": 1772792192631,
+      "type": "file"
+    }
+  ],
+  "userDirectives": []
+}

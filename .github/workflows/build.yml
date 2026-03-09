@@ -35,39 +35,46 @@ jobs:
       - name: Set up Python
         run: uv python install 3.11
 
+      - name: Install Python dependencies
+        run: uv sync
+
+      - name: Install PyInstaller
+        run: uv pip install pyinstaller
+
+      # 浏览器安装到 workspace 内的固定目录，打包时 spec 会读取此路径
+      - name: Install Playwright Chromium
+        run: uv run playwright install chromium
+        env:
+          PLAYWRIGHT_BROWSERS_PATH: ${{ github.workspace }}/playwright_browsers
+
       - name: Build frontend
         working-directory: frontend
         run: |
           npm ci
           npm run build
 
-      - name: Install Python dependencies
-        run: uv sync
-
-      - name: Install PyInstaller & Playwright browsers
-        run: |
-          uv pip install pyinstaller
-          uv run playwright install chromium
-
       - name: Build macOS .app bundle
         run: uv run pyinstaller weitoutiao.spec --noconfirm
+        env:
+          PLAYWRIGHT_BROWSERS_PATH: ${{ github.workspace }}/playwright_browsers
+
+      # macOS 上 Chromium 二进制文件需要有可执行权限
+      - name: Fix Chromium executable permissions (macOS)
+        run: |
+          find dist/weitoutiao/ms-playwright -type f \( \
+            -name "Chromium" -o \
+            -name "chromium" -o \
+            -name "chrome" -o \
+            -name "*.so" -o \
+            -name "*.dylib" \
+          \) -exec chmod +x {} \;
+        continue-on-error: true
 
       - name: Install create-dmg
         run: brew install create-dmg
 
       - name: Package into DMG
         run: |
-          create-dmg \
-            --volname "微头条爬虫" \
-            --volicon "dist/weitoutiao.app/Contents/Resources/icon-windowed.icns" \
-            --window-pos 200 120 \
-            --window-size 800 450 \
-            --icon-size 100 \
-            --icon "weitoutiao.app" 200 190 \
-            --hide-extension "weitoutiao.app" \
-            --app-drop-link 600 185 \
-            "dist/weitoutiao.dmg" \
-            "dist/weitoutiao.app" || \
           create-dmg \
             --volname "微头条爬虫" \
             --window-pos 200 120 \
@@ -108,22 +115,28 @@ jobs:
       - name: Set up Python
         run: uv python install 3.11
 
+      - name: Install Python dependencies
+        run: uv sync
+
+      - name: Install PyInstaller
+        run: uv pip install pyinstaller
+
+      # 浏览器安装到 workspace 内的固定目录，打包时 spec 会读取此路径
+      - name: Install Playwright Chromium
+        run: uv run playwright install chromium
+        env:
+          PLAYWRIGHT_BROWSERS_PATH: ${{ github.workspace }}\playwright_browsers
+
       - name: Build frontend
         working-directory: frontend
         run: |
           npm ci
           npm run build
 
-      - name: Install Python dependencies
-        run: uv sync
-
-      - name: Install PyInstaller & Playwright browsers
-        run: |
-          uv pip install pyinstaller
-          uv run playwright install chromium
-
       - name: Build Windows .exe
         run: uv run pyinstaller weitoutiao.spec --noconfirm
+        env:
+          PLAYWRIGHT_BROWSERS_PATH: ${{ github.workspace }}\playwright_browsers
 
       - name: Upload EXE artifact
         uses: actions/upload-artifact@v4

@@ -791,7 +791,8 @@
 .benchmark-dialog {
   width: min(560px, calc(100vw - 32px));
   max-height: calc(100vh - 32px);
-  overflow: auto;
+  overflow-y: auto;
+  overflow-x: hidden;
   border: 1px solid color-mix(in srgb, var(--border), transparent 8%);
   border-radius: 22px;
   background: linear-gradient(180deg, color-mix(in srgb, var(--surface), white 8%) 0%, color-mix(in srgb, var(--surfaceElevated), transparent 18%) 100%);
@@ -1603,6 +1604,7 @@
   border: 1px solid var(--border);
   border-radius: 16px;
   background: color-mix(in srgb, var(--surface), transparent 4%);
+  min-width: 0;
 }
 
 .articles-filter-group__head {
@@ -1626,16 +1628,16 @@
 
 .articles-filter-dialog {
   display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
   gap: 14px 16px;
 }
 
 .articles-filter-dialog--basic {
-  grid-template-columns: minmax(0, 1.3fr) minmax(0, 1fr);
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
 }
 
 .articles-filter-dialog--metrics {
-  grid-template-columns: repeat(2, minmax(0, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
 }
 
 .articles-filter {
@@ -1660,10 +1662,7 @@
     flex-direction: column;
   }
 
-  .ai-lab-output--dual,
-  .articles-filter-dialog,
-  .articles-filter-dialog--basic,
-  .articles-filter-dialog--metrics {
+  .ai-lab-output--dual {
     grid-template-columns: 1fr;
   }
 }
@@ -1859,6 +1858,7 @@
   display: flex;
   gap: 8px;
   flex-wrap: wrap;
+  min-width: 0;
 }
 
 .article-monitoring-selected-pill {
@@ -1870,6 +1870,11 @@
   color: var(--accent);
   font-size: 12px;
   font-weight: 700;
+  max-width: 100%;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
 .article-monitoring-result-dialog {
@@ -1877,7 +1882,7 @@
 }
 
 .article-monitoring-metrics-grid {
-  grid-template-columns: repeat(3, minmax(0, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
 }
 
 .ai-lab-select {
@@ -1897,8 +1902,7 @@
 
   .settings-basic-overview,
   .basic-settings-fields,
-  .basic-settings-fields--compact,
-  .article-monitoring-metrics-grid {
+  .basic-settings-fields--compact {
     grid-template-columns: 1fr;
   }
 }

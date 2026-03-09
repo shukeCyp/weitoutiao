@@ -74,8 +74,8 @@ const normalizeTimeValue = (value: string): string | null => {
   return normalized || null
 }
 
-const normalizeMetricValue = (value: string): number => {
-  const parsed = Number.parseInt(value.trim(), 10)
+const normalizeMetricValue = (value: string | number): number => {
+  const parsed = Number.parseInt(String(value), 10)
   if (Number.isNaN(parsed) || parsed < 0) {
     throw new Error('筛选门槛必须是大于等于 0 的整数。')
   }
@@ -184,6 +184,7 @@ const runMonitoring = async (): Promise<void> => {
 onMounted(() => {
   void loadAccounts()
 })
+
 </script>
 
 <template>
@@ -219,7 +220,7 @@ onMounted(() => {
 
         <div v-if="accountLoading" class="benchmark-empty-state article-monitoring-empty">正在加载对标账号...</div>
         <div v-else-if="!hasAccounts" class="benchmark-empty-state article-monitoring-empty">
-          暂无可用对标账号，请先到“对标账号”页面添加账号。
+          暂无可用对标账号，请先到"对标账号"页面添加账号。
         </div>
         <div v-else class="article-monitoring-account-grid">
           <button
@@ -258,7 +259,12 @@ onMounted(() => {
                 <p class="articles-filter-group__text">本次将并发处理 {{ selectedCount }} 个对标账号。</p>
               </div>
               <div class="article-monitoring-selected-list">
-                <span v-for="accountId in selectedAccountIds" :key="accountId" class="article-monitoring-selected-pill">
+                <span
+                  v-for="accountId in selectedAccountIds"
+                  :key="accountId"
+                  class="article-monitoring-selected-pill"
+                  :title="formatSelectedLabel(accountId)"
+                >
                   {{ formatSelectedLabel(accountId) }}
                 </span>
               </div>

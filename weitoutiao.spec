@@ -140,6 +140,7 @@ if IS_MACOS:
     )
 else:
     # Windows – single-file exe
+    # console=True 使 Windows 启动时保留命令行窗口，可实时查看日志输出
     exe = EXE(  # noqa: F821
         pyz,
         a.scripts,
@@ -153,7 +154,7 @@ else:
         upx=True,
         upx_exclude=[],
         runtime_tmpdir=None,
-        console=False,
+        console=True,
         disable_windowed_traceback=False,
         target_arch=None,
         codesign_identity=None,

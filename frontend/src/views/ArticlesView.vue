@@ -706,6 +706,14 @@ onMounted(() => {
       </div>
 
       <div class="articles-head__actions">
+        <!-- 刷新 -->
+        <button
+          type="button"
+          class="action-btn"
+          :disabled="loading || !apiAvailable"
+          @click="loadArticles(1)"
+        >{{ loading ? '加载中...' : '刷新' }}</button>
+
         <!-- 全局批量按钮（始终显示） -->
         <button
           type="button"

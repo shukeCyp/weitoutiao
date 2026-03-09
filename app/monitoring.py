@@ -254,7 +254,7 @@ class AccountMonitor:
         if self.start_time is None and self.end_time is None:
             return bool(items)
 
-        if filtered_items:
+        if not items:
             return False
 
         known_times = [self._extract_item_timestamp(item) for item in items]
@@ -263,10 +263,10 @@ class AccountMonitor:
             return True
 
         oldest_time = min(known_times)
-        if self.start_time is not None and oldest_time > self.start_time:
-            return True
+        if self.start_time is not None and oldest_time <= self.start_time:
+            return False
 
-        return False
+        return True
 
     def _get_continue_reason(self, items: list[dict[str, Any]], filtered_items: list[dict[str, Any]]) -> tuple[bool, str]:
         if self.start_time is None and self.end_time is None:
@@ -274,8 +274,8 @@ class AccountMonitor:
                 return True, "has_items"
             return False, "empty_items"
 
-        if filtered_items:
-            return False, "time_range_satisfied"
+        if not items:
+            return False, "empty_items"
 
         known_times = [self._extract_item_timestamp(item) for item in items]
         known_times = [item_time for item_time in known_times if item_time is not None]
@@ -283,10 +283,11 @@ class AccountMonitor:
             return True, "no_timestamps"
 
         oldest_time = min(known_times)
-        if self.start_time is not None and oldest_time > self.start_time:
-            return True, "need_older_items"
 
-        return False, "oldest_reached_start"
+        if self.start_time is not None and oldest_time <= self.start_time:
+            return False, "oldest_reached_start"
+
+        return True, "need_older_items"
 
     def _build_type_summary(self, payload: dict[str, Any] | list[Any] | None, items: list[dict[str, Any]]) -> dict[str, Any]:
         summary: dict[str, Any] = {

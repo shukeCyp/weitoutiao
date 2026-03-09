@@ -20,6 +20,9 @@ logger = logging.getLogger("weitoutiao.image")
 _MARKDOWN_IMAGE_RE = re.compile(
     r"!\[[^\]]*\]\((data:image/([a-zA-Z0-9.+-]+);base64,([^)]+))\)"
 )
+_MARKDOWN_URL_IMAGE_RE = re.compile(
+    r"!\[[^\]]*\]\((https?://[^\s)]+)\)"
+)
 
 
 def _read_required_setting(key: str, label: str) -> str:
@@ -104,20 +107,46 @@ class ImageBackendClient:
         raw_content = ""
         started_at = time.perf_counter()
 
+        # #region agent log
+        import json as _ibjson
+        _ibpath = Path(__file__).resolve().parent.parent / ".cursor" / "debug.log"
+        _ibpath.parent.mkdir(parents=True, exist_ok=True)
+        def _iblog(hyp, msg, **data):
+            with _ibpath.open("a", encoding="utf-8") as _ibf:
+                _ibf.write(_ibjson.dumps({"timestamp": int(time.time()*1000), "hypothesisId": hyp, "location": "image_backend_client.py", "message": msg, "data": data}) + "\n")
+        _iblog("H1-H4", "request_start", endpoint=endpoint, model=model, api_key_configured=bool(api_key))
+        # #endregion
+
         try:
             with request.urlopen(req, timeout=IMAGE_GEN_TIMEOUT_SECONDS) as response:
+                status = getattr(response, "status", None)
+                headers = dict(response.headers) if hasattr(response, "headers") else {}
+                content_type = headers.get("Content-Type", headers.get("content-type", "unknown"))
                 logger.info(
                     "生图 SSE 连接建立 status=%s",
-                    getattr(response, "status", None),
+                    status,
                 )
+                # #region agent log
+                _iblog("H1-H2", "response_connected", status=status, content_type=content_type)
+                # #endregion
                 all_raw_bytes = b""
+                chunk_count = 0
                 while True:
                     chunk = response.read(4096)
                     if not chunk:
                         break
                     all_raw_bytes += chunk
+                    chunk_count += 1
+                    # #region agent log
+                    if chunk_count == 1:
+                        _iblog("H1-H4", "first_chunk", size=len(chunk), preview=chunk[:300].decode("utf-8", errors="replace"))
+                    # #endregion
 
                 complete_text = all_raw_bytes.decode("utf-8", errors="replace")
+                # #region agent log
+                _iblog("H5", "read_complete", total_bytes=len(all_raw_bytes), chunk_count=chunk_count, complete_text_preview=complete_text[:500])
+                # #endregion
+                reasoning_content_total = ""
                 for payload in _parse_sse_events(complete_text):
                     try:
                         data = json.loads(payload)
@@ -125,9 +154,23 @@ class ImageBackendClient:
                         continue
                     delta = (data.get("choices") or [{}])[0].get("delta") or {}
                     content_piece = delta.get("content") or ""
+                    reasoning_piece = delta.get("reasoning_content") or ""
                     if content_piece:
                         raw_content += content_piece
+                    if reasoning_piece:
+                        reasoning_content_total += reasoning_piece
+                # #region agent log
+                _iblog("H5", "parse_complete", raw_content_len=len(raw_content), reasoning_content_len=len(reasoning_content_total),
+                       raw_content_preview=raw_content[:300], reasoning_has_image="data:image" in reasoning_content_total,
+                       content_has_image="data:image" in raw_content)
+                # #endregion
 
+        except TimeoutError as exc:
+            elapsed_ms = round((time.perf_counter() - started_at) * 1000, 2)
+            # #region agent log
+            _iblog("H3-H4", "timeout_error", elapsed_ms=elapsed_ms, error=str(exc))
+            # #endregion
+            raise RuntimeError(f"生图请求超时: {exc}") from exc
         except error.HTTPError as exc:
             body = exc.read().decode("utf-8", errors="ignore")
             elapsed_ms = round((time.perf_counter() - started_at) * 1000, 2)
@@ -141,6 +184,9 @@ class ImageBackendClient:
         except error.URLError as exc:
             elapsed_ms = round((time.perf_counter() - started_at) * 1000, 2)
             logger.exception("生图请求网络异常 reason=%s elapsed_ms=%s", exc.reason, elapsed_ms)
+            # #region agent log
+            _iblog("H3-H4", "url_error", elapsed_ms=elapsed_ms, reason=str(exc.reason), error_type=type(exc.reason).__name__)
+            # #endregion
             raise RuntimeError(f"生图请求网络异常: {exc.reason}") from exc
 
         elapsed_ms = round((time.perf_counter() - started_at) * 1000, 2)
@@ -151,24 +197,46 @@ class ImageBackendClient:
         )
 
         match = _MARKDOWN_IMAGE_RE.search(raw_content)
-        if not match:
+        url_match = _MARKDOWN_URL_IMAGE_RE.search(raw_content)
+
+        if match:
+            # 模式1：base64 内嵌图片
+            mime_type = match.group(2)
+            b64_data = match.group(3)
+            image_bytes = base64.b64decode(b64_data)
+            ext = mime_type.split("/")[-1].split("+")[0] or "png"
+            # #region agent log
+            _iblog("H5-postfix", "image_mode", mode="base64", ext=ext, size=len(image_bytes))
+            # #endregion
+        elif url_match:
+            # 模式2：图片 URL，下载后保存
+            image_url = url_match.group(1)
+            logger.info("生图返回图片 URL，开始下载 url=%s", image_url[:120])
+            # #region agent log
+            _iblog("H5-postfix", "image_mode", mode="url", url=image_url[:150])
+            # #endregion
+            url_req = request.Request(url=image_url, headers={"User-Agent": "Mozilla/5.0"}, method="GET")
+            with request.urlopen(url_req, timeout=60) as img_resp:
+                image_bytes = img_resp.read()
+                img_content_type = img_resp.headers.get("Content-Type", "image/jpeg")
+            ext = img_content_type.split("/")[-1].split(";")[0].strip() or "jpg"
+            logger.info("图片下载完成 size=%s content_type=%s", len(image_bytes), img_content_type)
+        else:
             preview = raw_content[:300]
-            logger.error("生图响应中未找到 base64 图片数据 raw_preview=%r", preview)
-            raise RuntimeError("生图响应中未找到 base64 图片数据。")
+            logger.error("生图响应中未找到图片数据 raw_preview=%r", preview)
+            raise RuntimeError("生图响应中未找到图片数据（既无 base64 也无图片 URL）。")
 
-        mime_type = match.group(2)
-        b64_data = match.group(3)
-        image_bytes = base64.b64decode(b64_data)
-
-        ext = mime_type.split("/")[-1].split("+")[0] or "png"
+        ext = ext.lower()
+        if ext not in ("png", "jpg", "jpeg", "webp", "gif"):
+            ext = "jpg"
         final_path = save_path.with_suffix(f".{ext}") if save_path.suffix != f".{ext}" else save_path
         final_path.parent.mkdir(parents=True, exist_ok=True)
         final_path.write_bytes(image_bytes)
 
         logger.info(
-            "图片已保存 path=%s mime=%s size_bytes=%s",
+            "图片已保存 path=%s ext=%s size_bytes=%s",
             final_path,
-            mime_type,
+            ext,
             len(image_bytes),
         )
 

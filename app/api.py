@@ -11,7 +11,7 @@ from pathlib import Path
 
 import webview
 from docx import Document
-from docx.shared import Inches, Pt, RGBColor
+from docx.shared import Inches, Pt
 from docx.enum.text import WD_ALIGN_PARAGRAPH
 from peewee import IntegrityError
 
@@ -181,15 +181,6 @@ class Api:
             section.bottom_margin = Inches(1)
             section.left_margin = Inches(1.2)
             section.right_margin = Inches(1.2)
-
-        # ── 标题 ──────────────────────────────────────────────
-        title_para = doc.add_heading(title, level=1)
-        title_para.alignment = WD_ALIGN_PARAGRAPH.CENTER
-        for run in title_para.runs:
-            run.font.size = Pt(18)
-            run.font.color.rgb = RGBColor(0x1F, 0x2D, 0x3D)
-
-        doc.add_paragraph()  # 标题后留一行间距
 
         def _add_text_paras(text: str) -> None:
             """将文本按换行符拆分，每行作为独立 Word 段落写入，两端对齐 12pt。"""

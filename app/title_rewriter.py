@@ -174,21 +174,6 @@ class BaseLlmRewriter:
             len(final_content),
             self._preview_text(final_content),
         )
-        # #region agent log
-        import json as _trjson, time as _trtime, sys as _trsys
-        _trpath = (
-            __import__('pathlib').Path(_trsys.executable).parent / "debug_exe.log"
-            if getattr(_trsys, "frozen", False)
-            else __import__('pathlib').Path(__file__).resolve().parent.parent / ".cursor" / "debug.log"
-        )
-        _trpath.parent.mkdir(parents=True, exist_ok=True)
-        with _trpath.open("a", encoding="utf-8") as _trf:
-            _trf.write(_trjson.dumps({
-                "ts": int(_trtime.time()*1000), "step": "llm_stream_complete",
-                "elapsed_ms": elapsed_ms, "output_len": len(final_content),
-                "preview": final_content[:80]
-            }) + "\n")
-        # #endregion
         return final_content
 
     def _render_prompt(self, template: str, content: str) -> str:

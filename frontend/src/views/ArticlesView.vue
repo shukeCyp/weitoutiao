@@ -363,7 +363,7 @@ const clearSelection = (): void => {
 // ── 全局批量改写 ───────────────────────────────────────────────────────
 const globalBatchRewriteDialogVisible = ref(false)
 const globalBatchRewriteTemplateKey = ref<ArticleRewriteTemplateKey>('international_account_starter')
-const globalBatchRewriteScope = ref<'incomplete' | 'all'>('incomplete')
+const globalBatchRewriteScope = ref<'selected' | 'incomplete' | 'all'>('incomplete')
 
 interface GlobalBatchRewriteState {
   running: boolean
@@ -393,8 +393,13 @@ const confirmGlobalBatchRewrite = async (): Promise<void> => {
 
   globalBatchRewriteDialogVisible.value = false
 
-  const skipRewritten = globalBatchRewriteScope.value === 'incomplete'
-  const ids = await api.list_article_ids_for_batch(normalizedFilters(), skipRewritten)
+  let ids: number[]
+  if (globalBatchRewriteScope.value === 'selected') {
+    ids = Array.from(selectedIds.value)
+  } else {
+    const skipRewritten = globalBatchRewriteScope.value === 'incomplete'
+    ids = await api.list_article_ids_for_batch(normalizedFilters(), skipRewritten)
+  }
   if (!ids.length) {
     showToast('没有符合条件的文章需要改写。', 'warning')
     return
@@ -872,6 +877,7 @@ onMounted(() => {
             <label class="articles-filter" style="margin-top: 12px;">
               <span>改写范围</span>
               <select v-model="globalBatchRewriteScope" class="benchmark-page-size__select">
+                <option v-if="someSelected" value="selected">只改写已选中的 {{ selectedIds.size }} 篇</option>
                 <option value="incomplete">只改写未改写的文章</option>
                 <option value="all">全部覆盖改写（包含已改写）</option>
               </select>

@@ -34,7 +34,7 @@ LLM_BASE_URL_KEY = "llm.base_url"
 LLM_API_KEY_KEY = "llm.api_key"
 LLM_MODEL_KEY = "llm.model"
 TITLE_REWRITE_TIMEOUT_SECONDS = 120
-ARTICLE_REWRITE_TIMEOUT_SECONDS = 300
+ARTICLE_REWRITE_TIMEOUT_SECONDS = 1800  # 30 分钟，兼容 LLM 长文章生成
 LLM_PREVIEW_MAX_LENGTH = 300
 ARTICLE_REWRITE_PROMPTS = {
     "international_account_starter": PromptTemplates.INTERNATIONAL_ACCOUNT_STARTER_PROMPT,
@@ -328,7 +328,7 @@ class ArticleRewriter(BaseLlmRewriter):
         return list(ARTICLE_REWRITE_PROMPTS.keys())
 
 
-IMAGE_PROMPT_GENERATION_TIMEOUT_SECONDS = 120
+IMAGE_PROMPT_GENERATION_TIMEOUT_SECONDS = 300
 IMAGE_PROMPT_MARKER_RE = re.compile(r"########(\d+)\s*\n([\s\S]*?)(?=########\d+|$)")
 
 

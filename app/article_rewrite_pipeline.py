@@ -81,7 +81,7 @@ class ArticleRewritePipeline:
             _pl.parent.mkdir(parents=True, exist_ok=True)
             with _pl.open("a", encoding="utf-8") as _pf:
                 _pf.write(_pjson.dumps({"ts": int(_ptime.time()*1000), "step": step, "data": data}) + "\n")
-        _pdbg("pipeline_start", article_id=article_id, template_key=template_key,
+        _pdbg("pipeline_start_v2", article_id=article_id, template_key=template_key,
               has_title=has_title, has_intro=has_intro, has_article=has_article,
               frozen=getattr(_sys, "frozen", False))
         # #endregion

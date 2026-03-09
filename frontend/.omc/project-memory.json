@@ -1,0 +1,180 @@
+{
+  "version": "1.0.0",
+  "lastScanned": 1772862151569,
+  "projectRoot": "/Users/chaiyapeng/Documents/weitoutiao/frontend",
+  "techStack": {
+    "languages": [
+      {
+        "name": "JavaScript/TypeScript",
+        "version": null,
+        "confidence": "high",
+        "markers": [
+          "package.json"
+        ]
+      },
+      {
+        "name": "TypeScript",
+        "version": null,
+        "confidence": "high",
+        "markers": [
+          "tsconfig.json"
+        ]
+      }
+    ],
+    "frameworks": [
+      {
+        "name": "vue",
+        "version": "3.5.13",
+        "category": "frontend"
+      },
+      {
+        "name": "vite",
+        "version": "6.2.1",
+        "category": "build"
+      }
+    ],
+    "packageManager": "npm",
+    "runtime": null
+  },
+  "build": {
+    "buildCommand": "npm run build",
+    "testCommand": null,
+    "lintCommand": null,
+    "devCommand": "npm run dev",
+    "scripts": {
+      "dev": "vite",
+      "build": "vue-tsc -b && vite build",
+      "preview": "vite preview"
+    }
+  },
+  "conventions": {
+    "namingStyle": null,
+    "importStyle": "ES modules",
+    "testPattern": null,
+    "fileOrganization": "type-based"
+  },
+  "structure": {
+    "isMonorepo": false,
+    "workspaces": [],
+    "mainDirectories": [
+      "src"
+    ],
+    "gitBranches": null
+  },
+  "customNotes": [],
+  "directoryMap": {
+    "dist": {
+      "path": "dist",
+      "purpose": "Distribution/build output",
+      "fileCount": 1,
+      "lastAccessed": 1772862151549,
+      "keyFiles": [
+        "index.html"
+      ]
+    },
+    "src": {
+      "path": "src",
+      "purpose": "Source code",
+      "fileCount": 3,
+      "lastAccessed": 1772862151550,
+      "keyFiles": [
+        "App.vue",
+        "env.d.ts",
+        "main.ts"
+      ]
+    },
+    "dist/assets": {
+      "path": "dist/assets",
+      "purpose": "Static assets",
+      "fileCount": 2,
+      "lastAccessed": 1772862151551,
+      "keyFiles": [
+        "index-BAOXfHGO.css",
+        "index-BfkZEace.js"
+      ]
+    },
+    "src/components": {
+      "path": "src/components",
+      "purpose": "UI components",
+      "fileCount": 2,
+      "lastAccessed": 1772862151551,
+      "keyFiles": [
+        "AppToast.vue",
+        "ThemeSwitcher.vue"
+      ]
+    },
+    "src/utils": {
+      "path": "src/utils",
+      "purpose": "Utility functions",
+      "fileCount": 4,
+      "lastAccessed": 1772862151551,
+      "keyFiles": [
+        "imageClient.ts",
+        "index.ts",
+        "llmClient.ts"
+      ]
+    },
+    "src/views": {
+      "path": "src/views",
+      "purpose": "View templates",
+      "fileCount": 4,
+      "lastAccessed": 1772862151552,
+      "keyFiles": [
+        "AiLabView.vue",
+        "BenchmarkAccountsView.vue",
+        "HomeView.vue"
+      ]
+    }
+  },
+  "hotPaths": [
+    {
+      "path": "src/views/SettingsView.vue",
+      "accessCount": 18,
+      "lastAccessed": 1772864081665,
+      "type": "file"
+    },
+    {
+      "path": "src/env.d.ts",
+      "accessCount": 10,
+      "lastAccessed": 1772983249934,
+      "type": "file"
+    },
+    {
+      "path": "src/styles/linear.css",
+      "accessCount": 8,
+      "lastAccessed": 1772864045721,
+      "type": "file"
+    },
+    {
+      "path": "src/views/BenchmarkAccountsView.vue",
+      "accessCount": 6,
+      "lastAccessed": 1772862885611,
+      "type": "file"
+    },
+    {
+      "path": "src/views/AiLabView.vue",
+      "accessCount": 6,
+      "lastAccessed": 1772983284736,
+      "type": "file"
+    },
+    {
+      "path": "src/views/ArticlesView.vue",
+      "accessCount": 3,
+      "lastAccessed": 1772993450112,
+      "type": "file"
+    },
+    {
+      "path": "src",
+      "accessCount": 1,
+      "lastAccessed": 1772862645420,
+      "type": "directory"
+    },
+    {
+      "path": "src/views/ArticleMonitoringView.vue",
+      "accessCount": 1,
+      "lastAccessed": 1772993425333,
+      "type": "file"
+    }
+  ],
+  "userDirectives": []
+}

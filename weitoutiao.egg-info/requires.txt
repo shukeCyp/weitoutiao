@@ -1,2 +1,4 @@
 pywebview>=5.3
 peewee>=3.17
+playwright>=1.52
+python-docx>=1.2.0

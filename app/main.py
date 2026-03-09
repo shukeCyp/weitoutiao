@@ -40,8 +40,9 @@ def main() -> int:
         return 1
 
     api = Api()
-    logger.info("Creating pywebview window")
-    webview.create_window(WINDOW_TITLE, url=url, js_api=api, width=1180, height=760)
+    logger.info("Creating pywebview window in maximized mode")
+    window = webview.create_window(WINDOW_TITLE, url=url, js_api=api, maximized=True)
+    api.attach_window(window)
     logger.info("Starting pywebview event loop")
     webview.start()
     return 0

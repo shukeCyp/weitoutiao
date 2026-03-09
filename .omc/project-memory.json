@@ -1,6 +1,6 @@
 {
   "version": "1.0.0",
-  "lastScanned": 1772788818858,
+  "lastScanned": 1772975634638,
   "projectRoot": "/Users/chaiyapeng/Documents/weitoutiao",
   "techStack": {
     "languages": [
@@ -40,11 +40,20 @@
   },
   "customNotes": [],
   "directoryMap": {
+    "__pycache__": {
+      "path": "__pycache__",
+      "purpose": null,
+      "fileCount": 1,
+      "lastAccessed": 1772975634626,
+      "keyFiles": [
+        "validate_article_monitoring.cpython-313.pyc"
+      ]
+    },
     "app": {
       "path": "app",
       "purpose": "Application code",
-      "fileCount": 6,
-      "lastAccessed": 1772788818843,
+      "fileCount": 9,
+      "lastAccessed": 1772975634627,
       "keyFiles": [
         "__init__.py",
         "api.py",
@@ -57,14 +66,14 @@
       "path": "data",
       "purpose": "Data files",
       "fileCount": 1,
-      "lastAccessed": 1772788818857,
+      "lastAccessed": 1772975634628,
       "keyFiles": []
     },
     "frontend": {
       "path": "frontend",
       "purpose": null,
       "fileCount": 6,
-      "lastAccessed": 1772788818857,
+      "lastAccessed": 1772975634629,
       "keyFiles": [
         "index.html",
         "package-lock.json",
@@ -77,7 +86,7 @@
       "path": "weitoutiao.egg-info",
       "purpose": null,
       "fileCount": 5,
-      "lastAccessed": 1772788818858,
+      "lastAccessed": 1772975634629,
       "keyFiles": [
         "PKG-INFO",
         "SOURCES.txt",
@@ -90,7 +99,7 @@
       "path": "frontend/dist",
       "purpose": "Distribution/build output",
       "fileCount": 1,
-      "lastAccessed": 1772788818858,
+      "lastAccessed": 1772975634631,
       "keyFiles": [
         "index.html"
       ]
@@ -99,14 +108,14 @@
       "path": "frontend/node_modules",
       "purpose": "Dependencies",
       "fileCount": 1,
-      "lastAccessed": 1772788818858,
+      "lastAccessed": 1772975634631,
       "keyFiles": []
     },
     "frontend/src": {
       "path": "frontend/src",
       "purpose": "Source code",
       "fileCount": 3,
-      "lastAccessed": 1772788818858,
+      "lastAccessed": 1772975634632,
       "keyFiles": [
         "App.vue",
         "env.d.ts",
@@ -116,105 +125,51 @@
   },
   "hotPaths": [
     {
-      "path": "frontend/src/styles/linear.css",
-      "accessCount": 26,
-      "lastAccessed": 1772791643702,
+      "path": "app/title_rewriter.py",
+      "accessCount": 20,
+      "lastAccessed": 1772980193532,
       "type": "file"
     },
     {
-      "path": "frontend/src/themes/tokens.ts",
-      "accessCount": 26,
-      "lastAccessed": 1772791663056,
-      "type": "file"
-    },
-    {
-      "path": "frontend/src/views/SettingsView.vue",
-      "accessCount": 19,
-      "lastAccessed": 1772791957072,
-      "type": "file"
-    },
-    {
-      "path": "frontend/src",
-      "accessCount": 8,
-      "lastAccessed": 1772791015982,
-      "type": "directory"
-    },
-    {
-      "path": "frontend/src/App.vue",
-      "accessCount": 7,
-      "lastAccessed": 1772790371885,
-      "type": "file"
-    },
-    {
-      "path": "",
-      "accessCount": 4,
-      "lastAccessed": 1772792193700,
-      "type": "directory"
-    },
-    {
-      "path": "frontend/src/styles/base.css",
-      "accessCount": 3,
-      "lastAccessed": 1772791460822,
-      "type": "file"
-    },
-    {
-      "path": "frontend/src/stores/theme.ts",
-      "accessCount": 3,
-      "lastAccessed": 1772791957020,
-      "type": "file"
-    },
-    {
-      "path": "frontend/src/components/ThemeSwitcher.vue",
-      "accessCount": 2,
-      "lastAccessed": 1772790655826,
-      "type": "file"
-    },
-    {
-      "path": "frontend/src/router/index.ts",
-      "accessCount": 1,
-      "lastAccessed": 1772790118259,
-      "type": "file"
-    },
-    {
-      "path": "frontend/src/themes/applyTheme.ts",
-      "accessCount": 1,
-      "lastAccessed": 1772790118293,
-      "type": "file"
-    },
-    {
-      "path": "frontend/src/main.ts",
-      "accessCount": 1,
-      "lastAccessed": 1772790133204,
-      "type": "file"
-    },
-    {
-      "path": "frontend/package.json",
-      "accessCount": 1,
-      "lastAccessed": 1772790412451,
-      "type": "file"
-    },
-    {
-      "path": "frontend/src/views/BenchmarkAccountsView.vue",
-      "accessCount": 1,
-      "lastAccessed": 1772791053812,
-      "type": "file"
-    },
-    {
-      "path": "frontend/src/views/HomeView.vue",
-      "accessCount": 1,
-      "lastAccessed": 1772791053863,
-      "type": "file"
-    },
-    {
-      "path": "app/db.py",
-      "accessCount": 1,
-      "lastAccessed": 1772792192578,
+      "path": "frontend/src/views/AiLabView.vue",
+      "accessCount": 13,
+      "lastAccessed": 1772982543508,
       "type": "file"
     },
     {
       "path": "app/api.py",
+      "accessCount": 3,
+      "lastAccessed": 1772979244956,
+      "type": "file"
+    },
+    {
+      "path": "",
+      "accessCount": 2,
+      "lastAccessed": 1772980327329,
+      "type": "directory"
+    },
+    {
+      "path": "app/main.py",
       "accessCount": 1,
-      "lastAccessed": 1772792192631,
+      "lastAccessed": 1772977373626,
+      "type": "file"
+    },
+    {
+      "path": "app/logging_setup.py",
+      "accessCount": 1,
+      "lastAccessed": 1772977373689,
+      "type": "file"
+    },
+    {
+      "path": "app/monitoring.py",
+      "accessCount": 1,
+      "lastAccessed": 1772977373809,
+      "type": "file"
+    },
+    {
+      "path": "app/prompt_constants.py",
+      "accessCount": 1,
+      "lastAccessed": 1772979058379,
       "type": "file"
     }
   ],

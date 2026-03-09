@@ -1,0 +1,7 @@
+{
+  "tool_name": "Bash",
+  "tool_input_preview": "{\"command\":\"python3 - <<'PY'\\nfrom datetime import datetime\\nfrom app.monitoring import AccountMonitor\\nmonitor = AccountMonitor(url='https://example.com', start_time=None, end_time=None)\\nsample = {\\...",
+  "error": "Exit code 1\nTraceback (most recent call last):\n  File \"<stdin>\", line 2, in <module>\nModuleNotFoundError: No module named 'app'\n\nTraceback (most recent call last):\n  File \"<stdin>\", line 2, in <module>\nModuleNotFoundError: No module named 'app'",
+  "timestamp": "2026-03-07T07:04:22.670Z",
+  "retry_count": 1
+}

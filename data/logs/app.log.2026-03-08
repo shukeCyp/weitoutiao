@@ -1,0 +1,736 @@
+2026-03-08 02:24:17 | INFO | weitoutiao | Starting desktop application
+2026-03-08 02:24:17 | INFO | weitoutiao | Database initialized
+2026-03-08 02:24:17 | INFO | weitoutiao | Frontend asset resolved: /Users/chaiyapeng/Documents/weitoutiao/frontend/dist/index.html
+2026-03-08 02:24:17 | INFO | weitoutiao | Creating pywebview window
+2026-03-08 02:24:17 | INFO | weitoutiao | Starting pywebview event loop
+2026-03-08 02:24:28 | INFO | weitoutiao.api | 开始执行账号监控 url=https://www.toutiao.com/c/user/token/Ciw1yhCBHf_GqdVq-hND0XUd9AjJ5oZ-tVNEIY6EdeC1bmaeUWt1W_LAGtZmKRpJCjwAAAAAAAAAAAAAUCfd_QeHzLFODRGp79H24P23IDVsfW8THC6UPIkunDy-gLI2xjoUyeZrWr8TnwTKZskQp7mLDhjDxYPqBCIBA_AK6jU=/?source=m_redirect&tab=all start_time=None end_time=None
+2026-03-08 02:24:28 | INFO | weitoutiao.monitoring | 开始尝试获取头条 feed 数据 headless=False
+2026-03-08 02:24:37 | INFO | weitoutiao.monitoring | 开始加载头条账号页 url=https://www.toutiao.com/c/user/token/Ciw1yhCBHf_GqdVq-hND0XUd9AjJ5oZ-tVNEIY6EdeC1bmaeUWt1W_LAGtZmKRpJCjwAAAAAAAAAAAAAUCfd_QeHzLFODRGp79H24P23IDVsfW8THC6UPIkunDy-gLI2xjoUyeZrWr8TnwTKZskQp7mLDhjDxYPqBCIBA_AK6jU=/?source=m_redirect&tab=all headless=False
+2026-03-08 02:24:45 | INFO | weitoutiao.monitoring | 首屏响应 summary item_count=20 filtered_item_count=20 next_cursor=1772907882 top_level_type=dict data_type=list continue=True reason=has_items url=https://www.toutiao.com/api/pc/list/user/feed?category=pc_profile_ugc&token=Ciw1yhCBHf_GqdVq-hND0XUd9AjJ5oZ-tVNEIY6EdeC1bmaeUWt1W_LAGtZmKRpJCjwAAAAAAAAAAAAAUCfd_QeHzLFODRGp79H24P23IDVsfW8THC6UPIkunDy-gLI2xjoUyeZrWr8TnwTKZskQp7mLDhjDxYPqBCIBA_AK6jU%3D&max_behot_time=0&entrance_gid=&aid=24&app_name=toutiao_web&a_bogus=x6WqQdgkdEDkgDWd569LfY3qVW33Y2Bb0t9b8DhqKnVLL639HMPK9exE1zkvIIbjEs%2F8Ieyjy4hbYNQprQ2n01wfHuiE%2F2oMsDSptaPh5xSSs1feeL6DrsJL-ib3SFrd5XNREQfkqwItKSRDWoQHmhOUbfaSYyDWxp6Fa31oMj%3D%3D
+2026-03-08 02:24:45 | INFO | weitoutiao.monitoring | 分页轮次开始 round=1 captures_total=1 seen_items_total=20 no_progress_rounds=0 same_cursor_rounds=0
+2026-03-08 02:24:45 | INFO | weitoutiao.monitoring | 触发浏览器滚动分页 round=1 no_progress_rounds=0 same_cursor_rounds=0 mode=normal
+2026-03-08 02:24:52 | INFO | weitoutiao.monitoring | 滚动后未进入 networkidle，继续检查已捕获响应。 round=1 mode=normal
+2026-03-08 02:24:52 | INFO | weitoutiao.monitoring | 分页轮次结果 round=1 mode=normal pending=0 accepted=0 dup_req=0 invalid=0 dup_content=0 no_new_items=0 new_unique_items=0 captures_total=1 items_total=20 latest_cursor=1772907882 no_progress_rounds=0
+2026-03-08 02:24:52 | INFO | weitoutiao.monitoring | 本轮滚动未形成有效进展 round=1 reason=no_new_pending_responses no_progress_rounds=1 same_cursor_rounds=1
+2026-03-08 02:24:52 | INFO | weitoutiao.monitoring | 分页轮次开始 round=2 captures_total=1 seen_items_total=20 no_progress_rounds=1 same_cursor_rounds=1
+2026-03-08 02:24:52 | INFO | weitoutiao.monitoring | 触发浏览器滚动分页 round=2 no_progress_rounds=1 same_cursor_rounds=1 mode=aggressive
+2026-03-08 02:24:58 | INFO | weitoutiao.monitoring | 滚动后未进入 networkidle，继续检查已捕获响应。 round=2 mode=aggressive
+2026-03-08 02:24:58 | INFO | weitoutiao.monitoring | 响应处理 round=2 reason=accepted url=https://www.toutiao.com/api/pc/list/user/feed?category=pc_profile_ugc&token=Ciw1yhCBHf_GqdVq-hND0XUd9AjJ5oZ-tVNEIY6EdeC1bmaeUWt1W_LAGtZmKRpJCjwAAAAAAAAAAAAAUCfd_QeHzLFODRGp79H24P23IDVsfW8THC6UPIkunDy-gLI2xjoUyeZrWr8TnwTKZskQp7mLDhjDxYPqBCIBA_AK6jU%3D&max_behot_time=1772783500415&entrance_gid=&aid=24&app_name=toutiao_web&msToken=_LZ_8cpET-1jy2Ke-1a7pm7fSxC1_PMTTtrJrByy6-hJg8bo2KbwBXQhR5QZV_Ltb2aPQ1e7Ek7sGpJveV716UjlQp84UbibZxlfb2D9qI_rB56m_298c4_1OHJzo4Jwa5s%3D&a_bogus=EvRhMRgkmEVBDDSp569LfY3qVUB3Y2Bb0t9b8DhqBnVLAg39HMOc9exE1zkvupfjEs%2F8IeWjy4hbYNQprQ2n01wfHuiE%2F2oMsDSptaPh5xSe5HvcuyfQr0LF-vJ1SaB05JV3Ec4hqJKSFmT0Aoo75vIATD1tYrG0wytJGvHPViE6oC0fYj%3D%3D item_count=20 next_cursor=1772907892 new_item_count=20
+2026-03-08 02:24:58 | INFO | weitoutiao.monitoring | 分页轮次结果 round=2 mode=aggressive pending=1 accepted=1 dup_req=0 invalid=0 dup_content=0 no_new_items=0 new_unique_items=20 captures_total=2 items_total=40 latest_cursor=1772907892 no_progress_rounds=1
+2026-03-08 02:24:58 | INFO | weitoutiao.monitoring | 滚动决策 round=2 continue=True reason=has_items item_count=20 filtered_item_count=20 oldest=2026-03-05T17:36:50 newest=2026-03-06T15:51:20 start=None end=None
+2026-03-08 02:24:58 | INFO | weitoutiao.monitoring | 分页轮次开始 round=3 captures_total=2 seen_items_total=40 no_progress_rounds=0 same_cursor_rounds=0
+2026-03-08 02:24:58 | INFO | weitoutiao.monitoring | 触发浏览器滚动分页 round=3 no_progress_rounds=0 same_cursor_rounds=0 mode=normal
+2026-03-08 02:25:05 | INFO | weitoutiao.monitoring | 滚动后未进入 networkidle，继续检查已捕获响应。 round=3 mode=normal
+2026-03-08 02:25:05 | INFO | weitoutiao.monitoring | 分页轮次结果 round=3 mode=normal pending=0 accepted=0 dup_req=0 invalid=0 dup_content=0 no_new_items=0 new_unique_items=0 captures_total=2 items_total=40 latest_cursor=1772907892 no_progress_rounds=0
+2026-03-08 02:25:05 | INFO | weitoutiao.monitoring | 本轮滚动未形成有效进展 round=3 reason=no_new_pending_responses no_progress_rounds=1 same_cursor_rounds=1
+2026-03-08 02:25:05 | INFO | weitoutiao.monitoring | 分页轮次开始 round=4 captures_total=2 seen_items_total=40 no_progress_rounds=1 same_cursor_rounds=1
+2026-03-08 02:25:05 | INFO | weitoutiao.monitoring | 触发浏览器滚动分页 round=4 no_progress_rounds=1 same_cursor_rounds=1 mode=aggressive
+2026-03-08 02:25:11 | INFO | weitoutiao.monitoring | 滚动后未进入 networkidle，继续检查已捕获响应。 round=4 mode=aggressive
+2026-03-08 02:25:11 | INFO | weitoutiao.monitoring | 响应处理 round=4 reason=accepted url=https://www.toutiao.com/api/pc/list/user/feed?category=pc_profile_ugc&token=Ciw1yhCBHf_GqdVq-hND0XUd9AjJ5oZ-tVNEIY6EdeC1bmaeUWt1W_LAGtZmKRpJCjwAAAAAAAAAAAAAUCfd_QeHzLFODRGp79H24P23IDVsfW8THC6UPIkunDy-gLI2xjoUyeZrWr8TnwTKZskQp7mLDhjDxYPqBCIBA_AK6jU%3D&max_behot_time=1772703410943&entrance_gid=&aid=24&app_name=toutiao_web&msToken=_LZ_8cpET-1jy2Ke-1a7pm7fSxC1_PMTTtrJrByy6-hJg8bo2KbwBXQhR5QZV_Ltb2aPQ1e7Ek7sGpJveV716UjlQp84UbibZxlfb2D9qI_rB56m_298c4_1OHJzo4Jwa5s%3D&a_bogus=my8MBmhfDEDBfdWd569LfY3qV6l3Y2Bb0t9b8Dhq7xVL0y39HMOu9exE1zkvenEjEs%2F8IeWjy4hbYNQprQ2n01wfHuiE%2F2oMsDSptaPh5xSc-q4cuygMrzLF-vJ1SaB05JV3Ec4hqJKSFmT0Aoo75vI5ODHtYrG0wytJGvHPViE6oC0fJf%3D%3D item_count=20 next_cursor=1772907905 new_item_count=20
+2026-03-08 02:25:11 | INFO | weitoutiao.monitoring | 分页轮次结果 round=4 mode=aggressive pending=1 accepted=1 dup_req=0 invalid=0 dup_content=0 no_new_items=0 new_unique_items=20 captures_total=3 items_total=60 latest_cursor=1772907905 no_progress_rounds=1
+2026-03-08 02:25:11 | INFO | weitoutiao.monitoring | 滚动决策 round=4 continue=True reason=has_items item_count=20 filtered_item_count=20 oldest=2026-03-04T16:09:32 newest=2026-03-05T17:36:31 start=None end=None
+2026-03-08 02:25:11 | INFO | weitoutiao.monitoring | 分页轮次开始 round=5 captures_total=3 seen_items_total=60 no_progress_rounds=0 same_cursor_rounds=0
+2026-03-08 02:25:11 | INFO | weitoutiao.monitoring | 触发浏览器滚动分页 round=5 no_progress_rounds=0 same_cursor_rounds=0 mode=normal
+2026-03-08 02:25:32 | INFO | weitoutiao.monitoring | 滚动后未进入 networkidle，继续检查已捕获响应。 round=5 mode=normal
+2026-03-08 02:25:32 | INFO | weitoutiao.monitoring | 响应处理 round=5 reason=accepted url=https://www.toutiao.com/api/pc/list/user/feed?category=pc_profile_ugc&token=Ciw1yhCBHf_GqdVq-hND0XUd9AjJ5oZ-tVNEIY6EdeC1bmaeUWt1W_LAGtZmKRpJCjwAAAAAAAAAAAAAUCfd_QeHzLFODRGp79H24P23IDVsfW8THC6UPIkunDy-gLI2xjoUyeZrWr8TnwTKZskQp7mLDhjDxYPqBCIBA_AK6jU%3D&max_behot_time=1772611772219&entrance_gid=&aid=24&app_name=toutiao_web&msToken=_LZ_8cpET-1jy2Ke-1a7pm7fSxC1_PMTTtrJrByy6-hJg8bo2KbwBXQhR5QZV_Ltb2aPQ1e7Ek7sGpJveV716UjlQp84UbibZxlfb2D9qI_rB56m_298c4_1OHJzo4Jwa5s%3D&a_bogus=EyWZ%2FV8XdiDTfVW2569LfY3qV-a3Y2Bb0t9b8DhqJnVLB639HMYN9exE1zkvG5gjEs%2F8IeRjy4hbYNQprQ2n01wfHuiE%2F2oMsDSptaPh5xS7-qkruybMn0DF-vJ1SaB05JV3Ec4hqJKSFmT0Aoo75vIWPDHCaqh%2F9jknOVrZVpmrEls41bS%3D item_count=20 next_cursor=1772907912 new_item_count=20
+2026-03-08 02:25:32 | INFO | weitoutiao.monitoring | 分页轮次结果 round=5 mode=normal pending=1 accepted=1 dup_req=0 invalid=0 dup_content=0 no_new_items=0 new_unique_items=20 captures_total=4 items_total=80 latest_cursor=1772907912 no_progress_rounds=0
+2026-03-08 02:25:32 | INFO | weitoutiao.monitoring | 滚动决策 round=5 continue=True reason=has_items item_count=20 filtered_item_count=20 oldest=2026-03-03T16:16:31 newest=2026-03-04T16:08:34 start=None end=None
+2026-03-08 02:25:32 | INFO | weitoutiao.monitoring | 分页轮次开始 round=6 captures_total=4 seen_items_total=80 no_progress_rounds=0 same_cursor_rounds=0
+2026-03-08 02:25:32 | INFO | weitoutiao.monitoring | 触发浏览器滚动分页 round=6 no_progress_rounds=0 same_cursor_rounds=0 mode=normal
+2026-03-08 02:25:38 | INFO | weitoutiao.monitoring | 滚动后未进入 networkidle，继续检查已捕获响应。 round=6 mode=normal
+2026-03-08 02:25:38 | INFO | weitoutiao.monitoring | 分页轮次结果 round=6 mode=normal pending=0 accepted=0 dup_req=0 invalid=0 dup_content=0 no_new_items=0 new_unique_items=0 captures_total=4 items_total=80 latest_cursor=1772907912 no_progress_rounds=0
+2026-03-08 02:25:38 | INFO | weitoutiao.monitoring | 本轮滚动未形成有效进展 round=6 reason=no_new_pending_responses no_progress_rounds=1 same_cursor_rounds=1
+2026-03-08 02:25:38 | INFO | weitoutiao.monitoring | 分页轮次开始 round=7 captures_total=4 seen_items_total=80 no_progress_rounds=1 same_cursor_rounds=1
+2026-03-08 02:25:38 | INFO | weitoutiao.monitoring | 触发浏览器滚动分页 round=7 no_progress_rounds=1 same_cursor_rounds=1 mode=aggressive
+2026-03-08 02:25:45 | INFO | weitoutiao.monitoring | 滚动后未进入 networkidle，继续检查已捕获响应。 round=7 mode=aggressive
+2026-03-08 02:25:45 | INFO | weitoutiao.monitoring | 响应处理 round=7 reason=accepted url=https://www.toutiao.com/api/pc/list/user/feed?category=pc_profile_ugc&token=Ciw1yhCBHf_GqdVq-hND0XUd9AjJ5oZ-tVNEIY6EdeC1bmaeUWt1W_LAGtZmKRpJCjwAAAAAAAAAAAAAUCfd_QeHzLFODRGp79H24P23IDVsfW8THC6UPIkunDy-gLI2xjoUyeZrWr8TnwTKZskQp7mLDhjDxYPqBCIBA_AK6jU%3D&max_behot_time=1772525791874&entrance_gid=&aid=24&app_name=toutiao_web&msToken=_LZ_8cpET-1jy2Ke-1a7pm7fSxC1_PMTTtrJrByy6-hJg8bo2KbwBXQhR5QZV_Ltb2aPQ1e7Ek7sGpJveV716UjlQp84UbibZxlfb2D9qI_rB56m_298c4_1OHJzo4Jwa5s%3D&a_bogus=OJ8M%2FRwXDk2kvDyp569LfY3qV1r3Y2Be0t9b8DhqqVVLuL39HMOx9exE1zUvAxmjEs%2F8Iefjy4hbYNQprQ2n01wfHuiE%2F2oMsDSptaPh5xSt5q07tEusrtUw4XsASl-QsvMUEKi8qXCaSYypAnAn-wCRbfrbcNw8wytJGI%2FcXvj-N8tVveMV2j%3D%3D item_count=20 next_cursor=1772907939 new_item_count=20
+2026-03-08 02:25:45 | INFO | weitoutiao.monitoring | 分页轮次结果 round=7 mode=aggressive pending=1 accepted=1 dup_req=0 invalid=0 dup_content=0 no_new_items=0 new_unique_items=20 captures_total=5 items_total=100 latest_cursor=1772907939 no_progress_rounds=1
+2026-03-08 02:25:45 | INFO | weitoutiao.monitoring | 滚动决策 round=7 continue=True reason=has_items item_count=20 filtered_item_count=20 oldest=2026-03-02T15:31:05 newest=2026-03-03T16:16:02 start=None end=None
+2026-03-08 02:25:45 | INFO | weitoutiao.monitoring | 分页轮次开始 round=8 captures_total=5 seen_items_total=100 no_progress_rounds=0 same_cursor_rounds=0
+2026-03-08 02:25:45 | INFO | weitoutiao.monitoring | 触发浏览器滚动分页 round=8 no_progress_rounds=0 same_cursor_rounds=0 mode=normal
+2026-03-08 02:25:51 | INFO | weitoutiao.monitoring | 滚动后未进入 networkidle，继续检查已捕获响应。 round=8 mode=normal
+2026-03-08 02:25:51 | INFO | weitoutiao.monitoring | 响应处理 round=8 reason=accepted url=https://www.toutiao.com/api/pc/list/user/feed?category=pc_profile_ugc&token=Ciw1yhCBHf_GqdVq-hND0XUd9AjJ5oZ-tVNEIY6EdeC1bmaeUWt1W_LAGtZmKRpJCjwAAAAAAAAAAAAAUCfd_QeHzLFODRGp79H24P23IDVsfW8THC6UPIkunDy-gLI2xjoUyeZrWr8TnwTKZskQp7mLDhjDxYPqBCIBA_AK6jU%3D&max_behot_time=1772436665057&entrance_gid=&aid=24&app_name=toutiao_web&msToken=_LZ_8cpET-1jy2Ke-1a7pm7fSxC1_PMTTtrJrByy6-hJg8bo2KbwBXQhR5QZV_Ltb2aPQ1e7Ek7sGpJveV716UjlQp84UbibZxlfb2D9qI_rB56m_298c4_1OHJzo4Jwa5s%3D&a_bogus=d6RZBd8DdkIB6DW1569LfY3qV5H3Y2Be0t9b8DhqMxVLOy39HMPe9exE1zUvRHbjEs%2F8Iefjy4hbYNQprQ2n01wfHuiE%2F2oMsDSptaPh5xSt-qXHejusnthq-hsASl-QsvMUEKi8qXCaSYypAnAn-wCRbfryarz8wytJGI%2FcXvj-N8tVveMV5D%3D%3D item_count=20 next_cursor=1772907945 new_item_count=20
+2026-03-08 02:25:51 | INFO | weitoutiao.monitoring | 分页轮次结果 round=8 mode=normal pending=1 accepted=1 dup_req=0 invalid=0 dup_content=0 no_new_items=0 new_unique_items=20 captures_total=6 items_total=120 latest_cursor=1772907945 no_progress_rounds=0
+2026-03-08 02:25:51 | INFO | weitoutiao.monitoring | 滚动决策 round=8 continue=True reason=has_items item_count=20 filtered_item_count=20 oldest=2026-03-01T17:14:55 newest=2026-03-02T15:30:30 start=None end=None
+2026-03-08 02:25:51 | INFO | weitoutiao.monitoring | 分页轮次开始 round=9 captures_total=6 seen_items_total=120 no_progress_rounds=0 same_cursor_rounds=0
+2026-03-08 02:25:51 | INFO | weitoutiao.monitoring | 触发浏览器滚动分页 round=9 no_progress_rounds=0 same_cursor_rounds=0 mode=normal
+2026-03-08 02:25:58 | INFO | weitoutiao.monitoring | 滚动后未进入 networkidle，继续检查已捕获响应。 round=9 mode=normal
+2026-03-08 02:25:58 | INFO | weitoutiao.monitoring | 响应处理 round=9 reason=accepted url=https://www.toutiao.com/api/pc/list/user/feed?category=pc_profile_ugc&token=Ciw1yhCBHf_GqdVq-hND0XUd9AjJ5oZ-tVNEIY6EdeC1bmaeUWt1W_LAGtZmKRpJCjwAAAAAAAAAAAAAUCfd_QeHzLFODRGp79H24P23IDVsfW8THC6UPIkunDy-gLI2xjoUyeZrWr8TnwTKZskQp7mLDhjDxYPqBCIBA_AK6jU%3D&max_behot_time=1772356495727&entrance_gid=&aid=24&app_name=toutiao_web&msToken=_LZ_8cpET-1jy2Ke-1a7pm7fSxC1_PMTTtrJrByy6-hJg8bo2KbwBXQhR5QZV_Ltb2aPQ1e7Ek7sGpJveV716UjlQp84UbibZxlfb2D9qI_rB56m_298c4_1OHJzo4Jwa5s%3D&a_bogus=Qy8M%2FfwgdiDigfW2569LfY3qVRP3Y2Be0t9b8DhqFdVLE639HMT99exE1zUvVlWjEs%2F8Iefjy4hbYNQprQ2n01wfHuiE%2F2oMsDSptaPh5xSC51h7CjuQr0Xw5hsASl-QsvMUEKi8qXCaSYypAnAn-wCRbfetcp7mwytJGI%2FcXvj-N8tVveMVrf%3D%3D item_count=20 next_cursor=1772907952 new_item_count=20
+2026-03-08 02:25:58 | INFO | weitoutiao.monitoring | 分页轮次结果 round=9 mode=normal pending=1 accepted=1 dup_req=0 invalid=0 dup_content=0 no_new_items=0 new_unique_items=20 captures_total=7 items_total=140 latest_cursor=1772907952 no_progress_rounds=0
+2026-03-08 02:25:58 | INFO | weitoutiao.monitoring | 滚动决策 round=9 continue=True reason=has_items item_count=20 filtered_item_count=20 oldest=2026-02-28T19:10:37 newest=2026-03-01T17:14:32 start=None end=None
+2026-03-08 02:25:58 | INFO | weitoutiao.monitoring | 分页轮次开始 round=10 captures_total=7 seen_items_total=140 no_progress_rounds=0 same_cursor_rounds=0
+2026-03-08 02:25:58 | INFO | weitoutiao.monitoring | 触发浏览器滚动分页 round=10 no_progress_rounds=0 same_cursor_rounds=0 mode=normal
+2026-03-08 02:26:04 | INFO | weitoutiao.monitoring | 滚动后未进入 networkidle，继续检查已捕获响应。 round=10 mode=normal
+2026-03-08 02:26:04 | INFO | weitoutiao.monitoring | 响应处理 round=10 reason=accepted url=https://www.toutiao.com/api/pc/list/user/feed?category=pc_profile_ugc&token=Ciw1yhCBHf_GqdVq-hND0XUd9AjJ5oZ-tVNEIY6EdeC1bmaeUWt1W_LAGtZmKRpJCjwAAAAAAAAAAAAAUCfd_QeHzLFODRGp79H24P23IDVsfW8THC6UPIkunDy-gLI2xjoUyeZrWr8TnwTKZskQp7mLDhjDxYPqBCIBA_AK6jU%3D&max_behot_time=1772277037267&entrance_gid=&aid=24&app_name=toutiao_web&msToken=_LZ_8cpET-1jy2Ke-1a7pm7fSxC1_PMTTtrJrByy6-hJg8bo2KbwBXQhR5QZV_Ltb2aPQ1e7Ek7sGpJveV716UjlQp84UbibZxlfb2D9qI_rB56m_298c4_1OHJzo4Jwa5s%3D&a_bogus=mvWwBV0gDE6TffSp569LfY3qVWl3Y2Be0t9b8DhqZdVL4L39HMPz9exE1zUvPoEjEs%2F8Iefjy4hbYNQprQ2n01wfHuiE%2F2oMsDSptaPh5xSC-1XrtjuQn0hN4hsASl-QsvMUEKi8qXCaSYypAnAn-wCRbfeGa3tmwytJGI%2FcXvj-N8tVveMVsD%3D%3D item_count=20 next_cursor=1772907958 new_item_count=20
+2026-03-08 02:26:04 | INFO | weitoutiao.monitoring | 分页轮次结果 round=10 mode=normal pending=1 accepted=1 dup_req=0 invalid=0 dup_content=0 no_new_items=0 new_unique_items=20 captures_total=8 items_total=160 latest_cursor=1772907958 no_progress_rounds=0
+2026-03-08 02:26:04 | INFO | weitoutiao.monitoring | 滚动决策 round=10 continue=True reason=has_items item_count=20 filtered_item_count=20 oldest=2026-02-27T20:41:10 newest=2026-02-28T19:09:18 start=None end=None
+2026-03-08 02:26:04 | INFO | weitoutiao.monitoring | 分页轮次开始 round=11 captures_total=8 seen_items_total=160 no_progress_rounds=0 same_cursor_rounds=0
+2026-03-08 02:26:04 | INFO | weitoutiao.monitoring | 触发浏览器滚动分页 round=11 no_progress_rounds=0 same_cursor_rounds=0 mode=normal
+2026-03-08 02:39:12 | INFO | weitoutiao | Starting desktop application
+2026-03-08 02:39:12 | INFO | weitoutiao | Database initialized
+2026-03-08 02:39:12 | INFO | weitoutiao | Frontend asset resolved: /Users/chaiyapeng/Documents/weitoutiao/frontend/dist/index.html
+2026-03-08 02:39:12 | INFO | weitoutiao | Creating pywebview window
+2026-03-08 02:39:12 | INFO | weitoutiao | Starting pywebview event loop
+2026-03-08 02:39:16 | INFO | weitoutiao.api | 开始执行账号监控 url=https://www.toutiao.com/c/user/token/Ciw1yhCBHf_GqdVq-hND0XUd9AjJ5oZ-tVNEIY6EdeC1bmaeUWt1W_LAGtZmKRpJCjwAAAAAAAAAAAAAUCfd_QeHzLFODRGp79H24P23IDVsfW8THC6UPIkunDy-gLI2xjoUyeZrWr8TnwTKZskQp7mLDhjDxYPqBCIBA_AK6jU=/?source=m_redirect&tab=all start_time=None end_time=None single_capture=True
+2026-03-08 02:39:16 | INFO | weitoutiao.monitoring | 开始尝试获取头条 feed 数据 headless=False
+2026-03-08 02:39:19 | INFO | weitoutiao.monitoring | 开始加载头条账号页 url=https://www.toutiao.com/c/user/token/Ciw1yhCBHf_GqdVq-hND0XUd9AjJ5oZ-tVNEIY6EdeC1bmaeUWt1W_LAGtZmKRpJCjwAAAAAAAAAAAAAUCfd_QeHzLFODRGp79H24P23IDVsfW8THC6UPIkunDy-gLI2xjoUyeZrWr8TnwTKZskQp7mLDhjDxYPqBCIBA_AK6jU=/?source=m_redirect&tab=all headless=False
+2026-03-08 02:39:27 | INFO | weitoutiao.monitoring | 首屏响应 summary item_count=20 filtered_item_count=20 next_cursor=1772908763 top_level_type=dict data_type=list continue=True reason=has_items url=https://www.toutiao.com/api/pc/list/user/feed?category=pc_profile_ugc&token=Ciw1yhCBHf_GqdVq-hND0XUd9AjJ5oZ-tVNEIY6EdeC1bmaeUWt1W_LAGtZmKRpJCjwAAAAAAAAAAAAAUCfd_QeHzLFODRGp79H24P23IDVsfW8THC6UPIkunDy-gLI2xjoUyeZrWr8TnwTKZskQp7mLDhjDxYPqBCIBA_AK6jU%3D&max_behot_time=0&entrance_gid=&aid=24&app_name=toutiao_web&a_bogus=djmwBd86difkkfy2569LfY3qVW33Y2BP0t9b8DhqKnVLBg39HMP29exE1u0vGgRjEs%2F8Ieyjy4hbYNQprQ2n01wfHuiE%2F2oMmfSptaPh5xSSs1feeL6DrsJL-ib3SFrd5XNREQfkqwItKSRDWoQHmhOUbfaSYyDWxp6Fa31oMj%3D%3D
+2026-03-08 02:39:27 | INFO | weitoutiao.monitoring | 停止分页 reason=single_capture_requested round=0 capture_count=1 article_count=20 filtered_article_count=20 no_progress_rounds=0
+2026-03-08 02:39:27 | INFO | weitoutiao.monitoring | 头条 feed 获取完成 headless=False capture_count=1 article_count=20
+2026-03-08 02:39:27 | INFO | weitoutiao.api | 账号监控执行完成 url=https://www.toutiao.com/c/user/token/Ciw1yhCBHf_GqdVq-hND0XUd9AjJ5oZ-tVNEIY6EdeC1bmaeUWt1W_LAGtZmKRpJCjwAAAAAAAAAAAAAUCfd_QeHzLFODRGp79H24P23IDVsfW8THC6UPIkunDy-gLI2xjoUyeZrWr8TnwTKZskQp7mLDhjDxYPqBCIBA_AK6jU=/?source=m_redirect&tab=all capture_count=1 article_count=20 filtered_article_count=20 warning=None single_capture=True
+2026-03-08 10:30:41 | INFO | weitoutiao | Starting desktop application
+2026-03-08 10:30:41 | INFO | weitoutiao | Database initialized
+2026-03-08 10:30:41 | INFO | weitoutiao | Frontend asset resolved: /Users/chaiyapeng/Documents/weitoutiao/frontend/dist/index.html
+2026-03-08 10:30:41 | INFO | weitoutiao | Creating pywebview window
+2026-03-08 10:30:41 | INFO | weitoutiao | Starting pywebview event loop
+2026-03-08 10:30:44 | INFO | weitoutiao.api | 开始执行账号监控 url=https://www.toutiao.com/c/user/token/Ciw1yhCBHf_GqdVq-hND0XUd9AjJ5oZ-tVNEIY6EdeC1bmaeUWt1W_LAGtZmKRpJCjwAAAAAAAAAAAAAUCfd_QeHzLFODRGp79H24P23IDVsfW8THC6UPIkunDy-gLI2xjoUyeZrWr8TnwTKZskQp7mLDhjDxYPqBCIBA_AK6jU=/?source=m_redirect&tab=all start_time=None end_time=None single_capture=True
+2026-03-08 10:30:44 | INFO | weitoutiao.monitoring | 开始尝试获取头条 feed 数据 headless=False
+2026-03-08 10:30:47 | INFO | weitoutiao.monitoring | 开始加载头条账号页 url=https://www.toutiao.com/c/user/token/Ciw1yhCBHf_GqdVq-hND0XUd9AjJ5oZ-tVNEIY6EdeC1bmaeUWt1W_LAGtZmKRpJCjwAAAAAAAAAAAAAUCfd_QeHzLFODRGp79H24P23IDVsfW8THC6UPIkunDy-gLI2xjoUyeZrWr8TnwTKZskQp7mLDhjDxYPqBCIBA_AK6jU=/?source=m_redirect&tab=all headless=False
+2026-03-08 10:30:55 | INFO | weitoutiao.monitoring | 首屏响应 summary item_count=20 filtered_item_count=20 next_cursor=1772937052 top_level_type=dict data_type=list continue=True reason=has_items url=https://www.toutiao.com/api/pc/list/user/feed?category=pc_profile_ugc&token=Ciw1yhCBHf_GqdVq-hND0XUd9AjJ5oZ-tVNEIY6EdeC1bmaeUWt1W_LAGtZmKRpJCjwAAAAAAAAAAAAAUCfd_QeHzLFODRGp79H24P23IDVsfW8THC6UPIkunDy-gLI2xjoUyeZrWr8TnwTKZskQp7mLDhjDxYPqBCIBA_AK6jU%3D&max_behot_time=0&entrance_gid=&aid=24&app_name=toutiao_web&a_bogus=OvRZQmhvDkfPkfW156CLfY3qVW33Y2ma0t9b8DhqKnVLUL39HMYY9exE1k0vFOfjEs%2F8Ieyjy4hbYNQprQ2n01wfHuiE%2F2oDQDSptaPh5xSSs1feeL6DrsJL-ib3SFrd5XNREQfkqwItKSRDWoQHmhOUbfaSYyDWxp6Fa31o8j%3D%3D
+2026-03-08 10:30:55 | INFO | weitoutiao.monitoring | 停止分页 reason=single_capture_requested round=0 capture_count=1 article_count=20 filtered_article_count=20 no_progress_rounds=0
+2026-03-08 10:30:55 | INFO | weitoutiao.monitoring | 头条 feed 获取完成 headless=False capture_count=1 article_count=20
+2026-03-08 10:30:55 | INFO | weitoutiao.api | 账号监控执行完成 url=https://www.toutiao.com/c/user/token/Ciw1yhCBHf_GqdVq-hND0XUd9AjJ5oZ-tVNEIY6EdeC1bmaeUWt1W_LAGtZmKRpJCjwAAAAAAAAAAAAAUCfd_QeHzLFODRGp79H24P23IDVsfW8THC6UPIkunDy-gLI2xjoUyeZrWr8TnwTKZskQp7mLDhjDxYPqBCIBA_AK6jU=/?source=m_redirect&tab=all capture_count=1 article_count=20 filtered_article_count=20 warning=None single_capture=True
+2026-03-08 10:36:08 | INFO | weitoutiao | Starting desktop application
+2026-03-08 10:36:08 | INFO | weitoutiao | Database initialized
+2026-03-08 10:36:08 | INFO | weitoutiao | Frontend asset resolved: /Users/chaiyapeng/Documents/weitoutiao/frontend/dist/index.html
+2026-03-08 10:36:08 | INFO | weitoutiao | Creating pywebview window
+2026-03-08 10:36:08 | INFO | weitoutiao | Starting pywebview event loop
+2026-03-08 10:36:12 | INFO | weitoutiao.api | 开始执行账号监控 url=https://www.toutiao.com/c/user/token/Ciw1yhCBHf_GqdVq-hND0XUd9AjJ5oZ-tVNEIY6EdeC1bmaeUWt1W_LAGtZmKRpJCjwAAAAAAAAAAAAAUCfd_QeHzLFODRGp79H24P23IDVsfW8THC6UPIkunDy-gLI2xjoUyeZrWr8TnwTKZskQp7mLDhjDxYPqBCIBA_AK6jU=/?source=m_redirect&tab=all start_time=None end_time=None single_capture=True
+2026-03-08 10:36:12 | INFO | weitoutiao.monitoring | 开始尝试获取头条 feed 数据 headless=False
+2026-03-08 10:36:14 | INFO | weitoutiao.monitoring | 开始加载头条账号页 url=https://www.toutiao.com/c/user/token/Ciw1yhCBHf_GqdVq-hND0XUd9AjJ5oZ-tVNEIY6EdeC1bmaeUWt1W_LAGtZmKRpJCjwAAAAAAAAAAAAAUCfd_QeHzLFODRGp79H24P23IDVsfW8THC6UPIkunDy-gLI2xjoUyeZrWr8TnwTKZskQp7mLDhjDxYPqBCIBA_AK6jU=/?source=m_redirect&tab=all headless=False
+2026-03-08 10:36:22 | INFO | weitoutiao.monitoring | 首屏响应 summary item_count=20 filtered_item_count=20 next_cursor=1772937379 top_level_type=dict data_type=list continue=True reason=has_items url=https://www.toutiao.com/api/pc/list/user/feed?category=pc_profile_ugc&token=Ciw1yhCBHf_GqdVq-hND0XUd9AjJ5oZ-tVNEIY6EdeC1bmaeUWt1W_LAGtZmKRpJCjwAAAAAAAAAAAAAUCfd_QeHzLFODRGp79H24P23IDVsfW8THC6UPIkunDy-gLI2xjoUyeZrWr8TnwTKZskQp7mLDhjDxYPqBCIBA_AK6jU%3D&max_behot_time=0&entrance_gid=&aid=24&app_name=toutiao_web&a_bogus=xJRhMQugdkVNhD6V56CLfY3qVW33Y2mC0t9b8DhqKnVLxg39HMYp9exE1k4vfmgjEs%2F8Ieyjy4hbYNQprQ2n01wfHuiE%2F2oDQDSptaPh5xSSs1feeL6DrsJL-ib3SFrd5XNREQfkqwItKSRDWoQHmhOUbfaSYyDWxp6Fa31oMf%3D%3D
+2026-03-08 10:36:22 | INFO | weitoutiao.monitoring | 停止分页 reason=single_capture_requested round=0 capture_count=1 article_count=20 filtered_article_count=20 no_progress_rounds=0
+2026-03-08 10:36:23 | INFO | weitoutiao.monitoring | 头条 feed 获取完成 headless=False capture_count=1 article_count=20
+2026-03-08 10:36:23 | INFO | weitoutiao.api | 账号监控执行完成 url=https://www.toutiao.com/c/user/token/Ciw1yhCBHf_GqdVq-hND0XUd9AjJ5oZ-tVNEIY6EdeC1bmaeUWt1W_LAGtZmKRpJCjwAAAAAAAAAAAAAUCfd_QeHzLFODRGp79H24P23IDVsfW8THC6UPIkunDy-gLI2xjoUyeZrWr8TnwTKZskQp7mLDhjDxYPqBCIBA_AK6jU=/?source=m_redirect&tab=all capture_count=1 article_count=20 filtered_article_count=20 warning=None single_capture=True
+2026-03-08 10:42:13 | INFO | weitoutiao.api | 开始执行账号监控 url=https://www.toutiao.com/c/user/token/Ciw1yhCBHf_GqdVq-hND0XUd9AjJ5oZ-tVNEIY6EdeC1bmaeUWt1W_LAGtZmKRpJCjwAAAAAAAAAAAAAUCfd_QeHzLFODRGp79H24P23IDVsfW8THC6UPIkunDy-gLI2xjoUyeZrWr8TnwTKZskQp7mLDhjDxYPqBCIBA_AK6jU=/?source=m_redirect&tab=all start_time=None end_time=None single_capture=True
+2026-03-08 10:42:13 | INFO | weitoutiao.monitoring | 开始尝试获取头条 feed 数据 headless=False
+2026-03-08 10:42:16 | INFO | weitoutiao.monitoring | 开始加载头条账号页 url=https://www.toutiao.com/c/user/token/Ciw1yhCBHf_GqdVq-hND0XUd9AjJ5oZ-tVNEIY6EdeC1bmaeUWt1W_LAGtZmKRpJCjwAAAAAAAAAAAAAUCfd_QeHzLFODRGp79H24P23IDVsfW8THC6UPIkunDy-gLI2xjoUyeZrWr8TnwTKZskQp7mLDhjDxYPqBCIBA_AK6jU=/?source=m_redirect&tab=all headless=False
+2026-03-08 10:42:25 | INFO | weitoutiao.monitoring | 首屏响应 summary item_count=20 filtered_item_count=20 next_cursor=1772937742 top_level_type=dict data_type=list continue=True reason=has_items url=https://www.toutiao.com/api/pc/list/user/feed?category=pc_profile_ugc&token=Ciw1yhCBHf_GqdVq-hND0XUd9AjJ5oZ-tVNEIY6EdeC1bmaeUWt1W_LAGtZmKRpJCjwAAAAAAAAAAAAAUCfd_QeHzLFODRGp79H24P23IDVsfW8THC6UPIkunDy-gLI2xjoUyeZrWr8TnwTKZskQp7mLDhjDxYPqBCIBA_AK6jU%3D&max_behot_time=0&entrance_gid=&aid=24&app_name=toutiao_web&a_bogus=O6mMB5LkmEgifD6V56CLfY3qVW33Y2mE0t9b8DhqKnVLeL39HMPY9exE1Div0o6jEs%2F8Ieyjy4hbYNQprQ2n01wfHuiE%2F2oDQDSptaPh5xSSs1feeL6DrsJL-ib3SFrd5XNREQfkqwItKSRDWoQHmhOUbfaSYyDWxp6Fa31o8E%3D%3D
+2026-03-08 10:42:25 | INFO | weitoutiao.monitoring | 停止分页 reason=single_capture_requested round=0 capture_count=1 article_count=20 filtered_article_count=20 no_progress_rounds=0
+2026-03-08 10:42:26 | INFO | weitoutiao.monitoring | 头条 feed 获取完成 headless=False capture_count=1 article_count=20
+2026-03-08 10:42:26 | INFO | weitoutiao.api | 账号监控执行完成 url=https://www.toutiao.com/c/user/token/Ciw1yhCBHf_GqdVq-hND0XUd9AjJ5oZ-tVNEIY6EdeC1bmaeUWt1W_LAGtZmKRpJCjwAAAAAAAAAAAAAUCfd_QeHzLFODRGp79H24P23IDVsfW8THC6UPIkunDy-gLI2xjoUyeZrWr8TnwTKZskQp7mLDhjDxYPqBCIBA_AK6jU=/?source=m_redirect&tab=all capture_count=1 article_count=20 filtered_article_count=20 warning=None single_capture=True
+2026-03-08 10:42:38 | INFO | weitoutiao | Starting desktop application
+2026-03-08 10:42:38 | INFO | weitoutiao | Database initialized
+2026-03-08 10:42:38 | INFO | weitoutiao | Frontend asset resolved: /Users/chaiyapeng/Documents/weitoutiao/frontend/dist/index.html
+2026-03-08 10:42:38 | INFO | weitoutiao | Creating pywebview window in fullscreen mode
+2026-03-08 10:42:38 | INFO | weitoutiao | Starting pywebview event loop
+2026-03-08 10:43:45 | INFO | weitoutiao | Starting desktop application
+2026-03-08 10:43:45 | INFO | weitoutiao | Database initialized
+2026-03-08 10:43:45 | INFO | weitoutiao | Frontend asset resolved: /Users/chaiyapeng/Documents/weitoutiao/frontend/dist/index.html
+2026-03-08 10:43:45 | INFO | weitoutiao | Creating pywebview window in maximized mode
+2026-03-08 10:43:45 | INFO | weitoutiao | Starting pywebview event loop
+2026-03-08 10:43:49 | INFO | weitoutiao.api | 开始执行账号监控 url=https://www.toutiao.com/c/user/token/Ciw1yhCBHf_GqdVq-hND0XUd9AjJ5oZ-tVNEIY6EdeC1bmaeUWt1W_LAGtZmKRpJCjwAAAAAAAAAAAAAUCfd_QeHzLFODRGp79H24P23IDVsfW8THC6UPIkunDy-gLI2xjoUyeZrWr8TnwTKZskQp7mLDhjDxYPqBCIBA_AK6jU=/?source=m_redirect&tab=all start_time=None end_time=None single_capture=True
+2026-03-08 10:43:49 | INFO | weitoutiao.monitoring | 开始尝试获取头条 feed 数据 headless=False
+2026-03-08 10:43:52 | INFO | weitoutiao.monitoring | 开始加载头条账号页 url=https://www.toutiao.com/c/user/token/Ciw1yhCBHf_GqdVq-hND0XUd9AjJ5oZ-tVNEIY6EdeC1bmaeUWt1W_LAGtZmKRpJCjwAAAAAAAAAAAAAUCfd_QeHzLFODRGp79H24P23IDVsfW8THC6UPIkunDy-gLI2xjoUyeZrWr8TnwTKZskQp7mLDhjDxYPqBCIBA_AK6jU=/?source=m_redirect&tab=all headless=False
+2026-03-08 10:44:00 | INFO | weitoutiao.monitoring | 首屏响应 summary item_count=20 filtered_item_count=20 next_cursor=1772937837 top_level_type=dict data_type=list continue=True reason=has_items url=https://www.toutiao.com/api/pc/list/user/feed?category=pc_profile_ugc&token=Ciw1yhCBHf_GqdVq-hND0XUd9AjJ5oZ-tVNEIY6EdeC1bmaeUWt1W_LAGtZmKRpJCjwAAAAAAAAAAAAAUCfd_QeHzLFODRGp79H24P23IDVsfW8THC6UPIkunDy-gLI2xjoUyeZrWr8TnwTKZskQp7mLDhjDxYPqBCIBA_AK6jU%3D&max_behot_time=0&entrance_gid=&aid=24&app_name=toutiao_web&a_bogus=d78hBQ8fDD6kffy256CLfY3qVW33Y2mq0t9b8DhqKnVLNy39HMT39exE1DtvvtgjEs%2F8Ieyjy4hbYNQprQ2n01wfHuiE%2F2oDQDSptaPh5xSSs1feeL6DrsJL-ib3SFrd5XNREQfkqwItKSRDWoQHmhOUbfaSYyDWxp6Fa31oMf%3D%3D
+2026-03-08 10:44:00 | INFO | weitoutiao.monitoring | 停止分页 reason=single_capture_requested round=0 capture_count=1 article_count=20 filtered_article_count=20 no_progress_rounds=0
+2026-03-08 10:44:00 | INFO | weitoutiao.monitoring | 头条 feed 获取完成 headless=False capture_count=1 article_count=20
+2026-03-08 10:44:00 | INFO | weitoutiao.api | 账号监控执行完成 url=https://www.toutiao.com/c/user/token/Ciw1yhCBHf_GqdVq-hND0XUd9AjJ5oZ-tVNEIY6EdeC1bmaeUWt1W_LAGtZmKRpJCjwAAAAAAAAAAAAAUCfd_QeHzLFODRGp79H24P23IDVsfW8THC6UPIkunDy-gLI2xjoUyeZrWr8TnwTKZskQp7mLDhjDxYPqBCIBA_AK6jU=/?source=m_redirect&tab=all capture_count=1 article_count=20 filtered_article_count=20 warning=None single_capture=True
+2026-03-08 10:44:52 | INFO | weitoutiao.api | 开始执行账号监控 url=https://www.toutiao.com/c/user/token/Ciw1yhCBHf_GqdVq-hND0XUd9AjJ5oZ-tVNEIY6EdeC1bmaeUWt1W_LAGtZmKRpJCjwAAAAAAAAAAAAAUCfd_QeHzLFODRGp79H24P23IDVsfW8THC6UPIkunDy-gLI2xjoUyeZrWr8TnwTKZskQp7mLDhjDxYPqBCIBA_AK6jU=/?source=m_redirect&tab=all start_time=None end_time=None single_capture=True
+2026-03-08 10:44:52 | INFO | weitoutiao.monitoring | 开始尝试获取头条 feed 数据 headless=False
+2026-03-08 10:44:54 | INFO | weitoutiao.monitoring | 开始加载头条账号页 url=https://www.toutiao.com/c/user/token/Ciw1yhCBHf_GqdVq-hND0XUd9AjJ5oZ-tVNEIY6EdeC1bmaeUWt1W_LAGtZmKRpJCjwAAAAAAAAAAAAAUCfd_QeHzLFODRGp79H24P23IDVsfW8THC6UPIkunDy-gLI2xjoUyeZrWr8TnwTKZskQp7mLDhjDxYPqBCIBA_AK6jU=/?source=m_redirect&tab=all headless=False
+2026-03-08 10:45:03 | INFO | weitoutiao.monitoring | 首屏响应 summary item_count=20 filtered_item_count=20 next_cursor=1772937900 top_level_type=dict data_type=list continue=True reason=has_items url=https://www.toutiao.com/api/pc/list/user/feed?category=pc_profile_ugc&token=Ciw1yhCBHf_GqdVq-hND0XUd9AjJ5oZ-tVNEIY6EdeC1bmaeUWt1W_LAGtZmKRpJCjwAAAAAAAAAAAAAUCfd_QeHzLFODRGp79H24P23IDVsfW8THC6UPIkunDy-gLI2xjoUyeZrWr8TnwTKZskQp7mLDhjDxYPqBCIBA_AK6jU%3D&max_behot_time=0&entrance_gid=&aid=24&app_name=toutiao_web&a_bogus=YyRZQdgvDkgThD6d56CLfY3qVW33Y2mo0t9b8DhqKnVLo639HMY59exE1DGv64ujEs%2F8Ieyjy4hbYNQprQ2n01wfHuiE%2F2oDQDSptaPh5xSSs1feeL6DrsJL-ib3SFrd5XNREQfkqwItKSRDWoQHmhOUbfaSYyDWxp6Fa31oME%3D%3D
+2026-03-08 10:45:03 | INFO | weitoutiao.monitoring | 停止分页 reason=single_capture_requested round=0 capture_count=1 article_count=20 filtered_article_count=20 no_progress_rounds=0
+2026-03-08 10:45:03 | INFO | weitoutiao.monitoring | 头条 feed 获取完成 headless=False capture_count=1 article_count=20
+2026-03-08 10:45:03 | INFO | weitoutiao.api | 账号监控执行完成 url=https://www.toutiao.com/c/user/token/Ciw1yhCBHf_GqdVq-hND0XUd9AjJ5oZ-tVNEIY6EdeC1bmaeUWt1W_LAGtZmKRpJCjwAAAAAAAAAAAAAUCfd_QeHzLFODRGp79H24P23IDVsfW8THC6UPIkunDy-gLI2xjoUyeZrWr8TnwTKZskQp7mLDhjDxYPqBCIBA_AK6jU=/?source=m_redirect&tab=all capture_count=1 article_count=20 filtered_article_count=20 warning=None single_capture=True
+2026-03-08 10:47:49 | INFO | weitoutiao | Starting desktop application
+2026-03-08 10:47:49 | INFO | weitoutiao | Database initialized
+2026-03-08 10:47:49 | INFO | weitoutiao | Frontend asset resolved: /Users/chaiyapeng/Documents/weitoutiao/frontend/dist/index.html
+2026-03-08 10:47:49 | INFO | weitoutiao | Creating pywebview window in maximized mode
+2026-03-08 10:47:49 | INFO | weitoutiao | Starting pywebview event loop
+2026-03-08 10:48:03 | INFO | weitoutiao.api | 开始执行账号监控 url=https://www.toutiao.com/c/user/token/Ciw1yhCBHf_GqdVq-hND0XUd9AjJ5oZ-tVNEIY6EdeC1bmaeUWt1W_LAGtZmKRpJCjwAAAAAAAAAAAAAUCfd_QeHzLFODRGp79H24P23IDVsfW8THC6UPIkunDy-gLI2xjoUyeZrWr8TnwTKZskQp7mLDhjDxYPqBCIBA_AK6jU=/?source=m_redirect&tab=all start_time=None end_time=None single_capture=True
+2026-03-08 10:48:03 | INFO | weitoutiao.monitoring | 开始尝试获取头条 feed 数据 headless=False
+2026-03-08 10:48:06 | INFO | weitoutiao.monitoring | 开始加载头条账号页 url=https://www.toutiao.com/c/user/token/Ciw1yhCBHf_GqdVq-hND0XUd9AjJ5oZ-tVNEIY6EdeC1bmaeUWt1W_LAGtZmKRpJCjwAAAAAAAAAAAAAUCfd_QeHzLFODRGp79H24P23IDVsfW8THC6UPIkunDy-gLI2xjoUyeZrWr8TnwTKZskQp7mLDhjDxYPqBCIBA_AK6jU=/?source=m_redirect&tab=all headless=False
+2026-03-08 10:48:14 | INFO | weitoutiao.monitoring | 首屏响应 summary item_count=20 filtered_item_count=20 next_cursor=1772938091 top_level_type=dict data_type=list continue=True reason=has_items url=https://www.toutiao.com/api/pc/list/user/feed?category=pc_profile_ugc&token=Ciw1yhCBHf_GqdVq-hND0XUd9AjJ5oZ-tVNEIY6EdeC1bmaeUWt1W_LAGtZmKRpJCjwAAAAAAAAAAAAAUCfd_QeHzLFODRGp79H24P23IDVsfW8THC6UPIkunDy-gLI2xjoUyeZrWr8TnwTKZskQp7mLDhjDxYPqBCIBA_AK6jU%3D&max_behot_time=0&entrance_gid=&aid=24&app_name=toutiao_web&a_bogus=xfRMBV0kDDdB6VWd56CLfY3qVW33Y2mP0t9b8DhqKnVLPg39HMY-9exE1D0v4sYjEs%2F8Ieyjy4hbYNQprQ2n01wfHuiE%2F2oDQDSptaPh5xSSs1feeL6DrsJL-ib3SFrd5XNREQfkqwItKSRDWoQHmhOUbfaSYyDWxp6Fa31oME%3D%3D
+2026-03-08 10:48:14 | INFO | weitoutiao.monitoring | 停止分页 reason=single_capture_requested round=0 capture_count=1 article_count=20 filtered_article_count=20 no_progress_rounds=0
+2026-03-08 10:48:14 | INFO | weitoutiao.monitoring | 头条 feed 获取完成 headless=False capture_count=1 article_count=20
+2026-03-08 10:48:14 | INFO | weitoutiao.api | 账号监控执行完成 url=https://www.toutiao.com/c/user/token/Ciw1yhCBHf_GqdVq-hND0XUd9AjJ5oZ-tVNEIY6EdeC1bmaeUWt1W_LAGtZmKRpJCjwAAAAAAAAAAAAAUCfd_QeHzLFODRGp79H24P23IDVsfW8THC6UPIkunDy-gLI2xjoUyeZrWr8TnwTKZskQp7mLDhjDxYPqBCIBA_AK6jU=/?source=m_redirect&tab=all capture_count=1 article_count=20 filtered_article_count=20 warning=None single_capture=True
+2026-03-08 10:53:17 | INFO | weitoutiao.api | 开始保存设置 key=theme.name
+2026-03-08 10:53:17 | INFO | weitoutiao.api | 设置保存成功 key=theme.name
+2026-03-08 10:53:19 | INFO | weitoutiao.api | 开始保存设置 key=theme.name
+2026-03-08 10:53:19 | INFO | weitoutiao.api | 设置保存成功 key=theme.name
+2026-03-08 10:53:20 | INFO | weitoutiao.api | 开始保存设置 key=theme.name
+2026-03-08 10:53:20 | INFO | weitoutiao.api | 设置保存成功 key=theme.name
+2026-03-08 10:53:20 | INFO | weitoutiao.api | 开始保存设置 key=theme.name
+2026-03-08 10:53:20 | INFO | weitoutiao.api | 设置保存成功 key=theme.name
+2026-03-08 10:53:20 | INFO | weitoutiao.api | 开始保存设置 key=theme.name
+2026-03-08 10:53:20 | INFO | weitoutiao.api | 设置保存成功 key=theme.name
+2026-03-08 10:53:30 | INFO | weitoutiao | Starting desktop application
+2026-03-08 10:53:30 | INFO | weitoutiao | Database initialized
+2026-03-08 10:53:30 | INFO | weitoutiao | Frontend asset resolved: /Users/chaiyapeng/Documents/weitoutiao/frontend/dist/index.html
+2026-03-08 10:53:30 | INFO | weitoutiao | Creating pywebview window in maximized mode
+2026-03-08 10:53:30 | INFO | weitoutiao | Starting pywebview event loop
+2026-03-08 13:01:42 | INFO | weitoutiao.api | 开始保存设置 key=theme.name
+2026-03-08 13:01:42 | INFO | weitoutiao.api | 设置保存成功 key=theme.name
+2026-03-08 13:10:37 | INFO | weitoutiao | Starting desktop application
+2026-03-08 13:10:37 | INFO | weitoutiao | Database initialized
+2026-03-08 13:10:37 | INFO | weitoutiao | Frontend asset resolved: /Users/chaiyapeng/Documents/weitoutiao/frontend/dist/index.html
+2026-03-08 13:10:37 | INFO | weitoutiao | Creating pywebview window in maximized mode
+2026-03-08 13:10:37 | INFO | weitoutiao | Starting pywebview event loop
+2026-03-08 13:10:47 | INFO | weitoutiao.api | 开始保存设置 key=theme.name
+2026-03-08 13:10:47 | INFO | weitoutiao.api | 设置保存成功 key=theme.name
+2026-03-08 13:11:07 | INFO | weitoutiao | Starting desktop application
+2026-03-08 13:11:07 | INFO | weitoutiao | Database initialized
+2026-03-08 13:11:07 | INFO | weitoutiao | Frontend asset resolved: /Users/chaiyapeng/Documents/weitoutiao/frontend/dist/index.html
+2026-03-08 13:11:07 | INFO | weitoutiao | Creating pywebview window in maximized mode
+2026-03-08 13:11:07 | INFO | weitoutiao | Starting pywebview event loop
+2026-03-08 13:16:35 | INFO | weitoutiao | Starting desktop application
+2026-03-08 13:16:35 | INFO | weitoutiao | Database initialized
+2026-03-08 13:16:35 | INFO | weitoutiao | Frontend asset resolved: /Users/chaiyapeng/Documents/weitoutiao/frontend/dist/index.html
+2026-03-08 13:16:35 | INFO | weitoutiao | Creating pywebview window in maximized mode
+2026-03-08 13:16:35 | INFO | weitoutiao | Starting pywebview event loop
+2026-03-08 13:17:32 | INFO | weitoutiao.api | 开始执行账号监控 url=https://www.toutiao.com/c/user/token/Ciw1yhCBHf_GqdVq-hND0XUd9AjJ5oZ-tVNEIY6EdeC1bmaeUWt1W_LAGtZmKRpJCjwAAAAAAAAAAAAAUCfd_QeHzLFODRGp79H24P23IDVsfW8THC6UPIkunDy-gLI2xjoUyeZrWr8TnwTKZskQp7mLDhjDxYPqBCIBA_AK6jU=/?source=m_redirect&tab=all start_time=None end_time=None single_capture=True benchmark_account_id=1
+2026-03-08 13:17:32 | INFO | weitoutiao.monitoring | 开始尝试获取头条 feed 数据 headless=False
+2026-03-08 13:17:36 | INFO | weitoutiao.monitoring | 开始加载头条账号页 url=https://www.toutiao.com/c/user/token/Ciw1yhCBHf_GqdVq-hND0XUd9AjJ5oZ-tVNEIY6EdeC1bmaeUWt1W_LAGtZmKRpJCjwAAAAAAAAAAAAAUCfd_QeHzLFODRGp79H24P23IDVsfW8THC6UPIkunDy-gLI2xjoUyeZrWr8TnwTKZskQp7mLDhjDxYPqBCIBA_AK6jU=/?source=m_redirect&tab=all headless=False
+2026-03-08 13:17:45 | INFO | weitoutiao.monitoring | 首屏响应 summary item_count=20 filtered_item_count=20 next_cursor=1772947062 top_level_type=dict data_type=list continue=True reason=has_items url=https://www.toutiao.com/api/pc/list/user/feed?category=pc_profile_ugc&token=Ciw1yhCBHf_GqdVq-hND0XUd9AjJ5oZ-tVNEIY6EdeC1bmaeUWt1W_LAGtZmKRpJCjwAAAAAAAAAAAAAUCfd_QeHzLFODRGp79H24P23IDVsfW8THC6UPIkunDy-gLI2xjoUyeZrWr8TnwTKZskQp7mLDhjDxYPqBCIBA_AK6jU%3D&max_behot_time=0&entrance_gid=&aid=24&app_name=toutiao_web&a_bogus=mvR0%2F5ukdEfigDWZ56CLfY3qVW33Y2QV0t9b8DhqKnVLnL39HMPm9exE1BTvDLfjEs%2F8Ieyjy4hbYNQprQ2n01wfHuiE%2F2oDQDSptaPh5xSSs1feeL6DrsJL-ib3SFrd5XNREQfkqwIrFuRDWoQHmhOUbfaSYyDWxp6Fa31o8j%3D%3D
+2026-03-08 13:17:45 | INFO | weitoutiao.monitoring | 停止分页 reason=single_capture_requested round=0 capture_count=1 article_count=20 filtered_article_count=20 no_progress_rounds=0
+2026-03-08 13:17:45 | INFO | weitoutiao.monitoring | 头条 feed 获取完成 headless=False capture_count=1 article_count=20
+2026-03-08 13:17:45 | INFO | weitoutiao.api | 账号监控执行完成 url=https://www.toutiao.com/c/user/token/Ciw1yhCBHf_GqdVq-hND0XUd9AjJ5oZ-tVNEIY6EdeC1bmaeUWt1W_LAGtZmKRpJCjwAAAAAAAAAAAAAUCfd_QeHzLFODRGp79H24P23IDVsfW8THC6UPIkunDy-gLI2xjoUyeZrWr8TnwTKZskQp7mLDhjDxYPqBCIBA_AK6jU=/?source=m_redirect&tab=all capture_count=1 article_count=20 filtered_article_count=20 saved_count=20 warning=None single_capture=True
+2026-03-08 13:20:53 | INFO | weitoutiao | Starting desktop application
+2026-03-08 13:20:53 | INFO | weitoutiao | Database initialized
+2026-03-08 13:20:53 | INFO | weitoutiao | Frontend asset resolved: /Users/chaiyapeng/Documents/weitoutiao/frontend/dist/index.html
+2026-03-08 13:20:53 | INFO | weitoutiao | Creating pywebview window in maximized mode
+2026-03-08 13:20:53 | INFO | weitoutiao | Starting pywebview event loop
+2026-03-08 13:46:57 | INFO | weitoutiao | Starting desktop application
+2026-03-08 13:46:57 | INFO | weitoutiao | Database initialized
+2026-03-08 13:46:57 | INFO | weitoutiao | Frontend asset resolved: /Users/chaiyapeng/Documents/weitoutiao/frontend/dist/index.html
+2026-03-08 13:46:57 | INFO | weitoutiao | Creating pywebview window in maximized mode
+2026-03-08 13:46:57 | INFO | weitoutiao | Starting pywebview event loop
+2026-03-08 14:58:18 | INFO | weitoutiao | Starting desktop application
+2026-03-08 14:58:18 | INFO | weitoutiao | Database initialized
+2026-03-08 14:58:18 | INFO | weitoutiao | Frontend asset resolved: /Users/chaiyapeng/Documents/weitoutiao/frontend/dist/index.html
+2026-03-08 14:58:18 | INFO | weitoutiao | Creating pywebview window in maximized mode
+2026-03-08 14:58:18 | INFO | weitoutiao | Starting pywebview event loop
+2026-03-08 15:11:32 | INFO | weitoutiao | Starting desktop application
+2026-03-08 15:11:32 | INFO | weitoutiao | Database initialized
+2026-03-08 15:11:32 | INFO | weitoutiao | Frontend asset resolved: /Users/chaiyapeng/Documents/weitoutiao/frontend/dist/index.html
+2026-03-08 15:11:32 | INFO | weitoutiao | Creating pywebview window in maximized mode
+2026-03-08 15:11:32 | INFO | weitoutiao | Starting pywebview event loop
+2026-03-08 15:43:38 | INFO | weitoutiao | Starting desktop application
+2026-03-08 15:43:38 | INFO | weitoutiao | Database initialized
+2026-03-08 15:43:38 | INFO | weitoutiao | Frontend asset resolved: /Users/chaiyapeng/Documents/weitoutiao/frontend/dist/index.html
+2026-03-08 15:43:38 | INFO | weitoutiao | Creating pywebview window in maximized mode
+2026-03-08 15:43:38 | INFO | weitoutiao | Starting pywebview event loop
+2026-03-08 15:44:02 | INFO | weitoutiao.api | 开始软删除文章 id=1
+2026-03-08 15:44:02 | INFO | weitoutiao.api | 文章软删除完成 id=1 success=True
+2026-03-08 15:44:04 | INFO | weitoutiao.api | 开始全量软删除文章
+2026-03-08 15:44:04 | INFO | weitoutiao.api | 全量软删除文章完成 count=19
+2026-03-08 15:54:49 | INFO | weitoutiao | Starting desktop application
+2026-03-08 15:54:49 | INFO | weitoutiao | Database initialized
+2026-03-08 15:54:49 | INFO | weitoutiao | Frontend asset resolved: /Users/chaiyapeng/Documents/weitoutiao/frontend/dist/index.html
+2026-03-08 15:54:49 | INFO | weitoutiao | Creating pywebview window in maximized mode
+2026-03-08 15:54:49 | INFO | weitoutiao | Starting pywebview event loop
+2026-03-08 19:54:07 | INFO | weitoutiao.api | 开始保存设置 key=automation.headless
+2026-03-08 19:54:07 | INFO | weitoutiao.api | 设置保存成功 key=automation.headless
+2026-03-08 19:54:20 | INFO | weitoutiao.api | 开始执行批量文章监控 benchmark_account_ids=[1] start_time=2026-03-06T19:54 end_time=None
+2026-03-08 19:54:20 | INFO | weitoutiao.monitoring | 开始尝试获取头条 feed 数据 headless=True
+2026-03-08 19:54:21 | INFO | weitoutiao.monitoring | 开始加载头条账号页 url=https://www.toutiao.com/c/user/token/Ciw1yhCBHf_GqdVq-hND0XUd9AjJ5oZ-tVNEIY6EdeC1bmaeUWt1W_LAGtZmKRpJCjwAAAAAAAAAAAAAUCfd_QeHzLFODRGp79H24P23IDVsfW8THC6UPIkunDy-gLI2xjoUyeZrWr8TnwTKZskQp7mLDhjDxYPqBCIBA_AK6jU=/?source=m_redirect&tab=all headless=True
+2026-03-08 19:54:30 | INFO | weitoutiao.monitoring | 首屏响应 summary item_count=20 filtered_item_count=20 next_cursor=1772970866 top_level_type=dict data_type=list continue=False reason=time_range_satisfied url=https://www.toutiao.com/api/pc/list/user/feed?category=pc_profile_ugc&token=Ciw1yhCBHf_GqdVq-hND0XUd9AjJ5oZ-tVNEIY6EdeC1bmaeUWt1W_LAGtZmKRpJCjwAAAAAAAAAAAAAUCfd_QeHzLFODRGp79H24P23IDVsfW8THC6UPIkunDy-gLI2xjoUyeZrWr8TnwTKZskQp7mLDhjDxYPqBCIBA_AK6jU%3D&max_behot_time=0&entrance_gid=&aid=24&app_name=toutiao_web&a_bogus=dy80BfhDDk2iDdWd56oLfY3qVW33Y2me0t9b8DhqKnVLE639HMOv9exEIiUvVv8jEs%2F8IeSjy4hbYNQprQ2n01wfHuix%2F2ohmDSkKl5Q5xSSs1XJtyUgntsNmktUCec2-i-lrOXMw7lHFb8mlnAJ5kIlO62kFobyifELt6R%3D
+2026-03-08 19:54:30 | INFO | weitoutiao.monitoring | 停止分页 reason=first_capture_time_range_satisfied round=0 capture_count=1 article_count=20 filtered_article_count=20 no_progress_rounds=0
+2026-03-08 19:54:30 | INFO | weitoutiao.monitoring | 头条 feed 获取完成 headless=True capture_count=1 article_count=20
+2026-03-08 19:54:30 | INFO | weitoutiao.api | 批量文章监控完成 requested=1 succeeded=1 failed=0 warning=0
+2026-03-08 20:08:22 | INFO | weitoutiao.api | 开始保存设置 key=image.base_url
+2026-03-08 20:08:22 | INFO | weitoutiao.api | 设置保存成功 key=image.base_url
+2026-03-08 20:08:25 | INFO | weitoutiao.api | 开始保存设置 key=image.api_key
+2026-03-08 20:08:25 | INFO | weitoutiao.api | 设置保存成功 key=image.api_key
+2026-03-08 20:09:34 | INFO | weitoutiao.api | 开始保存设置 key=image.model
+2026-03-08 20:09:34 | INFO | weitoutiao.api | 设置保存成功 key=image.model
+2026-03-08 20:32:08 | INFO | weitoutiao | Starting desktop application
+2026-03-08 20:32:08 | INFO | weitoutiao | Database initialized
+2026-03-08 20:32:08 | INFO | weitoutiao | Frontend asset resolved: /Users/chaiyapeng/Documents/weitoutiao/frontend/dist/index.html
+2026-03-08 20:32:08 | INFO | weitoutiao | Creating pywebview window in maximized mode
+2026-03-08 20:32:08 | INFO | weitoutiao | Starting pywebview event loop
+2026-03-08 20:38:34 | INFO | weitoutiao | Starting desktop application
+2026-03-08 20:38:34 | INFO | weitoutiao | Database initialized
+2026-03-08 20:38:34 | INFO | weitoutiao | Frontend asset resolved: /Users/chaiyapeng/Documents/weitoutiao/frontend/dist/index.html
+2026-03-08 20:38:34 | INFO | weitoutiao | Creating pywebview window in maximized mode
+2026-03-08 20:38:34 | INFO | weitoutiao | Starting pywebview event loop
+2026-03-08 20:45:28 | INFO | weitoutiao | Starting desktop application
+2026-03-08 20:45:28 | INFO | weitoutiao | Database initialized
+2026-03-08 20:45:28 | INFO | weitoutiao | Frontend asset resolved: /Users/chaiyapeng/Documents/weitoutiao/frontend/dist/index.html
+2026-03-08 20:45:28 | INFO | weitoutiao | Creating pywebview window in maximized mode
+2026-03-08 20:45:28 | INFO | weitoutiao | Starting pywebview event loop
+2026-03-08 20:45:48 | INFO | weitoutiao | Starting desktop application
+2026-03-08 20:45:48 | INFO | weitoutiao | Database initialized
+2026-03-08 20:45:48 | INFO | weitoutiao | Frontend asset resolved: /Users/chaiyapeng/Documents/weitoutiao/frontend/dist/index.html
+2026-03-08 20:45:48 | INFO | weitoutiao | Creating pywebview window in maximized mode
+2026-03-08 20:45:48 | INFO | weitoutiao | Starting pywebview event loop
+2026-03-08 20:54:06 | INFO | weitoutiao | Starting desktop application
+2026-03-08 20:54:06 | INFO | weitoutiao | Database initialized
+2026-03-08 20:54:06 | INFO | weitoutiao | Frontend asset resolved: /Users/chaiyapeng/Documents/weitoutiao/frontend/dist/index.html
+2026-03-08 20:54:06 | INFO | weitoutiao | Creating pywebview window in maximized mode
+2026-03-08 20:54:06 | INFO | weitoutiao | Starting pywebview event loop
+2026-03-08 20:54:27 | INFO | weitoutiao | Starting desktop application
+2026-03-08 20:54:27 | INFO | weitoutiao | Database initialized
+2026-03-08 20:54:27 | INFO | weitoutiao | Frontend asset resolved: /Users/chaiyapeng/Documents/weitoutiao/frontend/dist/index.html
+2026-03-08 20:54:27 | INFO | weitoutiao | Creating pywebview window in maximized mode
+2026-03-08 20:54:27 | INFO | weitoutiao | Starting pywebview event loop
+2026-03-08 20:57:09 | INFO | weitoutiao | Starting desktop application
+2026-03-08 20:57:09 | INFO | weitoutiao | Database initialized
+2026-03-08 20:57:09 | INFO | weitoutiao | Frontend asset resolved: /Users/chaiyapeng/Documents/weitoutiao/frontend/dist/index.html
+2026-03-08 20:57:09 | INFO | weitoutiao | Creating pywebview window in maximized mode
+2026-03-08 20:57:09 | INFO | weitoutiao | Starting pywebview event loop
+2026-03-08 20:59:35 | INFO | weitoutiao | Starting desktop application
+2026-03-08 20:59:35 | INFO | weitoutiao | Database initialized
+2026-03-08 20:59:35 | INFO | weitoutiao | Frontend asset resolved: /Users/chaiyapeng/Documents/weitoutiao/frontend/dist/index.html
+2026-03-08 20:59:35 | INFO | weitoutiao | Creating pywebview window in maximized mode
+2026-03-08 20:59:35 | INFO | weitoutiao | Starting pywebview event loop
+2026-03-08 21:02:16 | INFO | weitoutiao | Starting desktop application
+2026-03-08 21:02:16 | INFO | weitoutiao | Database initialized
+2026-03-08 21:02:16 | INFO | weitoutiao | Frontend asset resolved: /Users/chaiyapeng/Documents/weitoutiao/frontend/dist/index.html
+2026-03-08 21:02:16 | INFO | weitoutiao | Creating pywebview window in maximized mode
+2026-03-08 21:02:16 | INFO | weitoutiao | Starting pywebview event loop
+2026-03-08 21:04:01 | INFO | weitoutiao | Starting desktop application
+2026-03-08 21:04:01 | INFO | weitoutiao | Database initialized
+2026-03-08 21:04:01 | INFO | weitoutiao | Frontend asset resolved: /Users/chaiyapeng/Documents/weitoutiao/frontend/dist/index.html
+2026-03-08 21:04:01 | INFO | weitoutiao | Creating pywebview window in maximized mode
+2026-03-08 21:04:01 | INFO | weitoutiao | Starting pywebview event loop
+2026-03-08 21:08:05 | INFO | weitoutiao | Starting desktop application
+2026-03-08 21:08:05 | INFO | weitoutiao | Database initialized
+2026-03-08 21:08:05 | INFO | weitoutiao | Frontend asset resolved: /Users/chaiyapeng/Documents/weitoutiao/frontend/dist/index.html
+2026-03-08 21:08:05 | INFO | weitoutiao | Creating pywebview window in maximized mode
+2026-03-08 21:08:05 | INFO | weitoutiao | Starting pywebview event loop
+2026-03-08 21:32:18 | INFO | weitoutiao | Starting desktop application
+2026-03-08 21:32:18 | INFO | weitoutiao | Database initialized
+2026-03-08 21:32:18 | INFO | weitoutiao | Frontend asset resolved: /Users/chaiyapeng/Documents/weitoutiao/frontend/dist/index.html
+2026-03-08 21:32:18 | INFO | weitoutiao | Creating pywebview window in maximized mode
+2026-03-08 21:32:18 | INFO | weitoutiao | Starting pywebview event loop
+2026-03-08 21:34:12 | INFO | weitoutiao | Starting desktop application
+2026-03-08 21:34:12 | INFO | weitoutiao | Database initialized
+2026-03-08 21:34:12 | INFO | weitoutiao | Frontend asset resolved: /Users/chaiyapeng/Documents/weitoutiao/frontend/dist/index.html
+2026-03-08 21:34:12 | INFO | weitoutiao | Creating pywebview window in maximized mode
+2026-03-08 21:34:12 | INFO | weitoutiao | Starting pywebview event loop
+2026-03-08 21:34:17 | INFO | weitoutiao.api | 开始保存设置 key=automation.worker_count
+2026-03-08 21:34:17 | INFO | weitoutiao.api | 设置保存成功 key=automation.worker_count
+2026-03-08 21:37:49 | INFO | weitoutiao | Starting desktop application
+2026-03-08 21:37:49 | INFO | weitoutiao | Database initialized
+2026-03-08 21:37:49 | INFO | weitoutiao | Frontend asset resolved: /Users/chaiyapeng/Documents/weitoutiao/frontend/dist/index.html
+2026-03-08 21:37:49 | INFO | weitoutiao | Creating pywebview window in maximized mode
+2026-03-08 21:37:49 | INFO | weitoutiao | Starting pywebview event loop
+2026-03-08 21:37:55 | INFO | weitoutiao.api | 开始保存设置 key=automation.worker_count
+2026-03-08 21:37:55 | INFO | weitoutiao.api | 设置保存成功 key=automation.worker_count
+2026-03-08 21:37:59 | INFO | weitoutiao.api | 开始保存设置 key=automation.worker_count
+2026-03-08 21:37:59 | INFO | weitoutiao.api | 设置保存成功 key=automation.worker_count
+2026-03-08 21:38:03 | INFO | weitoutiao.api | 开始保存设置 key=automation.headless
+2026-03-08 21:38:03 | INFO | weitoutiao.api | 设置保存成功 key=automation.headless
+2026-03-08 21:38:12 | INFO | weitoutiao.api | 开始保存设置 key=theme.name
+2026-03-08 21:38:12 | INFO | weitoutiao.api | 设置保存成功 key=theme.name
+2026-03-08 21:38:21 | INFO | weitoutiao | Starting desktop application
+2026-03-08 21:38:21 | INFO | weitoutiao | Database initialized
+2026-03-08 21:38:21 | INFO | weitoutiao | Frontend asset resolved: /Users/chaiyapeng/Documents/weitoutiao/frontend/dist/index.html
+2026-03-08 21:38:21 | INFO | weitoutiao | Creating pywebview window in maximized mode
+2026-03-08 21:38:21 | INFO | weitoutiao | Starting pywebview event loop
+2026-03-08 21:38:37 | INFO | weitoutiao.api | 开始改写标题
+2026-03-08 21:38:43 | INFO | weitoutiao.api | 标题改写完成 length=31
+2026-03-08 21:38:52 | INFO | weitoutiao.api | 开始改写标题
+2026-03-08 21:38:57 | INFO | weitoutiao.api | 标题改写完成 length=33
+2026-03-08 21:40:04 | INFO | weitoutiao.api | 开始改写标题
+2026-03-08 21:40:08 | INFO | weitoutiao.api | 标题改写完成 length=31
+2026-03-08 21:41:56 | INFO | weitoutiao | Starting desktop application
+2026-03-08 21:41:56 | INFO | weitoutiao | Database initialized
+2026-03-08 21:41:56 | INFO | weitoutiao | Frontend asset resolved: /Users/chaiyapeng/Documents/weitoutiao/frontend/dist/index.html
+2026-03-08 21:41:56 | INFO | weitoutiao | Creating pywebview window in maximized mode
+2026-03-08 21:41:56 | INFO | weitoutiao | Starting pywebview event loop
+2026-03-08 21:42:07 | INFO | weitoutiao.api | 开始改写标题
+2026-03-08 21:42:14 | INFO | weitoutiao.api | 标题改写完成 length=42
+2026-03-08 21:44:24 | INFO | weitoutiao | Starting desktop application
+2026-03-08 21:44:24 | INFO | weitoutiao | Database initialized
+2026-03-08 21:44:24 | INFO | weitoutiao | Frontend asset resolved: /Users/chaiyapeng/Documents/weitoutiao/frontend/dist/index.html
+2026-03-08 21:44:24 | INFO | weitoutiao | Creating pywebview window in maximized mode
+2026-03-08 21:44:24 | INFO | weitoutiao | Starting pywebview event loop
+2026-03-08 21:44:34 | INFO | weitoutiao.api | 开始改写标题
+2026-03-08 21:44:34 | INFO | weitoutiao.llm | 发起大模型请求 endpoint=http://localhost:8888/v1/chat/completions model=gpt-5.4 timeout=120s payload_bytes=2077 system_prompt_length=580 user_content_length=149 system_prompt_preview='# Role: 资深微头条编辑 & 爆款首段重写专家 ## Profile 你深谙今日头条的推荐算法和读者阅读心理。你非常清楚微头条的第一段通常承担着“标题+黄金3秒钩子”的双重作用。你擅长在不改变原意的情况下，运用精准的同义词和巧妙的句式变换，将首段改写出全新的面貌。 ## Task 接收我提供的一段“微头条首段”，在绝对不改变原意的前提下，生成一个意思相同但表述完全不同的新首段。 ## Constraints 1. **严格字数限制**：修改后的内容整体字数必须严格控制在 60 字以内，极其精炼，句句切中要害。 2. **核心同义替换**：使用同义词替换原文的关键名词、动词和形容词，改变句...<truncated>' user_content_preview='哈梅内伊离世，钱学森当年的话得到了有力印证：“如果有一天原子弹投到了中国人的头上，我会后悔的。手中无剑和有剑不用是两回事。”当“克利夫兰总统号”邮轮载着钱学森一家驶离美国西海岸时，码头上监视的美国特工以为放走的只是一个不得志的学者，没人能想到，这个拎着简单行李的人，会给整个中国带来改变命运的火种。' api_key_configured=True
+2026-03-08 21:44:43 | INFO | weitoutiao.llm | 大模型请求返回 status=200 reason=OK elapsed_ms=8913.31 response_bytes=605 response_preview='{"id":"resp_084b81129f22d50b0169ad7d4360408191917917be63b74234","object":"chat.completion","created":1772977475,"model":"gpt-5.4","choices":[{"index":0,"message":{"role":"assistant","content":"哈梅内伊离世，钱学森当年那句“无剑”和“有剑不用”之别，再次被印证；美方放走的，哪是失意学者。","reasoning_content":null,"tool_calls":null},"finish_reason...<truncated>'
+2026-03-08 21:44:43 | INFO | weitoutiao.llm | 大模型请求完成 output_length=47 output_preview='哈梅内伊离世，钱学森当年那句“无剑”和“有剑不用”之别，再次被印证；美方放走的，哪是失意学者。'
+2026-03-08 21:44:43 | INFO | weitoutiao.api | 标题改写完成 length=47
+2026-03-08 21:45:10 | INFO | weitoutiao.api | 开始改写文章 template_key=international_account_starter
+2026-03-08 21:45:10 | INFO | weitoutiao.llm | 发起大模型请求 endpoint=http://localhost:8888/v1/chat/completions model=gpt-5.4 timeout=120s payload_bytes=9838 system_prompt_length=2761 user_content_length=946 system_prompt_preview='# 国际深读·大国博弈版（融合牛弹琴风格） ## 角色设定 你是一位拥有千万级粉丝的资深国际时政与历史观察家，笔耕不辍，深谙国际关系背后的草蛇灰线。你擅长以**“牛弹琴”式的独特风格——既有宏大的历史视野，又有细腻的情感笔触；既有对时局的敏锐洞察，又有对人性的深刻剖析——来讲述国际历史话题。你的核心能力是穿透历史迷雾，将枯燥的国际档案、大国博弈、战争风云，转化为一篇篇跌宕起伏、引人深思的10,000字深度付费长文**。你深知新媒体读者的痛点，懂得在历史的关键转折处设置“致命悬念”，让读者在感叹“大变局”的同时，心甘情愿为深度解析付费。 ## 核心任务 根据用户提供的标题 <title>{{TI...<truncated>' user_content_preview='哈梅内伊走了，这事儿发生在2026年2月28日，当时美以联合行动直接把他给干掉了，那年他86岁。伊朗那边一下子炸锅了，国家媒体确认后，民众反应五花八门，有人庆祝，有人哀悼，有人直接上街抗议。整个中东都跟着晃荡，导弹来导弹去，能源市场乱套，美军死了几个兵，欧洲那边还得防着伊朗打到塞浦路斯。伊朗的最高领袖没了，临时领导委员会上台，局势更不稳。 想想伊朗这些年，制裁堆得像山，内部闹腾，外部空袭不断，靠着导弹和代理人撑场面，可真到关键时候，缺了硬家伙护身，热血再多也顶不住精准打击。哈梅内伊掌权快37年，一直反美反以，推进核计划，可到头来，核门槛都没完全跨过，就被对手给堵死了。这不正好应了钱学森的观点？...<truncated>' api_key_configured=True
+2026-03-08 21:47:10 | ERROR | weitoutiao.llm | 大模型请求解析异常 elapsed_ms=120002.41
+Traceback (most recent call last):
+  File "/Users/chaiyapeng/Documents/weitoutiao/app/title_rewriter.py", line 77, in _rewrite
+    with request.urlopen(req, timeout=LLM_TIMEOUT_SECONDS) as response:
+         ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/homebrew/Cellar/python@3.13/3.13.2/Frameworks/Python.framework/Versions/3.13/lib/python3.13/urllib/request.py", line 189, in urlopen
+    return opener.open(url, data, timeout)
+           ~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^
+  File "/opt/homebrew/Cellar/python@3.13/3.13.2/Frameworks/Python.framework/Versions/3.13/lib/python3.13/urllib/request.py", line 489, in open
+    response = self._open(req, data)
+  File "/opt/homebrew/Cellar/python@3.13/3.13.2/Frameworks/Python.framework/Versions/3.13/lib/python3.13/urllib/request.py", line 506, in _open
+    result = self._call_chain(self.handle_open, protocol, protocol +
+                              '_open', req)
+  File "/opt/homebrew/Cellar/python@3.13/3.13.2/Frameworks/Python.framework/Versions/3.13/lib/python3.13/urllib/request.py", line 466, in _call_chain
+    result = func(*args)
+  File "/opt/homebrew/Cellar/python@3.13/3.13.2/Frameworks/Python.framework/Versions/3.13/lib/python3.13/urllib/request.py", line 1348, in http_open
+    return self.do_open(http.client.HTTPConnection, req)
+           ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/homebrew/Cellar/python@3.13/3.13.2/Frameworks/Python.framework/Versions/3.13/lib/python3.13/urllib/request.py", line 1323, in do_open
+    r = h.getresponse()
+  File "/opt/homebrew/Cellar/python@3.13/3.13.2/Frameworks/Python.framework/Versions/3.13/lib/python3.13/http/client.py", line 1430, in getresponse
+    response.begin()
+    ~~~~~~~~~~~~~~^^
+  File "/opt/homebrew/Cellar/python@3.13/3.13.2/Frameworks/Python.framework/Versions/3.13/lib/python3.13/http/client.py", line 331, in begin
+    version, status, reason = self._read_status()
+                              ~~~~~~~~~~~~~~~~~^^
+  File "/opt/homebrew/Cellar/python@3.13/3.13.2/Frameworks/Python.framework/Versions/3.13/lib/python3.13/http/client.py", line 292, in _read_status
+    line = str(self.fp.readline(_MAXLINE + 1), "iso-8859-1")
+               ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^
+  File "/opt/homebrew/Cellar/python@3.13/3.13.2/Frameworks/Python.framework/Versions/3.13/lib/python3.13/socket.py", line 719, in readinto
+    return self._sock.recv_into(b)
+           ~~~~~~~~~~~~~~~~~~~~^^^
+TimeoutError: timed out
+2026-03-08 21:47:10 | ERROR | weitoutiao.api | 文章改写失败 template_key=international_account_starter
+Traceback (most recent call last):
+  File "/Users/chaiyapeng/Documents/weitoutiao/app/api.py", line 288, in rewrite_article
+    result = ArticleRewriter().rewrite(content, template_key)
+  File "/Users/chaiyapeng/Documents/weitoutiao/app/title_rewriter.py", line 157, in rewrite
+    return self._rewrite(
+           ~~~~~~~~~~~~~^
+        content,
+        ^^^^^^^^
+    ...<2 lines>...
+        error_prefix="文章改写请求失败",
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/Users/chaiyapeng/Documents/weitoutiao/app/title_rewriter.py", line 77, in _rewrite
+    with request.urlopen(req, timeout=LLM_TIMEOUT_SECONDS) as response:
+         ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/homebrew/Cellar/python@3.13/3.13.2/Frameworks/Python.framework/Versions/3.13/lib/python3.13/urllib/request.py", line 189, in urlopen
+    return opener.open(url, data, timeout)
+           ~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^
+  File "/opt/homebrew/Cellar/python@3.13/3.13.2/Frameworks/Python.framework/Versions/3.13/lib/python3.13/urllib/request.py", line 489, in open
+    response = self._open(req, data)
+  File "/opt/homebrew/Cellar/python@3.13/3.13.2/Frameworks/Python.framework/Versions/3.13/lib/python3.13/urllib/request.py", line 506, in _open
+    result = self._call_chain(self.handle_open, protocol, protocol +
+                              '_open', req)
+  File "/opt/homebrew/Cellar/python@3.13/3.13.2/Frameworks/Python.framework/Versions/3.13/lib/python3.13/urllib/request.py", line 466, in _call_chain
+    result = func(*args)
+  File "/opt/homebrew/Cellar/python@3.13/3.13.2/Frameworks/Python.framework/Versions/3.13/lib/python3.13/urllib/request.py", line 1348, in http_open
+    return self.do_open(http.client.HTTPConnection, req)
+           ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/homebrew/Cellar/python@3.13/3.13.2/Frameworks/Python.framework/Versions/3.13/lib/python3.13/urllib/request.py", line 1323, in do_open
+    r = h.getresponse()
+  File "/opt/homebrew/Cellar/python@3.13/3.13.2/Frameworks/Python.framework/Versions/3.13/lib/python3.13/http/client.py", line 1430, in getresponse
+    response.begin()
+    ~~~~~~~~~~~~~~^^
+  File "/opt/homebrew/Cellar/python@3.13/3.13.2/Frameworks/Python.framework/Versions/3.13/lib/python3.13/http/client.py", line 331, in begin
+    version, status, reason = self._read_status()
+                              ~~~~~~~~~~~~~~~~~^^
+  File "/opt/homebrew/Cellar/python@3.13/3.13.2/Frameworks/Python.framework/Versions/3.13/lib/python3.13/http/client.py", line 292, in _read_status
+    line = str(self.fp.readline(_MAXLINE + 1), "iso-8859-1")
+               ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^
+  File "/opt/homebrew/Cellar/python@3.13/3.13.2/Frameworks/Python.framework/Versions/3.13/lib/python3.13/socket.py", line 719, in readinto
+    return self._sock.recv_into(b)
+           ~~~~~~~~~~~~~~~~~~~~^^^
+TimeoutError: timed out
+2026-03-08 21:49:22 | INFO | weitoutiao | Starting desktop application
+2026-03-08 21:49:22 | INFO | weitoutiao | Database initialized
+2026-03-08 21:49:22 | INFO | weitoutiao | Frontend asset resolved: /Users/chaiyapeng/Documents/weitoutiao/frontend/dist/index.html
+2026-03-08 21:49:22 | INFO | weitoutiao | Creating pywebview window in maximized mode
+2026-03-08 21:49:22 | INFO | weitoutiao | Starting pywebview event loop
+2026-03-08 21:49:31 | INFO | weitoutiao.api | 开始改写文章 template_key=international_account_starter
+2026-03-08 21:49:31 | INFO | weitoutiao.llm | 发起大模型请求 endpoint=http://localhost:8888/v1/chat/completions model=gpt-5.4 timeout=300s payload_bytes=9838 system_prompt_length=2761 user_content_length=946 system_prompt_preview='# 国际深读·大国博弈版（融合牛弹琴风格） ## 角色设定 你是一位拥有千万级粉丝的资深国际时政与历史观察家，笔耕不辍，深谙国际关系背后的草蛇灰线。你擅长以**“牛弹琴”式的独特风格——既有宏大的历史视野，又有细腻的情感笔触；既有对时局的敏锐洞察，又有对人性的深刻剖析——来讲述国际历史话题。你的核心能力是穿透历史迷雾，将枯燥的国际档案、大国博弈、战争风云，转化为一篇篇跌宕起伏、引人深思的10,000字深度付费长文**。你深知新媒体读者的痛点，懂得在历史的关键转折处设置“致命悬念”，让读者在感叹“大变局”的同时，心甘情愿为深度解析付费。 ## 核心任务 根据用户提供的标题 <title>{{TI...<truncated>' user_content_preview='哈梅内伊走了，这事儿发生在2026年2月28日，当时美以联合行动直接把他给干掉了，那年他86岁。伊朗那边一下子炸锅了，国家媒体确认后，民众反应五花八门，有人庆祝，有人哀悼，有人直接上街抗议。整个中东都跟着晃荡，导弹来导弹去，能源市场乱套，美军死了几个兵，欧洲那边还得防着伊朗打到塞浦路斯。伊朗的最高领袖没了，临时领导委员会上台，局势更不稳。 想想伊朗这些年，制裁堆得像山，内部闹腾，外部空袭不断，靠着导弹和代理人撑场面，可真到关键时候，缺了硬家伙护身，热血再多也顶不住精准打击。哈梅内伊掌权快37年，一直反美反以，推进核计划，可到头来，核门槛都没完全跨过，就被对手给堵死了。这不正好应了钱学森的观点？...<truncated>' api_key_configured=True
+2026-03-08 21:52:19 | INFO | weitoutiao.llm | 大模型请求返回 status=200 reason=OK elapsed_ms=168158.27 response_bytes=35783 response_preview='{"id":"resp_06731ed0b20ff5780169ad7e6c8cb481a0bf23291b0e67d6b5","object":"chat.completion","created":1772977772,"model":"gpt-5.4","choices":[{"index":0,"message":{"role":"assistant","content":"【声明：本文类型为“地缘政治变迁”。以下内容基于用户提供的假设性情景展开深度解读，不对应现实世界已被证实的新闻事实；文中部分细节为基于历史逻辑的文学化还原。历史是一面镜子，鉴古知今，仅供参考。】\\n\\n导语\\n\\n...<truncated>'
+2026-03-08 21:52:19 | INFO | weitoutiao.llm | 大模型请求完成 output_length=12294 output_preview='【声明：本文类型为“地缘政治变迁”。以下内容基于用户提供的假设性情景展开深度解读，不对应现实世界已被证实的新闻事实；文中部分细节为基于历史逻辑的文学化还原。历史是一面镜子，鉴古知今，仅供参考。】 导语 这是一个意味深长的细节。 一个统治伊朗近37年的最高领袖，最终不是倒在街头革命里，不是倒在宫廷政变中，而是倒在大国博弈与精确打击的交叉点上。 唉。 历史有时很残酷。 它从不只杀死一个人。 它还会顺手撕开一个国家的旧秩序，暴露一个地区的真问题：勇气，到底能不能替代安全？意志，到底能不能替代威慑？没有战略硬实力的主权，究竟有多脆弱？ 关键时刻来了。 伊朗的故事，看似是哈梅内伊的结局。 但说到底，这是...<truncated>'
+2026-03-08 21:52:19 | INFO | weitoutiao.api | 文章改写完成 template_key=international_account_starter length=12294
+2026-03-08 21:54:18 | INFO | weitoutiao.api | 开始改写文章 template_key=international_stable_hardcore
+2026-03-08 21:54:18 | INFO | weitoutiao.llm | 发起大模型请求 endpoint=http://localhost:8888/v1/chat/completions model=gpt-5.4 timeout=300s payload_bytes=8073 system_prompt_length=2090 user_content_length=946 system_prompt_preview='# 国际深读·硬核江湖版（牛弹琴视野 × 坏土豆叙事） ## 1. 角色设定 (Role) 你是一位拥有千万级粉丝的顶流国际时政观察家。你既有“牛弹琴”般穿透百年历史的宏大视野与悲悯底色，又精通“坏土豆”式最接地气、最辛辣的街头江湖话语体系。 你深谙自媒体平台的流量密码与合规底线，**拒绝无脑造谣、虚假拼接和违规标题党**。你依靠极具张力的“情绪过山车”和对底层利益的精准剖析来吸引受众。你能把庙堂之上的大国博弈、晦涩难懂的地缘政治，无缝翻译成“黑帮收保护费”、“村头抢地盘”的硬核通俗故事，让普通老百姓看得爽、看得透。 ## 2. 核心任务 (Task) 根据用户提供的标题或素材，创作一篇原创的...<truncated>' user_content_preview='哈梅内伊走了，这事儿发生在2026年2月28日，当时美以联合行动直接把他给干掉了，那年他86岁。伊朗那边一下子炸锅了，国家媒体确认后，民众反应五花八门，有人庆祝，有人哀悼，有人直接上街抗议。整个中东都跟着晃荡，导弹来导弹去，能源市场乱套，美军死了几个兵，欧洲那边还得防着伊朗打到塞浦路斯。伊朗的最高领袖没了，临时领导委员会上台，局势更不稳。 想想伊朗这些年，制裁堆得像山，内部闹腾，外部空袭不断，靠着导弹和代理人撑场面，可真到关键时候，缺了硬家伙护身，热血再多也顶不住精准打击。哈梅内伊掌权快37年，一直反美反以，推进核计划，可到头来，核门槛都没完全跨过，就被对手给堵死了。这不正好应了钱学森的观点？...<truncated>' api_key_configured=True
+2026-03-08 21:55:59 | INFO | weitoutiao.llm | 大模型请求返回 status=200 reason=OK elapsed_ms=100836.27 response_bytes=17974 response_preview='{"id":"resp_0a942e55ef7c450f0169ad7f8c6098819e8040ebae37e5613a","object":"chat.completion","created":1772978060,"model":"gpt-5.4","choices":[{"index":0,"message":{"role":"assistant","content":"天，真要这么塌下来，中东就不是晃一晃了，是整个屋顶都被掀了。\\n\\n先把大白话摆这儿。**如果按你这个设定走，哈梅内伊在2026年2月28日被美以联手干掉，那这事本质上就不是一次斩首，是把伊朗这台老机器最上面的总开...<truncated>'
+2026-03-08 21:55:59 | INFO | weitoutiao.llm | 大模型请求完成 output_length=5989 output_preview='天，真要这么塌下来，中东就不是晃一晃了，是整个屋顶都被掀了。 先把大白话摆这儿。**如果按你这个设定走，哈梅内伊在2026年2月28日被美以联手干掉，那这事本质上就不是一次斩首，是把伊朗这台老机器最上面的总开关直接拔了。** 01 很多人看中东，老爱盯着导弹飞来飞去。 其实看岔了。 中东这地方，说白了就像一条街上挤着几家脾气都不小的狠角色，天天互相瞪眼，谁都说自己有理，谁都说自己委屈。可真打起来，哪有那么多道义，拼的就是谁拳头硬，谁家后院更深，谁兜里钱更多，谁能挨打还不散。 伊朗这些年，活得就很拧巴。 嘴上硬。 姿态高。 旗子举得老高。 可日子过得呢......制裁像砂纸，一层一层磨。通胀压着...<truncated>'
+2026-03-08 21:55:59 | INFO | weitoutiao.api | 文章改写完成 template_key=international_stable_hardcore length=5989
+2026-03-08 21:56:45 | INFO | weitoutiao.api | 开始保存设置 key=llm.base_url
+2026-03-08 21:56:45 | INFO | weitoutiao.api | 设置保存成功 key=llm.base_url
+2026-03-08 21:56:45 | INFO | weitoutiao.api | 开始保存设置 key=llm.api_key
+2026-03-08 21:56:45 | INFO | weitoutiao.api | 设置保存成功 key=llm.api_key
+2026-03-08 21:57:05 | INFO | weitoutiao.api | 开始保存设置 key=llm.model
+2026-03-08 21:57:05 | INFO | weitoutiao.api | 设置保存成功 key=llm.model
+2026-03-08 21:57:12 | INFO | weitoutiao.api | 开始改写文章 template_key=international_stable_hardcore
+2026-03-08 21:57:12 | INFO | weitoutiao.llm | 发起大模型请求 endpoint=https://yunwu.ai/v1/chat/completions model=gemini-3.1-pro-preview timeout=300s payload_bytes=8088 system_prompt_length=2090 user_content_length=946 system_prompt_preview='# 国际深读·硬核江湖版（牛弹琴视野 × 坏土豆叙事） ## 1. 角色设定 (Role) 你是一位拥有千万级粉丝的顶流国际时政观察家。你既有“牛弹琴”般穿透百年历史的宏大视野与悲悯底色，又精通“坏土豆”式最接地气、最辛辣的街头江湖话语体系。 你深谙自媒体平台的流量密码与合规底线，**拒绝无脑造谣、虚假拼接和违规标题党**。你依靠极具张力的“情绪过山车”和对底层利益的精准剖析来吸引受众。你能把庙堂之上的大国博弈、晦涩难懂的地缘政治，无缝翻译成“黑帮收保护费”、“村头抢地盘”的硬核通俗故事，让普通老百姓看得爽、看得透。 ## 2. 核心任务 (Task) 根据用户提供的标题或素材，创作一篇原创的...<truncated>' user_content_preview='哈梅内伊走了，这事儿发生在2026年2月28日，当时美以联合行动直接把他给干掉了，那年他86岁。伊朗那边一下子炸锅了，国家媒体确认后，民众反应五花八门，有人庆祝，有人哀悼，有人直接上街抗议。整个中东都跟着晃荡，导弹来导弹去，能源市场乱套，美军死了几个兵，欧洲那边还得防着伊朗打到塞浦路斯。伊朗的最高领袖没了，临时领导委员会上台，局势更不稳。 想想伊朗这些年，制裁堆得像山，内部闹腾，外部空袭不断，靠着导弹和代理人撑场面，可真到关键时候，缺了硬家伙护身，热血再多也顶不住精准打击。哈梅内伊掌权快37年，一直反美反以，推进核计划，可到头来，核门槛都没完全跨过，就被对手给堵死了。这不正好应了钱学森的观点？...<truncated>' api_key_configured=True
+2026-03-08 21:58:10 | INFO | weitoutiao.llm | 大模型请求返回 status=200 reason=OK elapsed_ms=57681.9 response_bytes=8308 response_preview='{"id":"chatcmpl-202603082157139001528078GDmE5Cd","model":"gemini-3.1-pro-preview","object":"chat.completion","created":1772978289,"choices":[{"index":0,"message":{"role":"assistant","content":"老美和以色列这次是真下死手了，硬生生把桌子给掀了个底朝天！\\n\\n2026年2月28日，86岁的哈梅内伊没了。\\n\\n这消息一出。\\n整个中东的火药桶，刺啦一声全炸了。\\n\\n说白了。\\n这就是一场蓄谋已久的黑帮斩...<truncated>'
+2026-03-08 21:58:10 | INFO | weitoutiao.llm | 大模型请求完成 output_length=2708 output_preview='老美和以色列这次是真下死手了，硬生生把桌子给掀了个底朝天！ 2026年2月28日，86岁的哈梅内伊没了。 这消息一出。 整个中东的火药桶，刺啦一声全炸了。 说白了。 这就是一场蓄谋已久的黑帮斩首行动。 01 伊朗这边直接就炸锅了。 国家媒体刚把死讯放出来，街头立马就乱成了一锅粥。 有人在家里偷偷开香槟庆祝。 有人跑到街头捶胸顿足哭得死去活来。 还有人干脆抄起家伙上街抗议了。 这事儿吧，对大家伙儿真的是，太有教育意义了简直。 一个国家的大当家，就这么在自己地盘上被外头来的杀手给做了。 这脸打得，啪啪响。 临时领导委员会赶紧出来接盘。 可谁都压不住阵子。 底下各个派系平时就明争暗斗的。 现在老头子...<truncated>'
+2026-03-08 21:58:10 | INFO | weitoutiao.api | 文章改写完成 template_key=international_stable_hardcore length=2708
+2026-03-08 22:01:18 | INFO | weitoutiao.api | 开始改写文章 template_key=international_account_starter
+2026-03-08 22:01:18 | INFO | weitoutiao.llm | 发起大模型请求 endpoint=https://yunwu.ai/v1/chat/completions model=gemini-3.1-pro-preview timeout=300s payload_bytes=9853 system_prompt_length=2761 user_content_length=946 system_prompt_preview='# 国际深读·大国博弈版（融合牛弹琴风格） ## 角色设定 你是一位拥有千万级粉丝的资深国际时政与历史观察家，笔耕不辍，深谙国际关系背后的草蛇灰线。你擅长以**“牛弹琴”式的独特风格——既有宏大的历史视野，又有细腻的情感笔触；既有对时局的敏锐洞察，又有对人性的深刻剖析——来讲述国际历史话题。你的核心能力是穿透历史迷雾，将枯燥的国际档案、大国博弈、战争风云，转化为一篇篇跌宕起伏、引人深思的10,000字深度付费长文**。你深知新媒体读者的痛点，懂得在历史的关键转折处设置“致命悬念”，让读者在感叹“大变局”的同时，心甘情愿为深度解析付费。 ## 核心任务 根据用户提供的标题 <title>{{TI...<truncated>' user_content_preview='哈梅内伊走了，这事儿发生在2026年2月28日，当时美以联合行动直接把他给干掉了，那年他86岁。伊朗那边一下子炸锅了，国家媒体确认后，民众反应五花八门，有人庆祝，有人哀悼，有人直接上街抗议。整个中东都跟着晃荡，导弹来导弹去，能源市场乱套，美军死了几个兵，欧洲那边还得防着伊朗打到塞浦路斯。伊朗的最高领袖没了，临时领导委员会上台，局势更不稳。 想想伊朗这些年，制裁堆得像山，内部闹腾，外部空袭不断，靠着导弹和代理人撑场面，可真到关键时候，缺了硬家伙护身，热血再多也顶不住精准打击。哈梅内伊掌权快37年，一直反美反以，推进核计划，可到头来，核门槛都没完全跨过，就被对手给堵死了。这不正好应了钱学森的观点？...<truncated>' api_key_configured=True
+2026-03-08 22:03:30 | ERROR | weitoutiao.llm | 大模型请求解析异常 elapsed_ms=131646.21
+Traceback (most recent call last):
+  File "/Users/chaiyapeng/Documents/weitoutiao/app/title_rewriter.py", line 86, in _rewrite
+    with request.urlopen(req, timeout=timeout_seconds) as response:
+         ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/homebrew/Cellar/python@3.13/3.13.2/Frameworks/Python.framework/Versions/3.13/lib/python3.13/urllib/request.py", line 189, in urlopen
+    return opener.open(url, data, timeout)
+           ~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^
+  File "/opt/homebrew/Cellar/python@3.13/3.13.2/Frameworks/Python.framework/Versions/3.13/lib/python3.13/urllib/request.py", line 489, in open
+    response = self._open(req, data)
+  File "/opt/homebrew/Cellar/python@3.13/3.13.2/Frameworks/Python.framework/Versions/3.13/lib/python3.13/urllib/request.py", line 506, in _open
+    result = self._call_chain(self.handle_open, protocol, protocol +
+                              '_open', req)
+  File "/opt/homebrew/Cellar/python@3.13/3.13.2/Frameworks/Python.framework/Versions/3.13/lib/python3.13/urllib/request.py", line 466, in _call_chain
+    result = func(*args)
+  File "/opt/homebrew/Cellar/python@3.13/3.13.2/Frameworks/Python.framework/Versions/3.13/lib/python3.13/urllib/request.py", line 1367, in https_open
+    return self.do_open(http.client.HTTPSConnection, req,
+           ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+                        context=self._context)
+                        ^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/homebrew/Cellar/python@3.13/3.13.2/Frameworks/Python.framework/Versions/3.13/lib/python3.13/urllib/request.py", line 1323, in do_open
+    r = h.getresponse()
+  File "/opt/homebrew/Cellar/python@3.13/3.13.2/Frameworks/Python.framework/Versions/3.13/lib/python3.13/http/client.py", line 1430, in getresponse
+    response.begin()
+    ~~~~~~~~~~~~~~^^
+  File "/opt/homebrew/Cellar/python@3.13/3.13.2/Frameworks/Python.framework/Versions/3.13/lib/python3.13/http/client.py", line 331, in begin
+    version, status, reason = self._read_status()
+                              ~~~~~~~~~~~~~~~~~^^
+  File "/opt/homebrew/Cellar/python@3.13/3.13.2/Frameworks/Python.framework/Versions/3.13/lib/python3.13/http/client.py", line 300, in _read_status
+    raise RemoteDisconnected("Remote end closed connection without"
+                             " response")
+http.client.RemoteDisconnected: Remote end closed connection without response
+2026-03-08 22:03:30 | ERROR | weitoutiao.api | 文章改写失败 template_key=international_account_starter
+Traceback (most recent call last):
+  File "/Users/chaiyapeng/Documents/weitoutiao/app/api.py", line 288, in rewrite_article
+    result = ArticleRewriter().rewrite(content, template_key)
+  File "/Users/chaiyapeng/Documents/weitoutiao/app/title_rewriter.py", line 167, in rewrite
+    return self._rewrite(
+           ~~~~~~~~~~~~~^
+        content,
+        ^^^^^^^^
+    ...<3 lines>...
+        timeout_seconds=ARTICLE_REWRITE_TIMEOUT_SECONDS,
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/Users/chaiyapeng/Documents/weitoutiao/app/title_rewriter.py", line 86, in _rewrite
+    with request.urlopen(req, timeout=timeout_seconds) as response:
+         ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/homebrew/Cellar/python@3.13/3.13.2/Frameworks/Python.framework/Versions/3.13/lib/python3.13/urllib/request.py", line 189, in urlopen
+    return opener.open(url, data, timeout)
+           ~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^
+  File "/opt/homebrew/Cellar/python@3.13/3.13.2/Frameworks/Python.framework/Versions/3.13/lib/python3.13/urllib/request.py", line 489, in open
+    response = self._open(req, data)
+  File "/opt/homebrew/Cellar/python@3.13/3.13.2/Frameworks/Python.framework/Versions/3.13/lib/python3.13/urllib/request.py", line 506, in _open
+    result = self._call_chain(self.handle_open, protocol, protocol +
+                              '_open', req)
+  File "/opt/homebrew/Cellar/python@3.13/3.13.2/Frameworks/Python.framework/Versions/3.13/lib/python3.13/urllib/request.py", line 466, in _call_chain
+    result = func(*args)
+  File "/opt/homebrew/Cellar/python@3.13/3.13.2/Frameworks/Python.framework/Versions/3.13/lib/python3.13/urllib/request.py", line 1367, in https_open
+    return self.do_open(http.client.HTTPSConnection, req,
+           ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+                        context=self._context)
+                        ^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/homebrew/Cellar/python@3.13/3.13.2/Frameworks/Python.framework/Versions/3.13/lib/python3.13/urllib/request.py", line 1323, in do_open
+    r = h.getresponse()
+  File "/opt/homebrew/Cellar/python@3.13/3.13.2/Frameworks/Python.framework/Versions/3.13/lib/python3.13/http/client.py", line 1430, in getresponse
+    response.begin()
+    ~~~~~~~~~~~~~~^^
+  File "/opt/homebrew/Cellar/python@3.13/3.13.2/Frameworks/Python.framework/Versions/3.13/lib/python3.13/http/client.py", line 331, in begin
+    version, status, reason = self._read_status()
+                              ~~~~~~~~~~~~~~~~~^^
+  File "/opt/homebrew/Cellar/python@3.13/3.13.2/Frameworks/Python.framework/Versions/3.13/lib/python3.13/http/client.py", line 300, in _read_status
+    raise RemoteDisconnected("Remote end closed connection without"
+                             " response")
+http.client.RemoteDisconnected: Remote end closed connection without response
+2026-03-08 22:16:49 | INFO | weitoutiao | Starting desktop application
+2026-03-08 22:16:49 | INFO | weitoutiao | Database initialized
+2026-03-08 22:16:49 | INFO | weitoutiao | Frontend asset resolved: /Users/chaiyapeng/Documents/weitoutiao/frontend/dist/index.html
+2026-03-08 22:16:49 | INFO | weitoutiao | Creating pywebview window in maximized mode
+2026-03-08 22:16:49 | INFO | weitoutiao | Starting pywebview event loop
+2026-03-08 22:17:03 | INFO | weitoutiao.api | 开始改写文章 template_key=international_account_starter
+2026-03-08 22:17:03 | INFO | weitoutiao.llm | 发起大模型请求 endpoint=https://yunwu.ai/v1/chat/completions model=gemini-3.1-pro-preview timeout=300s payload_bytes=12558 user_prompt_length=4635 user_prompt_preview='# 国际深读·大国博弈版（融合牛弹琴风格） ## 角色设定 你是一位拥有千万级粉丝的资深国际时政与历史观察家，笔耕不辍，深谙国际关系背后的草蛇灰线。你擅长以**“牛弹琴”式的独特风格——既有宏大的历史视野，又有细腻的情感笔触；既有对时局的敏锐洞察，又有对人性的深刻剖析——来讲述国际历史话题。你的核心能力是穿透历史迷雾，将枯燥的国际档案、大国博弈、战争风云，转化为一篇篇跌宕起伏、引人深思的10,000字深度付费长文**。你深知新媒体读者的痛点，懂得在历史的关键转折处设置“致命悬念”，让读者在感叹“大变局”的同时，心甘情愿为深度解析付费。 ## 核心任务 根据用户提供的标题 <title>哈梅内伊...<truncated>' api_key_configured=True
+2026-03-08 22:19:24 | INFO | weitoutiao.llm | 大模型请求返回 status=200 reason=OK elapsed_ms=140421.77 response_bytes=20443 response_preview='{"id":"chatcmpl-202603082217046911547483k3Wq8AN","model":"gemini-3.1-pro-preview","object":"chat.completion","created":1772979564,"choices":[{"index":0,"message":{"role":"assistant","content":"【声明：本文为基于历史资料与地缘逻辑的深度解读与推演创作，部分细节进行文学化还原。本文归属国际历史类型：大国博弈秘辛。历史是一面镜子，鉴古知今，仅供参考。】\\n\\n风起于青萍之末，却终将掀起惊涛骇浪。\\n\\n这是一...<truncated>'
+2026-03-08 22:19:24 | INFO | weitoutiao.llm | 大模型请求完成 output_length=6912 output_preview='【声明：本文为基于历史资料与地缘逻辑的深度解读与推演创作，部分细节进行文学化还原。本文归属国际历史类型：大国博弈秘辛。历史是一面镜子，鉴古知今，仅供参考。】 风起于青萍之末，却终将掀起惊涛骇浪。 这是一个悲剧，更是一个意味深长的残酷隐喻。 时间的指针，冷酷地拨向了2026年2月28日。中东的夜空，被几道刺眼的强光彻底撕裂。 一声叹息。 那位在中东棋局上执子近四十年的老者，倒在了血泊与废墟之中。 这不仅是一个人的落幕，更是一个国家、一种战略在冷酷大国博弈面前的无情脆败。 历史，总是惊人的相似，却又比我们想象的更加残酷。 ## 01 2026年2月28日。 请记住这个日子。未来的历史书上，这绝对是...<truncated>'
+2026-03-08 22:19:24 | INFO | weitoutiao.api | 文章改写完成 template_key=international_account_starter length=6912
+2026-03-08 22:20:58 | INFO | weitoutiao.api | 开始保存设置 key=llm.base_url
+2026-03-08 22:20:58 | INFO | weitoutiao.api | 设置保存成功 key=llm.base_url
+2026-03-08 22:20:58 | INFO | weitoutiao.api | 开始保存设置 key=llm.api_key
+2026-03-08 22:20:58 | INFO | weitoutiao.api | 设置保存成功 key=llm.api_key
+2026-03-08 22:20:58 | INFO | weitoutiao.api | 开始保存设置 key=llm.model
+2026-03-08 22:20:58 | INFO | weitoutiao.api | 设置保存成功 key=llm.model
+2026-03-08 22:21:03 | INFO | weitoutiao.api | 开始改写文章 template_key=international_account_starter
+2026-03-08 22:21:03 | INFO | weitoutiao.llm | 发起大模型请求 endpoint=https://localhost:8888/v1/chat/completions model=gpt-5.4 timeout=300s payload_bytes=12543 user_prompt_length=4635 user_prompt_preview='# 国际深读·大国博弈版（融合牛弹琴风格） ## 角色设定 你是一位拥有千万级粉丝的资深国际时政与历史观察家，笔耕不辍，深谙国际关系背后的草蛇灰线。你擅长以**“牛弹琴”式的独特风格——既有宏大的历史视野，又有细腻的情感笔触；既有对时局的敏锐洞察，又有对人性的深刻剖析——来讲述国际历史话题。你的核心能力是穿透历史迷雾，将枯燥的国际档案、大国博弈、战争风云，转化为一篇篇跌宕起伏、引人深思的10,000字深度付费长文**。你深知新媒体读者的痛点，懂得在历史的关键转折处设置“致命悬念”，让读者在感叹“大变局”的同时，心甘情愿为深度解析付费。 ## 核心任务 根据用户提供的标题 <title>哈梅内伊...<truncated>' api_key_configured=True
+2026-03-08 22:21:03 | ERROR | weitoutiao.llm | 大模型请求网络异常 reason=[SSL] record layer failure (_ssl.c:1028) elapsed_ms=7.85
+Traceback (most recent call last):
+  File "/opt/homebrew/Cellar/python@3.13/3.13.2/Frameworks/Python.framework/Versions/3.13/lib/python3.13/urllib/request.py", line 1319, in do_open
+    h.request(req.get_method(), req.selector, req.data, headers,
+    ~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+              encode_chunked=req.has_header('Transfer-encoding'))
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/homebrew/Cellar/python@3.13/3.13.2/Frameworks/Python.framework/Versions/3.13/lib/python3.13/http/client.py", line 1338, in request
+    self._send_request(method, url, body, headers, encode_chunked)
+    ~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/homebrew/Cellar/python@3.13/3.13.2/Frameworks/Python.framework/Versions/3.13/lib/python3.13/http/client.py", line 1384, in _send_request
+    self.endheaders(body, encode_chunked=encode_chunked)
+    ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/homebrew/Cellar/python@3.13/3.13.2/Frameworks/Python.framework/Versions/3.13/lib/python3.13/http/client.py", line 1333, in endheaders
+    self._send_output(message_body, encode_chunked=encode_chunked)
+    ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/homebrew/Cellar/python@3.13/3.13.2/Frameworks/Python.framework/Versions/3.13/lib/python3.13/http/client.py", line 1093, in _send_output
+    self.send(msg)
+    ~~~~~~~~~^^^^^
+  File "/opt/homebrew/Cellar/python@3.13/3.13.2/Frameworks/Python.framework/Versions/3.13/lib/python3.13/http/client.py", line 1037, in send
+    self.connect()
+    ~~~~~~~~~~~~^^
+  File "/opt/homebrew/Cellar/python@3.13/3.13.2/Frameworks/Python.framework/Versions/3.13/lib/python3.13/http/client.py", line 1479, in connect
+    self.sock = self._context.wrap_socket(self.sock,
+                ~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^
+                                          server_hostname=server_hostname)
+                                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/homebrew/Cellar/python@3.13/3.13.2/Frameworks/Python.framework/Versions/3.13/lib/python3.13/ssl.py", line 455, in wrap_socket
+    return self.sslsocket_class._create(
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+        sock=sock,
+        ^^^^^^^^^^
+    ...<5 lines>...
+        session=session
+        ^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/opt/homebrew/Cellar/python@3.13/3.13.2/Frameworks/Python.framework/Versions/3.13/lib/python3.13/ssl.py", line 1076, in _create
+    self.do_handshake()
+    ~~~~~~~~~~~~~~~~~^^
+  File "/opt/homebrew/Cellar/python@3.13/3.13.2/Frameworks/Python.framework/Versions/3.13/lib/python3.13/ssl.py", line 1372, in do_handshake
+    self._sslobj.do_handshake()
+    ~~~~~~~~~~~~~~~~~~~~~~~~~^^
+ssl.SSLError: [SSL] record layer failure (_ssl.c:1028)
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/chaiyapeng/Documents/weitoutiao/app/title_rewriter.py", line 78, in _rewrite
+    with request.urlopen(req, timeout=timeout_seconds) as response:
+         ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/homebrew/Cellar/python@3.13/3.13.2/Frameworks/Python.framework/Versions/3.13/lib/python3.13/urllib/request.py", line 189, in urlopen
+    return opener.open(url, data, timeout)
+           ~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^
+  File "/opt/homebrew/Cellar/python@3.13/3.13.2/Frameworks/Python.framework/Versions/3.13/lib/python3.13/urllib/request.py", line 489, in open
+    response = self._open(req, data)
+  File "/opt/homebrew/Cellar/python@3.13/3.13.2/Frameworks/Python.framework/Versions/3.13/lib/python3.13/urllib/request.py", line 506, in _open
+    result = self._call_chain(self.handle_open, protocol, protocol +
+                              '_open', req)
+  File "/opt/homebrew/Cellar/python@3.13/3.13.2/Frameworks/Python.framework/Versions/3.13/lib/python3.13/urllib/request.py", line 466, in _call_chain
+    result = func(*args)
+  File "/opt/homebrew/Cellar/python@3.13/3.13.2/Frameworks/Python.framework/Versions/3.13/lib/python3.13/urllib/request.py", line 1367, in https_open
+    return self.do_open(http.client.HTTPSConnection, req,
+           ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+                        context=self._context)
+                        ^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/homebrew/Cellar/python@3.13/3.13.2/Frameworks/Python.framework/Versions/3.13/lib/python3.13/urllib/request.py", line 1322, in do_open
+    raise URLError(err)
+urllib.error.URLError: <urlopen error [SSL] record layer failure (_ssl.c:1028)>
+2026-03-08 22:21:03 | ERROR | weitoutiao.api | 文章改写失败 template_key=international_account_starter
+Traceback (most recent call last):
+  File "/opt/homebrew/Cellar/python@3.13/3.13.2/Frameworks/Python.framework/Versions/3.13/lib/python3.13/urllib/request.py", line 1319, in do_open
+    h.request(req.get_method(), req.selector, req.data, headers,
+    ~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+              encode_chunked=req.has_header('Transfer-encoding'))
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/homebrew/Cellar/python@3.13/3.13.2/Frameworks/Python.framework/Versions/3.13/lib/python3.13/http/client.py", line 1338, in request
+    self._send_request(method, url, body, headers, encode_chunked)
+    ~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/homebrew/Cellar/python@3.13/3.13.2/Frameworks/Python.framework/Versions/3.13/lib/python3.13/http/client.py", line 1384, in _send_request
+    self.endheaders(body, encode_chunked=encode_chunked)
+    ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/homebrew/Cellar/python@3.13/3.13.2/Frameworks/Python.framework/Versions/3.13/lib/python3.13/http/client.py", line 1333, in endheaders
+    self._send_output(message_body, encode_chunked=encode_chunked)
+    ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/homebrew/Cellar/python@3.13/3.13.2/Frameworks/Python.framework/Versions/3.13/lib/python3.13/http/client.py", line 1093, in _send_output
+    self.send(msg)
+    ~~~~~~~~~^^^^^
+  File "/opt/homebrew/Cellar/python@3.13/3.13.2/Frameworks/Python.framework/Versions/3.13/lib/python3.13/http/client.py", line 1037, in send
+    self.connect()
+    ~~~~~~~~~~~~^^
+  File "/opt/homebrew/Cellar/python@3.13/3.13.2/Frameworks/Python.framework/Versions/3.13/lib/python3.13/http/client.py", line 1479, in connect
+    self.sock = self._context.wrap_socket(self.sock,
+                ~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^
+                                          server_hostname=server_hostname)
+                                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/homebrew/Cellar/python@3.13/3.13.2/Frameworks/Python.framework/Versions/3.13/lib/python3.13/ssl.py", line 455, in wrap_socket
+    return self.sslsocket_class._create(
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+        sock=sock,
+        ^^^^^^^^^^
+    ...<5 lines>...
+        session=session
+        ^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/opt/homebrew/Cellar/python@3.13/3.13.2/Frameworks/Python.framework/Versions/3.13/lib/python3.13/ssl.py", line 1076, in _create
+    self.do_handshake()
+    ~~~~~~~~~~~~~~~~~^^
+  File "/opt/homebrew/Cellar/python@3.13/3.13.2/Frameworks/Python.framework/Versions/3.13/lib/python3.13/ssl.py", line 1372, in do_handshake
+    self._sslobj.do_handshake()
+    ~~~~~~~~~~~~~~~~~~~~~~~~~^^
+ssl.SSLError: [SSL] record layer failure (_ssl.c:1028)
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/chaiyapeng/Documents/weitoutiao/app/title_rewriter.py", line 78, in _rewrite
+    with request.urlopen(req, timeout=timeout_seconds) as response:
+         ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/homebrew/Cellar/python@3.13/3.13.2/Frameworks/Python.framework/Versions/3.13/lib/python3.13/urllib/request.py", line 189, in urlopen
+    return opener.open(url, data, timeout)
+           ~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^
+  File "/opt/homebrew/Cellar/python@3.13/3.13.2/Frameworks/Python.framework/Versions/3.13/lib/python3.13/urllib/request.py", line 489, in open
+    response = self._open(req, data)
+  File "/opt/homebrew/Cellar/python@3.13/3.13.2/Frameworks/Python.framework/Versions/3.13/lib/python3.13/urllib/request.py", line 506, in _open
+    result = self._call_chain(self.handle_open, protocol, protocol +
+                              '_open', req)
+  File "/opt/homebrew/Cellar/python@3.13/3.13.2/Frameworks/Python.framework/Versions/3.13/lib/python3.13/urllib/request.py", line 466, in _call_chain
+    result = func(*args)
+  File "/opt/homebrew/Cellar/python@3.13/3.13.2/Frameworks/Python.framework/Versions/3.13/lib/python3.13/urllib/request.py", line 1367, in https_open
+    return self.do_open(http.client.HTTPSConnection, req,
+           ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+                        context=self._context)
+                        ^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/homebrew/Cellar/python@3.13/3.13.2/Frameworks/Python.framework/Versions/3.13/lib/python3.13/urllib/request.py", line 1322, in do_open
+    raise URLError(err)
+urllib.error.URLError: <urlopen error [SSL] record layer failure (_ssl.c:1028)>
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/Users/chaiyapeng/Documents/weitoutiao/app/api.py", line 288, in rewrite_article
+    result = ArticleRewriter().rewrite(content, template_key)
+  File "/Users/chaiyapeng/Documents/weitoutiao/app/title_rewriter.py", line 186, in rewrite
+    return self._rewrite(
+           ~~~~~~~~~~~~~^
+        rendered_prompt,
+        ^^^^^^^^^^^^^^^^
+    ...<2 lines>...
+        timeout_seconds=ARTICLE_REWRITE_TIMEOUT_SECONDS,
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/Users/chaiyapeng/Documents/weitoutiao/app/title_rewriter.py", line 104, in _rewrite
+    raise RuntimeError(f"{error_prefix}: {exc.reason}") from exc
+RuntimeError: 文章改写请求失败: [SSL] record layer failure (_ssl.c:1028)
+2026-03-08 22:21:18 | INFO | weitoutiao.api | 开始保存设置 key=llm.base_url
+2026-03-08 22:21:18 | INFO | weitoutiao.api | 设置保存成功 key=llm.base_url
+2026-03-08 22:21:21 | INFO | weitoutiao.api | 开始改写文章 template_key=international_account_starter
+2026-03-08 22:21:21 | INFO | weitoutiao.llm | 发起大模型请求 endpoint=http://localhost:8888/v1/chat/completions model=gpt-5.4 timeout=300s payload_bytes=12543 user_prompt_length=4635 user_prompt_preview='# 国际深读·大国博弈版（融合牛弹琴风格） ## 角色设定 你是一位拥有千万级粉丝的资深国际时政与历史观察家，笔耕不辍，深谙国际关系背后的草蛇灰线。你擅长以**“牛弹琴”式的独特风格——既有宏大的历史视野，又有细腻的情感笔触；既有对时局的敏锐洞察，又有对人性的深刻剖析——来讲述国际历史话题。你的核心能力是穿透历史迷雾，将枯燥的国际档案、大国博弈、战争风云，转化为一篇篇跌宕起伏、引人深思的10,000字深度付费长文**。你深知新媒体读者的痛点，懂得在历史的关键转折处设置“致命悬念”，让读者在感叹“大变局”的同时，心甘情愿为深度解析付费。 ## 核心任务 根据用户提供的标题 <title>哈梅内伊...<truncated>' api_key_configured=True
+2026-03-08 22:23:27 | INFO | weitoutiao.llm | 大模型请求返回 status=200 reason=OK elapsed_ms=125722.55 response_bytes=25132 response_preview='{"id":"resp_00f50505fd9e171d0169ad85e3b0a0819da4c8ccd588166998","object":"chat.completion","created":1772979683,"model":"gpt-5.4","choices":[{"index":0,"message":{"role":"assistant","content":"【声明：以下内容为基于公开历史资料与地缘逻辑的假设性深度推演，并非对现实世界既成事实的陈述；文中个别场景作文学化还原，用于讨论国家安全、战略威慑与大国博弈之逻辑。】\\n\\n导语\\n\\n这是一个意味深长的细节。\\n\\...<truncated>'
+2026-03-08 22:23:27 | INFO | weitoutiao.llm | 大模型请求完成 output_length=8614 output_preview='【声明：以下内容为基于公开历史资料与地缘逻辑的假设性深度推演，并非对现实世界既成事实的陈述；文中个别场景作文学化还原，用于讨论国家安全、战略威慑与大国博弈之逻辑。】 导语 这是一个意味深长的细节。 一个执掌伊朗近四十年的最高领袖，如果真在炮火、暗杀和情报战交织中退场，那么中东震荡的，不只是街头，不只是油价，不只是导弹轨迹。 更是一代国家战略的成败得失。 一声叹息。 历史，总是惊人的相似。 很多国家，不是败于不勇敢，而是败于在关键时刻，没有让敌人真正感到害怕的“最后底牌”。 这篇文章，归根到底，要讲的不是一个人的生死。 而是一个国家，在百年未有之大变局中，如何面对命运的拷问。 ## 01 如果把...<truncated>'
+2026-03-08 22:23:27 | INFO | weitoutiao.api | 文章改写完成 template_key=international_account_starter length=8614
+2026-03-08 22:33:57 | INFO | weitoutiao | Starting desktop application
+2026-03-08 22:33:57 | INFO | weitoutiao | Database initialized
+2026-03-08 22:33:57 | INFO | weitoutiao | Frontend asset resolved: /Users/chaiyapeng/Documents/weitoutiao/frontend/dist/index.html
+2026-03-08 22:33:57 | INFO | weitoutiao | Creating pywebview window in maximized mode
+2026-03-08 22:33:57 | INFO | weitoutiao | Starting pywebview event loop
+2026-03-08 22:35:46 | INFO | weitoutiao.api | 开始改写文章 template_key=international_account_starter
+2026-03-08 22:35:46 | INFO | weitoutiao.llm | 发起大模型请求 endpoint=http://localhost:8888/v1/chat/completions model=gpt-5.4 timeout=300s payload_bytes=12801 user_prompt_length=4762 user_prompt_preview='# 国际深读·大国博弈版（融合牛弹琴风格） ## 角色设定 你是一位拥有千万级粉丝的资深国际时政与历史观察家，笔耕不辍，深谙国际关系背后的草蛇灰线。你擅长以**“牛弹琴”式的独特风格——既有宏大的历史视野，又有细腻的情感笔触；既有对时局的敏锐洞察，又有对人性的深刻剖析——来讲述国际历史话题。你的核心能力是穿透历史迷雾，将枯燥的国际档案、大国博弈、战争风云，转化为一篇篇跌宕起伏、引人深思的10,000字深度付费长文**。你深知新媒体读者的痛点，懂得在历史的关键转折处设置“致命悬念”，让读者在感叹“大变局”的同时，心甘情愿为深度解析付费。 ## 核心任务 根据用户提供的标题 <title>哈梅内伊...<truncated>' api_key_configured=True
+2026-03-08 22:37:57 | INFO | weitoutiao.llm | 大模型请求返回 status=200 reason=OK elapsed_ms=130196.81 response_bytes=24940 response_preview='{"id":"resp_0493022bc2d10b930169ad8944b2b881929f3a64056c70929f","object":"chat.completion","created":1772980548,"model":"gpt-5.4","choices":[{"index":0,"message":{"role":"assistant","content":"【声明：以下内容为基于国际局势的假设性推演与文学化写作，不代表现实已发生事件。历史是一面镜子，鉴古知今，仅供参考。】\\n########导语\\n这是一个意味深长的细节。\\n\\n如果一个国家，喊了很多年强硬，导弹很多...<truncated>'
+2026-03-08 22:37:57 | INFO | weitoutiao.llm | 大模型请求完成 output_length=8583 output_preview='【声明：以下内容为基于国际局势的假设性推演与文学化写作，不代表现实已发生事件。历史是一面镜子，鉴古知今，仅供参考。】 ########导语 这是一个意味深长的细节。 如果一个国家，喊了很多年强硬，导弹很多，盟友很多，口号也很多，但到了生死关头，却仍然无法阻止对手越境猎杀最高领袖，那就不只是一个人的悲剧了。 而是一个国家安全体系的坍塌。 也是一个时代残酷规则的再一次显影。 历史，总是惊人的相似。 风起于青萍之末。 中东这个地方，看似天天在打仗，实际上每一场爆炸背后，都是更大的博弈，更冷的算盘，更深的无奈。 如果真有这么一天，哈梅内伊倒下，伊朗震荡，油价狂飙，导弹横飞，世界会看到的，绝不只是一次“...<truncated>'
+2026-03-08 22:37:57 | INFO | weitoutiao.api | 文章改写完成 template_key=international_account_starter length=8114
+2026-03-08 23:04:50 | INFO | weitoutiao | Starting desktop application
+2026-03-08 23:04:50 | INFO | weitoutiao | Database initialized
+2026-03-08 23:04:50 | INFO | weitoutiao | Frontend asset resolved: /Users/chaiyapeng/Documents/weitoutiao/frontend/dist/index.html
+2026-03-08 23:04:50 | INFO | weitoutiao | Creating pywebview window in maximized mode
+2026-03-08 23:04:50 | INFO | weitoutiao | Starting pywebview event loop
+2026-03-08 23:09:51 | INFO | weitoutiao | Starting desktop application
+2026-03-08 23:09:51 | INFO | weitoutiao | Database initialized
+2026-03-08 23:09:51 | INFO | weitoutiao | Frontend asset resolved: /Users/chaiyapeng/Documents/weitoutiao/frontend/dist/index.html
+2026-03-08 23:09:51 | INFO | weitoutiao | Creating pywebview window in maximized mode
+2026-03-08 23:09:51 | INFO | weitoutiao | Starting pywebview event loop
+2026-03-08 23:10:02 | INFO | weitoutiao.api | 开始改写文章 template_key=international_account_starter
+2026-03-08 23:10:02 | INFO | weitoutiao.llm | 发起大模型请求 endpoint=http://localhost:8888/v1/chat/completions model=gpt-5.4 timeout=300s payload_bytes=12801 user_prompt_length=4762 user_prompt_preview='# 国际深读·大国博弈版（融合牛弹琴风格） ## 角色设定 你是一位拥有千万级粉丝的资深国际时政与历史观察家，笔耕不辍，深谙国际关系背后的草蛇灰线。你擅长以**“牛弹琴”式的独特风格——既有宏大的历史视野，又有细腻的情感笔触；既有对时局的敏锐洞察，又有对人性的深刻剖析——来讲述国际历史话题。你的核心能力是穿透历史迷雾，将枯燥的国际档案、大国博弈、战争风云，转化为一篇篇跌宕起伏、引人深思的10,000字深度付费长文**。你深知新媒体读者的痛点，懂得在历史的关键转折处设置“致命悬念”，让读者在感叹“大变局”的同时，心甘情愿为深度解析付费。 ## 核心任务 根据用户提供的标题 <title>哈梅内伊...<truncated>' api_key_configured=True
+2026-03-08 23:12:10 | INFO | weitoutiao.llm | 大模型请求返回 status=200 reason=OK elapsed_ms=128050.79 response_bytes=27299 response_preview='{"id":"resp_0ea1a6ebf02047ab0169ad914afbec8192a8abcecc7c6df189","object":"chat.completion","created":1772982603,"model":"gpt-5.4","choices":[{"index":0,"message":{"role":"assistant","content":"【声明：本文以假设性国际局势推演为框架，结合历史资料、现实地缘格局与公开信息进行深度解读，文中涉及“2026年2月28日哈梅内伊遭美以联合行动致死”等情节，属于基于用户给定设定的文学化分析，并非对现实世界已发生事实...<truncated>'
+2026-03-08 23:12:10 | INFO | weitoutiao.llm | 大模型请求完成 output_length=9150 output_preview='【声明：本文以假设性国际局势推演为框架，结合历史资料、现实地缘格局与公开信息进行深度解读，文中涉及“2026年2月28日哈梅内伊遭美以联合行动致死”等情节，属于基于用户给定设定的文学化分析，并非对现实世界已发生事实的确认。历史是一面镜子，鉴古知今，仅供参考。】 ########导语 这是一个意味深长的细节。 一个执掌伊朗近四十年的最高领袖，如果真在外部联合打击中突然退场，那么被震动的，绝不只是德黑兰街头。 而是整个中东棋局。 一声叹息。 历史，总是惊人地相似：弱者常常不是输在口号不响，不是输在意志不坚，而是输在关键时刻，没能让对手真正“不敢下手”。 这篇文章，归根到底讲的，不只是一个人的生死。...<truncated>'
+2026-03-08 23:12:10 | INFO | weitoutiao.api | 文章改写完成 template_key=international_account_starter length=8792

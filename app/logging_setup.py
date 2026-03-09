@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import logging
+import sys
 from logging.handlers import TimedRotatingFileHandler
 
 from .paths import LOG_DIR
@@ -20,7 +21,7 @@ def configure_logging() -> logging.Logger:
         datefmt="%Y-%m-%d %H:%M:%S",
     )
 
-    console_handler = logging.StreamHandler()
+    console_handler = logging.StreamHandler(sys.stdout)
     console_handler.setFormatter(formatter)
 
     file_handler = TimedRotatingFileHandler(

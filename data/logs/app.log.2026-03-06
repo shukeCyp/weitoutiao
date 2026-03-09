@@ -1,0 +1,5 @@
+2026-03-06 18:53:46 | INFO | weitoutiao | Starting desktop application
+2026-03-06 18:53:46 | INFO | weitoutiao | Database initialized
+2026-03-06 18:53:46 | INFO | weitoutiao | Frontend asset resolved: /Users/chaiyapeng/Documents/weitoutiao/frontend/dist/index.html
+2026-03-06 18:53:46 | INFO | weitoutiao | Creating pywebview window
+2026-03-06 18:53:46 | INFO | weitoutiao | Starting pywebview event loop

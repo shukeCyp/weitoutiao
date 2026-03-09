@@ -16,3 +16,5 @@ frontend/dist/
 # Build outputs
 build/
 dist/
+.claude/
+.cursor/

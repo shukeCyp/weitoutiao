@@ -11,7 +11,12 @@
       "Bash(npm --prefix \"/Users/chaiyapeng/Documents/weitoutiao/frontend\" run build)",
       "Bash(python3:*)",
       "Bash(uv --directory \"/Users/chaiyapeng/Documents/weitoutiao\" run:*)",
-      "Bash(uv --directory \"/Users/chaiyapeng/Documents/weitoutiao\" run python:*)"
+      "Bash(uv --directory \"/Users/chaiyapeng/Documents/weitoutiao\" run python:*)",
+      "Bash(npm run:*)",
+      "Bash(curl:*)",
+      "mcp__plugin_oh-my-claudecode_t__project_memory_read",
+      "Bash(npm:*)",
+      "Bash(uv run:*)"
     ]
   }
 }

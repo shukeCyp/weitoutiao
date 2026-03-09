@@ -5,3 +5,5 @@ Summary: 微头条爬虫 desktop app built with pywebview + Vue
 Requires-Python: >=3.10
 Requires-Dist: pywebview>=5.3
 Requires-Dist: peewee>=3.17
+Requires-Dist: playwright>=1.52
+Requires-Dist: python-docx>=1.2.0

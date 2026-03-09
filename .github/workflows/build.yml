@@ -1,27 +1,39 @@
-name: Build & Release
+name: Build
 
 on:
   push:
-    tags:
-      - 'v*'
+    branches: [main, master]
+    tags: ["v*.*.*"]
+  pull_request:
+    branches: [main, master]
 
 permissions:
   contents: write
 
 jobs:
-  # ── macOS → .dmg ─────────────────────────────────────────────────────
+  # ── macOS → .app + .dmg ──────────────────────────────────────────────────
   build-macos:
+    name: Build macOS (DMG)
     runs-on: macos-latest
+
     steps:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Setup Node.js
+      - name: Set up Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: '20'
-          cache: 'npm'
+          node-version: "20"
+          cache: "npm"
           cache-dependency-path: frontend/package-lock.json
+
+      - name: Install uv
+        uses: astral-sh/setup-uv@v5
+        with:
+          enable-cache: true
+
+      - name: Set up Python
+        run: uv python install 3.11
 
       - name: Build frontend
         working-directory: frontend
@@ -29,56 +41,72 @@ jobs:
           npm ci
           npm run build
 
-      - name: Setup Python
-        uses: actions/setup-python@v5
-        with:
-          python-version: '3.11'
+      - name: Install Python dependencies
+        run: uv sync
 
-      - name: Install uv
-        uses: astral-sh/setup-uv@v4
+      - name: Install PyInstaller & Playwright browsers
+        run: |
+          uv pip install pyinstaller
+          uv run playwright install chromium
 
-      - name: Install dependencies
-        run: uv sync --frozen
-
-      - name: Install PyInstaller
-        run: uv pip install pyinstaller
-
-      - name: Build .app with PyInstaller
+      - name: Build macOS .app bundle
         run: uv run pyinstaller weitoutiao.spec --noconfirm
 
       - name: Install create-dmg
         run: brew install create-dmg
 
-      - name: Package as .dmg
+      - name: Package into DMG
         run: |
           create-dmg \
             --volname "微头条爬虫" \
+            --volicon "dist/weitoutiao.app/Contents/Resources/icon-windowed.icns" \
             --window-pos 200 120 \
-            --window-size 600 400 \
-            --icon-size 128 \
-            --app-drop-link 450 180 \
+            --window-size 800 450 \
+            --icon-size 100 \
+            --icon "weitoutiao.app" 200 190 \
+            --hide-extension "weitoutiao.app" \
+            --app-drop-link 600 185 \
+            "dist/weitoutiao.dmg" \
+            "dist/weitoutiao.app" || \
+          create-dmg \
+            --volname "微头条爬虫" \
+            --window-pos 200 120 \
+            --window-size 800 450 \
+            --icon-size 100 \
+            --app-drop-link 600 185 \
             "dist/weitoutiao.dmg" \
             "dist/weitoutiao.app"
 
-      - name: Upload dmg artifact
+      - name: Upload DMG artifact
         uses: actions/upload-artifact@v4
         with:
-          name: weitoutiao-macos
+          name: weitoutiao-macos-dmg
           path: dist/weitoutiao.dmg
+          if-no-files-found: error
 
-  # ── Windows → .exe ───────────────────────────────────────────────────
+  # ── Windows → single-file .exe ───────────────────────────────────────────
   build-windows:
+    name: Build Windows (EXE)
     runs-on: windows-latest
+
     steps:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Setup Node.js
+      - name: Set up Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: '20'
-          cache: 'npm'
+          node-version: "20"
+          cache: "npm"
           cache-dependency-path: frontend/package-lock.json
+
+      - name: Install uv
+        uses: astral-sh/setup-uv@v5
+        with:
+          enable-cache: true
+
+      - name: Set up Python
+        run: uv python install 3.11
 
       - name: Build frontend
         working-directory: frontend
@@ -86,50 +114,57 @@ jobs:
           npm ci
           npm run build
 
-      - name: Setup Python
-        uses: actions/setup-python@v5
-        with:
-          python-version: '3.11'
+      - name: Install Python dependencies
+        run: uv sync
 
-      - name: Install uv
-        uses: astral-sh/setup-uv@v4
+      - name: Install PyInstaller & Playwright browsers
+        run: |
+          uv pip install pyinstaller
+          uv run playwright install chromium
 
-      - name: Install dependencies
-        run: uv sync --frozen
-
-      - name: Install PyInstaller
-        run: uv pip install pyinstaller
-
-      - name: Build .exe with PyInstaller
+      - name: Build Windows .exe
         run: uv run pyinstaller weitoutiao.spec --noconfirm
 
-      - name: Upload exe artifact
+      - name: Upload EXE artifact
         uses: actions/upload-artifact@v4
         with:
-          name: weitoutiao-windows
+          name: weitoutiao-windows-exe
           path: dist/weitoutiao.exe
+          if-no-files-found: error
 
-  # ── Create GitHub Release ─────────────────────────────────────────────
+  # ── Release：仅在推送版本 tag 时创建 GitHub Release ──────────────────────
   release:
+    name: Create GitHub Release
     needs: [build-macos, build-windows]
     runs-on: ubuntu-latest
+    if: startsWith(github.ref, 'refs/tags/v')
+
     steps:
-      - name: Download macOS artifact
+      - name: Download macOS DMG
         uses: actions/download-artifact@v4
         with:
-          name: weitoutiao-macos
+          name: weitoutiao-macos-dmg
           path: artifacts
 
-      - name: Download Windows artifact
+      - name: Download Windows EXE
         uses: actions/download-artifact@v4
         with:
-          name: weitoutiao-windows
+          name: weitoutiao-windows-exe
           path: artifacts
 
-      - name: Create GitHub Release
+      - name: Rename artifacts with version
+        run: |
+          VERSION="${GITHUB_REF_NAME}"
+          mv artifacts/weitoutiao.dmg  artifacts/weitoutiao-${VERSION}-macos.dmg
+          mv artifacts/weitoutiao.exe  artifacts/weitoutiao-${VERSION}-windows.exe
+
+      - name: Create Release
         uses: softprops/action-gh-release@v2
         with:
-          files: |
-            artifacts/weitoutiao.dmg
-            artifacts/weitoutiao.exe
+          name: "微头条爬虫 ${{ github.ref_name }}"
+          draft: false
+          prerelease: ${{ contains(github.ref_name, '-') }}
           generate_release_notes: true
+          files: |
+            artifacts/weitoutiao-${{ github.ref_name }}-macos.dmg
+            artifacts/weitoutiao-${{ github.ref_name }}-windows.exe

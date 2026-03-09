@@ -6,6 +6,27 @@ import re
 import time
 from urllib import error, request
 
+
+def _parse_sse_content(raw: str) -> str:
+    """从 SSE 流文本中提取所有 delta.content 拼接成完整文本。"""
+    collected = []
+    for line in raw.splitlines():
+        line = line.strip()
+        if not line.startswith("data:"):
+            continue
+        payload = line[5:].strip()
+        if not payload or payload == "[DONE]":
+            continue
+        try:
+            data = json.loads(payload)
+        except json.JSONDecodeError:
+            continue
+        delta = (data.get("choices") or [{}])[0].get("delta") or {}
+        piece = delta.get("content") or ""
+        if piece:
+            collected.append(piece)
+    return "".join(collected)
+
 from .db import get_setting
 from .prompt_constants import PromptTemplates
 
@@ -59,6 +80,8 @@ class BaseLlmRewriter:
         base_url = self._normalize_base_url(self._read_required_setting(LLM_BASE_URL_KEY, "大模型 base_url"))
         api_key = get_setting(LLM_API_KEY_KEY) or ""
         endpoint = f"{base_url}/chat/completions"
+        # 使用 stream=True：每个 chunk 到达都会重置 socket 超时，
+        # 避免大文章生成时因等待完整响应超过 timeout_seconds 而失败。
         payload = {
             "model": model,
             "messages": [
@@ -67,12 +90,12 @@ class BaseLlmRewriter:
                     "content": normalized_prompt,
                 }
             ],
-            "stream": False,
+            "stream": True,
         }
         payload_bytes = json.dumps(payload, ensure_ascii=False).encode("utf-8")
 
         logger.info(
-            "发起大模型请求 endpoint=%s model=%s timeout=%ss payload_bytes=%s user_prompt_length=%s user_prompt_preview=%r api_key_configured=%s",
+            "发起大模型请求(stream) endpoint=%s model=%s timeout=%ss payload_bytes=%s user_prompt_length=%s user_prompt_preview=%r api_key_configured=%s",
             endpoint,
             model,
             timeout_seconds,
@@ -88,24 +111,23 @@ class BaseLlmRewriter:
             headers={
                 "Content-Type": "application/json",
                 "Authorization": f"Bearer {api_key}",
+                "Accept": "text/event-stream",
             },
             method="POST",
         )
 
         started_at = time.perf_counter()
+        raw_sse = ""
         try:
             with request.urlopen(req, timeout=timeout_seconds) as response:
-                response_body = response.read().decode("utf-8")
-                elapsed_ms = round((time.perf_counter() - started_at) * 1000, 2)
-                logger.info(
-                    "大模型请求返回 status=%s reason=%s elapsed_ms=%s response_bytes=%s response_preview=%r",
-                    getattr(response, "status", None),
-                    getattr(response, "reason", None),
-                    elapsed_ms,
-                    len(response_body.encode("utf-8")),
-                    self._preview_text(response_body),
-                )
-                data = json.loads(response_body)
+                logger.info("大模型 SSE 连接建立 status=%s", getattr(response, "status", None))
+                all_bytes = b""
+                while True:
+                    chunk = response.read(4096)
+                    if not chunk:
+                        break
+                    all_bytes += chunk
+                raw_sse = all_bytes.decode("utf-8", errors="replace")
         except error.HTTPError as exc:
             body = exc.read().decode("utf-8", errors="ignore")
             elapsed_ms = round((time.perf_counter() - started_at) * 1000, 2)
@@ -126,21 +148,47 @@ class BaseLlmRewriter:
             logger.exception("大模型请求解析异常 elapsed_ms=%s", elapsed_ms)
             raise
 
-        response_content = data.get("choices", [{}])[0].get("message", {}).get("content")
+        elapsed_ms = round((time.perf_counter() - started_at) * 1000, 2)
+        response_content = _parse_sse_content(raw_sse)
+
+        # 兜底：如果 SSE 解析拿不到内容，尝试当普通 JSON 解析（部分 API 忽略 stream=True）
+        if not response_content.strip():
+            try:
+                data = json.loads(raw_sse)
+                response_content = data.get("choices", [{}])[0].get("message", {}).get("content") or ""
+            except (json.JSONDecodeError, IndexError, KeyError):
+                pass
+
         if not isinstance(response_content, str) or not response_content.strip():
             logger.error(
-                "大模型响应缺少有效内容 response_keys=%s response_preview=%r",
-                list(data.keys()) if isinstance(data, dict) else None,
-                self._preview_text(json.dumps(data, ensure_ascii=False)) if isinstance(data, dict) else self._preview_text(str(data)),
+                "大模型响应缺少有效内容 elapsed_ms=%s raw_preview=%r",
+                elapsed_ms,
+                self._preview_text(raw_sse),
             )
             raise RuntimeError(f"{error_prefix}响应中未找到有效内容。")
 
         final_content = response_content.strip()
         logger.info(
-            "大模型请求完成 output_length=%s output_preview=%r",
+            "大模型请求完成(stream) elapsed_ms=%s output_length=%s output_preview=%r",
+            elapsed_ms,
             len(final_content),
             self._preview_text(final_content),
         )
+        # #region agent log
+        import json as _trjson, time as _trtime, sys as _trsys
+        _trpath = (
+            __import__('pathlib').Path(_trsys.executable).parent / "debug_exe.log"
+            if getattr(_trsys, "frozen", False)
+            else __import__('pathlib').Path(__file__).resolve().parent.parent / ".cursor" / "debug.log"
+        )
+        _trpath.parent.mkdir(parents=True, exist_ok=True)
+        with _trpath.open("a", encoding="utf-8") as _trf:
+            _trf.write(_trjson.dumps({
+                "ts": int(_trtime.time()*1000), "step": "llm_stream_complete",
+                "elapsed_ms": elapsed_ms, "output_len": len(final_content),
+                "preview": final_content[:80]
+            }) + "\n")
+        # #endregion
         return final_content
 
     def _render_prompt(self, template: str, content: str) -> str:

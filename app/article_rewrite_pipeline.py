@@ -74,6 +74,18 @@ class ArticleRewritePipeline:
         has_intro = bool(article.rewritten_intro)
         has_article = bool(article.rewritten_article)
 
+        # #region agent log
+        import sys as _sys, json as _pjson, time as _ptime
+        def _pdbg(step, **data):
+            _pl = Path(_sys.executable).parent / "debug_exe.log" if getattr(_sys, "frozen", False) else Path(__file__).resolve().parent.parent / ".cursor" / "debug.log"
+            _pl.parent.mkdir(parents=True, exist_ok=True)
+            with _pl.open("a", encoding="utf-8") as _pf:
+                _pf.write(_pjson.dumps({"ts": int(_ptime.time()*1000), "step": step, "data": data}) + "\n")
+        _pdbg("pipeline_start", article_id=article_id, template_key=template_key,
+              has_title=has_title, has_intro=has_intro, has_article=has_article,
+              frozen=getattr(_sys, "frozen", False))
+        # #endregion
+
         if has_title and has_intro and has_article:
             rewritten_title = article.rewritten_title
             rewritten_intro = article.rewritten_intro
@@ -82,11 +94,26 @@ class ArticleRewritePipeline:
             logger.info("跳过改写步骤（已有结果） title=%r intro_len=%s sections=%s", rewritten_title, len(rewritten_intro), len(article_sections))
         else:
             first_para = _extract_first_paragraph(content)
+            # #region agent log
+            _pdbg("rewrite_start", workers=self._rewrite_workers, content_len=len(content), first_para_len=len(first_para))
+            # #endregion
             with ThreadPoolExecutor(max_workers=self._rewrite_workers, thread_name_prefix="rewrite") as rewrite_pool:
                 title_future = rewrite_pool.submit(self._rewrite_title, first_para)
                 article_future = rewrite_pool.submit(self._rewrite_article, content, template_key)
                 rewritten_title = title_future.result()
-                rewritten_raw = article_future.result()
+                # #region agent log
+                _pdbg("title_done", title=rewritten_title[:80])
+                # #endregion
+                try:
+                    rewritten_raw = article_future.result()
+                    # #region agent log
+                    _pdbg("article_done", length=len(rewritten_raw), preview=rewritten_raw[:100])
+                    # #endregion
+                except Exception as _exc:
+                    # #region agent log
+                    _pdbg("article_failed", error_type=type(_exc).__name__, error=str(_exc)[:300])
+                    # #endregion
+                    raise
 
             logger.info("标题和文章改写完成 title=%r article_length=%s", rewritten_title, len(rewritten_raw))
             rewritten_intro, article_sections = _parse_article_sections(rewritten_raw)

@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { computed, onMounted, ref } from 'vue'
+import { computed, onMounted, onUnmounted, ref } from 'vue'
 
 import { useToastStore } from '../stores/toast'
 
@@ -505,6 +505,115 @@ const startGlobalBatchDownload = async (): Promise<void> => {
   }
 }
 
+// ── 原文全部下载 ───────────────────────────────────────────────────────
+interface OriginalBatchDownloadState {
+  running: boolean
+  succeeded: number
+  failed: number
+  skipped: number
+  folder: string
+  total: number
+  done: number
+  currentArticle: string
+  message: string
+  errors: string[]
+}
+
+const originalBatchDownloadState = ref<OriginalBatchDownloadState>({
+  running: false, succeeded: 0, failed: 0, skipped: 0, folder: '', total: 0, done: 0, currentArticle: '', message: '', errors: [],
+})
+const originalBatchDownloadDialogVisible = ref(false)
+let originalBatchDownloadPollTimer: number | null = null
+
+const stopOriginalBatchDownloadPolling = (): void => {
+  if (originalBatchDownloadPollTimer !== null) {
+    window.clearInterval(originalBatchDownloadPollTimer)
+    originalBatchDownloadPollTimer = null
+  }
+}
+
+const syncOriginalBatchDownloadProgress = async (): Promise<void> => {
+  const api = window.pywebview?.api
+  if (!api) return
+
+  const progress = await api.get_original_export_progress()
+  originalBatchDownloadState.value = {
+    running: !!progress.running,
+    succeeded: progress.succeeded ?? 0,
+    failed: progress.failed ?? 0,
+    skipped: progress.skipped ?? 0,
+    folder: progress.folder ?? '',
+    total: progress.total ?? 0,
+    done: progress.done ?? 0,
+    currentArticle: progress.currentArticle ?? '',
+    message: progress.message ?? '',
+    errors: progress.errors ?? [],
+  }
+
+  if (!progress.running) {
+    stopOriginalBatchDownloadPolling()
+    if (progress.message) {
+      showToast(progress.message, 'error')
+    } else if ((progress.done ?? 0) > 0) {
+      const msg = `全部下载完成：成功 ${progress.succeeded ?? 0} 篇${progress.skipped ? `，跳过 ${progress.skipped} 篇` : ''}${progress.failed ? `，失败 ${progress.failed} 篇` : ''}。`
+      showToast(msg, (progress.failed ?? 0) > 0 ? 'warning' : 'success')
+    }
+  }
+}
+
+const startOriginalBatchDownloadPolling = (): void => {
+  stopOriginalBatchDownloadPolling()
+  originalBatchDownloadPollTimer = window.setInterval(() => {
+    void syncOriginalBatchDownloadProgress()
+  }, 1000)
+}
+
+const startOriginalBatchDownload = async (): Promise<void> => {
+  const api = window.pywebview?.api
+  if (!api || originalBatchDownloadState.value.running) return
+
+  originalBatchDownloadDialogVisible.value = true
+
+  try {
+    const result = await api.start_batch_export_original_articles(normalizedFilters())
+    if (result.status === 'started') {
+      originalBatchDownloadState.value = {
+        running: true,
+        succeeded: 0,
+        failed: 0,
+        skipped: 0,
+        folder: result.folder ?? '',
+        total: result.total ?? 0,
+        done: 0,
+        currentArticle: '',
+        message: '',
+        errors: [],
+      }
+      await syncOriginalBatchDownloadProgress()
+      startOriginalBatchDownloadPolling()
+    } else if (result.status === 'cancel') {
+      originalBatchDownloadDialogVisible.value = false
+    } else {
+      originalBatchDownloadDialogVisible.value = false
+      showToast(result.message || '全部下载失败。', 'error')
+    }
+  } catch (error) {
+    originalBatchDownloadDialogVisible.value = false
+    showToast(error instanceof Error ? error.message : '全部下载失败。', 'error')
+  }
+}
+
+const openOriginalBatchDownloadFolder = async (): Promise<void> => {
+  const api = window.pywebview?.api
+  const folder = originalBatchDownloadState.value.folder
+  if (!api || !folder) return
+
+  const success = await api.open_folder(folder)
+  if (!success) {
+    showToast('打开目录失败。', 'error')
+  }
+}
+
 // ── 状态 Dialog ────────────────────────────────────────────────────────
 const statusDialogVisible = ref(false)
 
@@ -513,7 +622,12 @@ const hasAnyBatchTask = computed(() =>
   globalBatchRewriteState.value.done > 0 ||
   globalBatchDownloadState.value.running ||
   globalBatchDownloadState.value.succeeded > 0 ||
-  globalBatchDownloadState.value.failed > 0,
+  globalBatchDownloadState.value.failed > 0 ||
+  globalBatchDownloadState.value.skipped > 0 ||
+  originalBatchDownloadState.value.running ||
+  originalBatchDownloadState.value.succeeded > 0 ||
+  originalBatchDownloadState.value.failed > 0 ||
+  originalBatchDownloadState.value.skipped > 0,
 )
 
 // ── 选框批量改写（保留，基于复选框）──────────────────────────────────
@@ -700,6 +814,10 @@ onMounted(() => {
     await loadArticles(1)
   })()
 })
+
+onUnmounted(() => {
+  stopOriginalBatchDownloadPolling()
+})
 </script>
 
 <template>
@@ -738,6 +856,12 @@ onMounted(() => {
           :disabled="globalBatchDownloadState.running || !apiAvailable"
           @click="startGlobalBatchDownload"
         >{{ globalBatchDownloadState.running ? '下载中...' : '批量下载' }}</button>
+        <button
+          type="button"
+          class="action-btn"
+          :disabled="originalBatchDownloadState.running || !apiAvailable"
+          @click="startOriginalBatchDownload"
+        >{{ originalBatchDownloadState.running ? `下载中 ${originalBatchDownloadState.done}/${originalBatchDownloadState.total}` : '全部下载' }}</button>
 
         <!-- 选框批量（仅选中时显示） -->
         <template v-if="someSelected">
@@ -928,7 +1052,7 @@ onMounted(() => {
               <!-- 下载进度 -->
               <div class="status-section" style="margin-top: 16px;">
                 <h4 class="status-section__title">批量下载</h4>
-                <template v-if="globalBatchDownloadState.running || globalBatchDownloadState.succeeded > 0 || globalBatchDownloadState.failed > 0">
+                <template v-if="globalBatchDownloadState.running || globalBatchDownloadState.succeeded > 0 || globalBatchDownloadState.failed > 0 || globalBatchDownloadState.skipped > 0">
                   <p v-if="globalBatchDownloadState.running" class="status-section__row">
                     <span>保存中...</span>
                     <span class="status-badge status-badge--running">进行中</span>
@@ -945,11 +1069,115 @@ onMounted(() => {
                 </template>
                 <p v-else class="status-section__empty">暂无下载任务</p>
               </div>
+
+              <div class="status-section" style="margin-top: 16px;">
+                <h4 class="status-section__title">全部下载</h4>
+                <template v-if="originalBatchDownloadState.running || originalBatchDownloadState.succeeded > 0 || originalBatchDownloadState.failed > 0 || originalBatchDownloadState.skipped > 0">
+                  <p v-if="originalBatchDownloadState.running" class="status-section__row">
+                    <span>进度 {{ originalBatchDownloadState.done }} / {{ originalBatchDownloadState.total }}</span>
+                    <span class="status-badge status-badge--running">进行中</span>
+                  </p>
+                  <p v-if="originalBatchDownloadState.running && originalBatchDownloadState.currentArticle" class="status-section__row status-section__row--current">
+                    当前：{{ originalBatchDownloadState.currentArticle }}
+                  </p>
+                  <p v-if="!originalBatchDownloadState.running" class="status-section__row">
+                    <span>完成 {{ originalBatchDownloadState.succeeded }} 篇</span>
+                    <span v-if="originalBatchDownloadState.skipped > 0" style="margin-left: 12px;">跳过 {{ originalBatchDownloadState.skipped }} 篇</span>
+                    <span v-if="originalBatchDownloadState.failed > 0" style="color: var(--danger, #e74c3c); margin-left: 12px;">失败 {{ originalBatchDownloadState.failed }} 篇</span>
+                    <span class="status-badge status-badge--done" style="margin-left: 12px;">已完成</span>
+                  </p>
+                  <p v-if="originalBatchDownloadState.message" class="status-section__row" style="color: var(--danger, #e74c3c);">
+                    {{ originalBatchDownloadState.message }}
+                  </p>
+                  <p v-if="originalBatchDownloadState.folder" class="status-section__row" style="font-size: 12px; color: #888; word-break: break-all;">
+                    路径：{{ originalBatchDownloadState.folder }}
+                  </p>
+                  <p v-if="originalBatchDownloadState.folder" class="status-section__row" style="margin-top: 8px;">
+                    <button type="button" class="action-btn" @click="openOriginalBatchDownloadFolder">打开目录</button>
+                  </p>
+                </template>
+                <p v-else class="status-section__empty">暂无原文下载任务</p>
+              </div>
             </template>
           </div>
 
           <div class="benchmark-dialog__actions">
             <button type="button" class="action-btn" @click="statusDialogVisible = false">关闭</button>
+          </div>
+        </div>
+      </div>
+
+      <div v-if="originalBatchDownloadDialogVisible" class="benchmark-dialog-mask" @click.self="!originalBatchDownloadState.running && (originalBatchDownloadDialogVisible = false)">
+        <div class="benchmark-dialog benchmark-dialog--status">
+          <div class="benchmark-dialog__head">
+            <div>
+              <h3 class="benchmark-dialog__title">全部下载进度</h3>
+              <p class="benchmark-dialog__text">使用浏览器执行线程池抓取原文并保存到本地。</p>
+            </div>
+            <button
+              type="button"
+              class="benchmark-dialog__close"
+              :disabled="originalBatchDownloadState.running"
+              @click="originalBatchDownloadDialogVisible = false"
+            >×</button>
+          </div>
+
+          <div class="benchmark-dialog__body">
+            <div class="status-section">
+              <h4 class="status-section__title">任务进度</h4>
+              <p class="status-section__row">
+                <span>{{ originalBatchDownloadState.done }} / {{ originalBatchDownloadState.total }} 篇</span>
+                <span v-if="originalBatchDownloadState.running" class="status-badge status-badge--running">进行中</span>
+                <span v-else class="status-badge status-badge--done">已完成</span>
+              </p>
+              <div style="margin-top: 10px; height: 10px; border-radius: 999px; background: color-mix(in srgb, var(--border), transparent 35%); overflow: hidden;">
+                <div
+                  style="height: 100%; background: linear-gradient(90deg, var(--accent), color-mix(in srgb, var(--accent), white 18%)); transition: width 220ms ease;"
+                  :style="{ width: `${originalBatchDownloadState.total ? (originalBatchDownloadState.done / originalBatchDownloadState.total) * 100 : 0}%` }"
+                />
+              </div>
+              <p class="status-section__row" style="margin-top: 12px;">
+                <span>成功 {{ originalBatchDownloadState.succeeded }} 篇</span>
+                <span v-if="originalBatchDownloadState.skipped > 0" style="margin-left: 12px;">跳过 {{ originalBatchDownloadState.skipped }} 篇</span>
+                <span v-if="originalBatchDownloadState.failed > 0" style="margin-left: 12px; color: var(--danger, #e74c3c);">失败 {{ originalBatchDownloadState.failed }} 篇</span>
+              </p>
+              <p v-if="originalBatchDownloadState.currentArticle" class="status-section__row status-section__row--current" style="margin-top: 12px;">
+                当前：{{ originalBatchDownloadState.currentArticle }}
+              </p>
+              <p v-if="originalBatchDownloadState.folder" class="status-section__row" style="margin-top: 12px; font-size: 12px; color: #888; word-break: break-all;">
+                路径：{{ originalBatchDownloadState.folder }}
+              </p>
+              <p v-if="originalBatchDownloadState.message" class="status-section__row" style="margin-top: 12px; color: var(--danger, #e74c3c);">
+                {{ originalBatchDownloadState.message }}
+              </p>
+              <div v-if="originalBatchDownloadState.errors.length" class="status-section" style="margin-top: 16px;">
+                <h4 class="status-section__title">失败列表</h4>
+                <div
+                  v-for="(error, idx) in originalBatchDownloadState.errors"
+                  :key="`${idx}-${error}`"
+                  class="status-section__row"
+                  style="align-items: flex-start; color: var(--danger, #e74c3c); line-height: 1.5;"
+                >
+                  <span style="flex: 0 0 auto;">{{ idx + 1 }}.</span>
+                  <span style="word-break: break-word;">{{ error }}</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="benchmark-dialog__actions">
+            <button
+              v-if="originalBatchDownloadState.folder"
+              type="button"
+              class="action-btn"
+              @click="openOriginalBatchDownloadFolder"
+            >打开目录</button>
+            <button
+              type="button"
+              class="action-btn"
+              :disabled="originalBatchDownloadState.running"
+              @click="originalBatchDownloadDialogVisible = false"
+            >关闭</button>
           </div>
         </div>
       </div>
@@ -1459,4 +1687,3 @@ onMounted(() => {
   color: #065f46;
 }
 </style>
-

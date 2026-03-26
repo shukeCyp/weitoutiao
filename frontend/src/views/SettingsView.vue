@@ -18,6 +18,7 @@ interface MonitoringStatus {
 const LLM_BASE_URL_KEY = 'llm.base_url'
 const LLM_API_KEY_KEY = 'llm.api_key'
 const LLM_MODEL_KEY = 'llm.model'
+const DOWNLOAD_TITLE_PROMPT_KEY = 'article_download.title_prompt'
 const IMAGE_BASE_URL_KEY = 'image.base_url'
 const IMAGE_API_KEY_KEY = 'image.api_key'
 const IMAGE_MODEL_KEY = 'image.model'
@@ -25,6 +26,16 @@ const AUTOMATION_HEADLESS_KEY = 'automation.headless'
 const AUTOMATION_WORKER_COUNT_KEY = 'automation.worker_count'
 const REWRITE_WORKER_COUNT_KEY = 'rewrite.worker_count'
 const IMAGE_GEN_WORKER_COUNT_KEY = 'image_gen.worker_count'
+const DEFAULT_DOWNLOAD_TITLE_PROMPT = `你是一名中文内容编辑，请根据下面的文章正文生成 1 个准确、自然、适合保存归档的中文标题。
+
+要求：
+1. 只能基于正文内容，不要补充正文里没有的信息。
+2. 不要写成夸张标题党，不要加 emoji，不要输出解释。
+3. 标题控制在 18 到 32 个中文字符之间。
+4. 直接输出标题。
+
+文章正文：
+{{content}}`
 
 const themeStore = useThemeStore()
 const { currentThemeName } = storeToRefs(themeStore)
@@ -35,6 +46,7 @@ const activeSection = ref<'basic' | 'theme' | 'logs' | 'database'>('basic')
 const llmBaseUrl = ref('')
 const llmApiKey = ref('')
 const llmModel = ref('')
+const downloadTitlePrompt = ref(DEFAULT_DOWNLOAD_TITLE_PROMPT)
 const imageBaseUrl = ref('')
 const imageApiKey = ref('')
 const imageModel = ref('')
@@ -46,6 +58,7 @@ const isSavingBasicSettings = ref(false)
 const llmBaseUrlSaved = ref('')
 const llmApiKeySaved = ref('')
 const llmModelSaved = ref('')
+const downloadTitlePromptSaved = ref(DEFAULT_DOWNLOAD_TITLE_PROMPT)
 const imageBaseUrlSaved = ref('')
 const imageApiKeySaved = ref('')
 const imageModelSaved = ref('')
@@ -59,6 +72,7 @@ const hasUnsavedBasicSettings = computed(() => {
     llmBaseUrl.value !== llmBaseUrlSaved.value
     || llmApiKey.value !== llmApiKeySaved.value
     || llmModel.value !== llmModelSaved.value
+    || downloadTitlePrompt.value !== downloadTitlePromptSaved.value
     || imageBaseUrl.value !== imageBaseUrlSaved.value
     || imageApiKey.value !== imageApiKeySaved.value
     || imageModel.value !== imageModelSaved.value
@@ -81,7 +95,7 @@ const isPywebviewAvailable = computed(() => !!window.pywebview?.api)
 const basicSettingCards = computed(() => [
   {
     title: '大模型服务',
-    description: '配置对话模型的 base URL、API Key 与模型名称，AI 实验室和改写能力都会复用这里的设置。',
+    description: '配置对话模型的 base URL、API Key 与模型名称，AI 实验室、改写和原文标题生成都会复用这里的设置。',
     accent: 'llm',
   },
   {
@@ -93,6 +107,11 @@ const basicSettingCards = computed(() => [
     title: '自动化执行',
     description: '控制浏览器自动化的执行方式。文章监控的线程数仍然以这里的设置为准。',
     accent: 'automation',
+  },
+  {
+    title: '原文下载',
+    description: '文章列表里的“全部下载”会用 Playwright 抓正文，再按这里的提示词生成标题并保存到本地。',
+    accent: 'llm',
   },
 ])
 
@@ -119,6 +138,7 @@ const syncSavedSettings = (): void => {
   llmBaseUrlSaved.value = llmBaseUrl.value
   llmApiKeySaved.value = llmApiKey.value
   llmModelSaved.value = llmModel.value
+  downloadTitlePromptSaved.value = downloadTitlePrompt.value
   imageBaseUrlSaved.value = imageBaseUrl.value
   imageApiKeySaved.value = imageApiKey.value
   imageModelSaved.value = imageModel.value
@@ -153,6 +173,7 @@ const loadBasicSettings = async (silent = false): Promise<void> => {
   try {
     const [
       savedLlmBaseUrl, savedLlmApiKey, savedLlmModel,
+      savedDownloadTitlePrompt,
       savedImageBaseUrl, savedImageApiKey, savedImageModel,
       savedAutomationHeadless, savedAutomationWorkerCount,
       savedRewriteWorkerCount, savedImageGenWorkerCount,
@@ -161,6 +182,7 @@ const loadBasicSettings = async (silent = false): Promise<void> => {
         api.get_setting(LLM_BASE_URL_KEY),
         api.get_setting(LLM_API_KEY_KEY),
         api.get_setting(LLM_MODEL_KEY),
+        api.get_setting(DOWNLOAD_TITLE_PROMPT_KEY),
         api.get_setting(IMAGE_BASE_URL_KEY),
         api.get_setting(IMAGE_API_KEY_KEY),
         api.get_setting(IMAGE_MODEL_KEY),
@@ -173,6 +195,7 @@ const loadBasicSettings = async (silent = false): Promise<void> => {
     llmBaseUrl.value = savedLlmBaseUrl ?? ''
     llmApiKey.value = savedLlmApiKey ?? ''
     llmModel.value = savedLlmModel ?? ''
+    downloadTitlePrompt.value = savedDownloadTitlePrompt ?? DEFAULT_DOWNLOAD_TITLE_PROMPT
     imageBaseUrl.value = savedImageBaseUrl ?? ''
     imageApiKey.value = savedImageApiKey ?? ''
     imageModel.value = savedImageModel ?? ''
@@ -194,6 +217,8 @@ const getSavedValue = (key: string): string => {
       return llmApiKeySaved.value
     case LLM_MODEL_KEY:
       return llmModelSaved.value
+    case DOWNLOAD_TITLE_PROMPT_KEY:
+      return downloadTitlePromptSaved.value
     case IMAGE_BASE_URL_KEY:
       return imageBaseUrlSaved.value
     case IMAGE_API_KEY_KEY:
@@ -223,6 +248,9 @@ const updateSavedValue = (key: string, value: string): void => {
       break
     case LLM_MODEL_KEY:
       llmModelSaved.value = value
+      break
+    case DOWNLOAD_TITLE_PROMPT_KEY:
+      downloadTitlePromptSaved.value = value
       break
     case IMAGE_BASE_URL_KEY:
       imageBaseUrlSaved.value = value
@@ -255,7 +283,10 @@ const saveBasicSetting = async (key: string, value: string | number, label: stri
   }
 
   const strValue = String(value)
-  let normalizedValue = options?.isUrl ? strValue.trim() : key === LLM_MODEL_KEY || key === IMAGE_MODEL_KEY ? strValue.trim() : strValue
+  let normalizedValue =
+    options?.isUrl || key === LLM_MODEL_KEY || key === IMAGE_MODEL_KEY
+      ? strValue.trim()
+      : strValue
 
   if (key === AUTOMATION_HEADLESS_KEY) {
     normalizedValue = normalizeHeadless(strValue)
@@ -289,6 +320,9 @@ const saveBasicSetting = async (key: string, value: string | number, label: stri
       break
     case LLM_MODEL_KEY:
       llmModel.value = normalizedValue
+      break
+    case DOWNLOAD_TITLE_PROMPT_KEY:
+      downloadTitlePrompt.value = normalizedValue
       break
     case IMAGE_BASE_URL_KEY:
       imageBaseUrl.value = normalizedValue
@@ -331,6 +365,7 @@ const saveAllBasicSettings = async (): Promise<void> => {
     await saveBasicSetting(LLM_BASE_URL_KEY, llmBaseUrl.value, '大语言模型 Base URL', { isUrl: true })
     await saveBasicSetting(LLM_API_KEY_KEY, llmApiKey.value, '大语言模型 API Key')
     await saveBasicSetting(LLM_MODEL_KEY, llmModel.value, '大语言模型 Model')
+    await saveBasicSetting(DOWNLOAD_TITLE_PROMPT_KEY, downloadTitlePrompt.value, '原文下载标题提示词')
     await saveBasicSetting(IMAGE_BASE_URL_KEY, imageBaseUrl.value, '生图服务 Base URL', { isUrl: true })
     await saveBasicSetting(IMAGE_API_KEY_KEY, imageApiKey.value, '生图服务 API Key')
     await saveBasicSetting(IMAGE_MODEL_KEY, imageModel.value, '生图服务 Model')
@@ -437,7 +472,7 @@ onMounted(() => {
             <section class="basic-settings-group basic-settings-group--feature">
               <div class="basic-settings-group__head">
                 <h4 class="basic-settings-group__title">大模型服务</h4>
-                <p class="basic-settings-group__text">标题改写、文章改写和通用对话测试都复用这里的配置。</p>
+                <p class="basic-settings-group__text">标题改写、文章改写、原文标题生成和通用对话测试都复用这里的配置。</p>
               </div>
 
               <div class="basic-settings-fields">
@@ -468,6 +503,25 @@ onMounted(() => {
                     type="text"
                     class="basic-settings-input"
                     placeholder="gpt-4.1 / claude-opus-4-6"
+                  />
+                </label>
+              </div>
+            </section>
+
+            <section class="basic-settings-group basic-settings-group--feature">
+              <div class="basic-settings-group__head">
+                <h4 class="basic-settings-group__title">原文下载</h4>
+                <p class="basic-settings-group__text">文章列表里的“全部下载”会用 Playwright 抓取正文，再按这个提示词生成标题。提示词里请保留 <code v-pre>{{content}}</code> 占位符。</p>
+              </div>
+
+              <div class="basic-settings-fields">
+                <label class="basic-settings-field basic-settings-field--wide">
+                  <span class="basic-settings-field__label">标题提示词</span>
+                  <textarea
+                    v-model="downloadTitlePrompt"
+                    rows="8"
+                    class="basic-settings-input"
+                    placeholder="请输入标题生成提示词"
                   />
                 </label>
               </div>

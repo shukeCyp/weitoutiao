@@ -5,6 +5,7 @@ import logging
 import os
 import re
 import subprocess
+import threading
 import webbrowser
 from datetime import datetime
 from pathlib import Path
@@ -15,6 +16,7 @@ from docx.shared import Inches, Pt
 from docx.enum.text import WD_ALIGN_PARAGRAPH
 from peewee import IntegrityError
 
+from .article_exporter import OriginalArticleBatchExporter
 from .db import (
     count_benchmark_accounts,
     count_monitor_runs,
@@ -70,6 +72,20 @@ class Api:
 
     def __init__(self) -> None:
         self.window: webview.Window | None = None
+        self._original_export_lock = threading.Lock()
+        self._original_export_thread: threading.Thread | None = None
+        self._original_export_progress: dict[str, object] = {
+            "running": False,
+            "total": 0,
+            "done": 0,
+            "succeeded": 0,
+            "failed": 0,
+            "skipped": 0,
+            "currentArticle": "",
+            "folder": "",
+            "message": "",
+            "errors": [],
+        }
 
     def attach_window(self, window: webview.Window) -> None:
         self.window = window
@@ -325,6 +341,126 @@ class Api:
         except Exception as exc:
             logger.exception("批量下载 Word 文档失败")
             return {"status": "error", "message": str(exc) or "批量下载失败。"}
+
+    def start_batch_export_original_articles(self, filters: dict) -> dict:
+        """按当前筛选条件抓取原文并批量导出到 Word。"""
+        if self.window is None:
+            return {"status": "error", "message": "下载窗口尚未初始化。"}
+
+        with self._original_export_lock:
+            if self._original_export_progress.get("running"):
+                return {"status": "error", "message": "全部下载任务正在执行，请稍后。"}
+
+        article_ids = list_article_ids_for_batch(filters, skip_rewritten=False)
+        if not article_ids:
+            return {"status": "error", "message": "没有可下载的文章。"}
+
+        logger.info("开始批量导出原文文章（后台任务） count=%s", len(article_ids))
+
+        try:
+            result = self.window.create_file_dialog(webview.FOLDER_DIALOG)
+            if not result:
+                logger.info("批量导出原文文章已取消")
+                return {"status": "cancel"}
+
+            folder = Path(result[0] if isinstance(result, (list, tuple)) else result)
+            folder.mkdir(parents=True, exist_ok=True)
+
+            articles = [article for article_id in article_ids if (article := get_monitored_article_by_id(article_id)) is not None]
+            self._set_original_export_progress(
+                {
+                    "running": True,
+                    "total": len(articles),
+                    "done": 0,
+                    "succeeded": 0,
+                    "failed": 0,
+                    "skipped": 0,
+                    "currentArticle": "",
+                    "folder": str(folder),
+                    "message": "",
+                    "errors": [],
+                }
+            )
+
+            self._original_export_thread = threading.Thread(
+                target=self._run_original_export_task,
+                args=(articles, folder),
+                daemon=True,
+                name="original-export-task",
+            )
+            self._original_export_thread.start()
+
+            return {
+                "status": "started",
+                "folder": str(folder),
+                "total": len(articles),
+            }
+        except Exception as exc:
+            logger.exception("批量导出原文文章失败")
+            return {"status": "error", "message": str(exc) or "批量导出失败。"}
+
+    def get_original_export_progress(self) -> dict:
+        with self._original_export_lock:
+            return dict(self._original_export_progress)
+
+    def _set_original_export_progress(self, payload: dict[str, object]) -> None:
+        with self._original_export_lock:
+            self._original_export_progress = {
+                **self._original_export_progress,
+                **payload,
+            }
+
+    def _run_original_export_task(self, articles: list, folder: Path) -> None:
+        try:
+            exporter = OriginalArticleBatchExporter()
+            summary = exporter.export_articles(
+                articles,
+                folder,
+                progress_callback=lambda progress: self._set_original_export_progress(
+                    {
+                        "running": True,
+                        "total": progress.get("total", len(articles)),
+                        "done": progress.get("done", 0),
+                        "succeeded": progress.get("succeeded", 0),
+                        "failed": progress.get("failed", 0),
+                        "skipped": progress.get("skipped", 0),
+                        "currentArticle": progress.get("currentArticle", ""),
+                        "folder": str(folder),
+                        "message": "",
+                        "errors": progress.get("errors", []),
+                    }
+                ),
+            )
+            logger.info(
+                "批量导出原文完成 succeeded=%s failed=%s skipped=%s folder=%s",
+                summary.get("succeeded"),
+                summary.get("failed"),
+                summary.get("skipped"),
+                folder,
+            )
+            self._set_original_export_progress(
+                {
+                    "running": False,
+                    "total": summary.get("total", len(articles)),
+                    "done": summary.get("done", len(articles)),
+                    "succeeded": summary.get("succeeded", 0),
+                    "failed": summary.get("failed", 0),
+                    "skipped": summary.get("skipped", 0),
+                    "currentArticle": "",
+                    "folder": str(folder),
+                    "message": "",
+                    "errors": summary.get("errors", []),
+                }
+            )
+        except Exception as exc:
+            logger.exception("后台批量导出原文文章失败")
+            self._set_original_export_progress(
+                {
+                    "running": False,
+                    "currentArticle": "",
+                    "message": str(exc) or "批量导出失败。",
+                }
+            )
 
     def get_setting(self, key: str) -> str | None:
         return get_setting(key)
@@ -645,6 +781,12 @@ class Api:
         logger.info("打开数据库目录 success=%s path=%s", success, DB_DIR)
         return success
 
+    def open_folder(self, path: str) -> bool:
+        normalized = Path(path).expanduser()
+        success = _open_folder(normalized)
+        logger.info("打开指定目录 success=%s path=%s", success, normalized)
+        return success
+
     def clear_logs(self) -> bool:
         logger.info("开始清理日志文件 path=%s", LOG_DIR)
         LOG_DIR.mkdir(parents=True, exist_ok=True)
@@ -662,4 +804,3 @@ class Api:
 
         logger.info("日志文件清理完成 removed=%s", removed)
         return removed
-

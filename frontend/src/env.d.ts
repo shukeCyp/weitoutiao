@@ -196,6 +196,26 @@ interface BatchDownloadArticlesDocxResult {
   message?: string
 }
 
+interface StartOriginalExportResult {
+  status: 'started' | 'cancel' | 'error'
+  folder?: string
+  total?: number
+  message?: string
+}
+
+interface OriginalExportProgress {
+  running: boolean
+  total: number
+  done: number
+  succeeded: number
+  failed: number
+  skipped: number
+  currentArticle: string
+  folder: string
+  message?: string
+  errors?: string[]
+}
+
 interface PywebviewApi {
   ping(): Promise<string>
   get_setting(key: string): Promise<string | null>
@@ -232,7 +252,10 @@ interface PywebviewApi {
   download_rewritten_article(content: string): Promise<DownloadRewrittenArticleResult>
   download_article_docx(articleId: number): Promise<DownloadArticleDocxResult>
   batch_download_articles_docx(articleIds: number[]): Promise<BatchDownloadArticlesDocxResult>
+  start_batch_export_original_articles(filters: MonitoredArticleFilters): Promise<StartOriginalExportResult>
+  get_original_export_progress(): Promise<OriginalExportProgress>
   open_external_url(url: string): Promise<boolean>
+  open_folder(path: string): Promise<boolean>
   open_logs_folder(): Promise<boolean>
   open_db_folder(): Promise<boolean>
   clear_logs(): Promise<boolean>

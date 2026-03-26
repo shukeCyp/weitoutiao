@@ -36,6 +36,18 @@ LLM_MODEL_KEY = "llm.model"
 TITLE_REWRITE_TIMEOUT_SECONDS = 120
 ARTICLE_REWRITE_TIMEOUT_SECONDS = 1800  # 30 分钟，兼容 LLM 长文章生成
 LLM_PREVIEW_MAX_LENGTH = 300
+DEFAULT_DOWNLOAD_TITLE_PROMPT = """
+你是一名中文内容编辑，请根据下面的文章正文生成 1 个准确、自然、适合保存归档的中文标题。
+
+要求：
+1. 只能基于正文内容，不要补充正文里没有的信息。
+2. 不要写成夸张标题党，不要加 emoji，不要输出解释。
+3. 标题控制在 18 到 32 个中文字符之间。
+4. 直接输出标题。
+
+文章正文：
+{{content}}
+"""
 ARTICLE_REWRITE_PROMPTS = {
     "international_account_starter": PromptTemplates.INTERNATIONAL_ACCOUNT_STARTER_PROMPT,
     "international_stable_hardcore": PromptTemplates.INTERNATIONAL_STABLE_HARDCORE_PROMPT,
@@ -210,6 +222,16 @@ class BaseLlmRewriter:
             return normalized
         return f"########标题\n{normalized}"
 
+    def _extract_title_text(self, content: str) -> str:
+        lines = [
+            line.strip()
+            for line in content.splitlines()
+            if line.strip() and not line.strip().startswith("########")
+        ]
+        if not lines:
+            return content.strip()
+        return lines[0]
+
     def _normalize_article_output(self, content: str) -> str:
         normalized = content.strip()
         if normalized.startswith("########01"):
@@ -293,6 +315,24 @@ class TitleRewriter(BaseLlmRewriter):
         )
 
 
+class ContentTitleGenerator(BaseLlmRewriter):
+    def generate(self, content: str, prompt_template: str | None = None) -> str:
+        template = (prompt_template or "").strip() or DEFAULT_DOWNLOAD_TITLE_PROMPT.strip()
+        raw = self._rewrite_with_format(
+            template,
+            content,
+            empty_message="文章内容不能为空。",
+            error_prefix="标题生成请求失败",
+            timeout_seconds=TITLE_REWRITE_TIMEOUT_SECONDS,
+            format_instruction=TITLE_OUTPUT_FORMAT_INSTRUCTION,
+            output_normalizer=self._normalize_title_output,
+        )
+        title = self._extract_title_text(raw)
+        if not title:
+            raise RuntimeError("标题生成结果为空。")
+        return title
+
+
 class ArticleRewriter(BaseLlmRewriter):
     def rewrite(self, content: str, template_key: str) -> str:
         prompt = ARTICLE_REWRITE_PROMPTS.get(template_key)
@@ -340,4 +380,11 @@ class ImagePromptGenerator(BaseLlmRewriter):
         return prompts[:3]
 
 
-__all__ = ["ArticleRewriter", "ARTICLE_REWRITE_PROMPTS", "ImagePromptGenerator", "TitleRewriter"]
+__all__ = [
+    "ArticleRewriter",
+    "ARTICLE_REWRITE_PROMPTS",
+    "ContentTitleGenerator",
+    "DEFAULT_DOWNLOAD_TITLE_PROMPT",
+    "ImagePromptGenerator",
+    "TitleRewriter",
+]
